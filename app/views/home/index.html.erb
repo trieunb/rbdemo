@@ -1,0 +1,48 @@
+<% content_for :title do %>BrSE School<% end %>
+
+<% content_for :description do %><%=@setting.description%><% end %>
+
+<% content_for :keywords do %><%=@setting.keyword%><% end %>
+
+<% content_for :styles do %>
+    <%= stylesheet_link_tag "vendor/slick/slick", media: "all" %>
+    <%= stylesheet_link_tag "vendor/slick/slick-theme", media: "all" %>
+    <%= stylesheet_link_tag "vendor/ekko-lightbox/ekko-lightbox", media: "all" %>
+    <%= stylesheet_link_tag "home/home", media: "all" %>
+<% end %>
+
+<% content_for :lib do %>
+    <script>
+        var locale = '<%=@lang%>';
+    </script>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyAJjBzWmCjja015_YqaFjU6L31ySiBBTQY&language=<%=@lang%>"></script> 
+<% end %>
+
+<% content_for :scripts do %>
+    <%= javascript_include_tag('application') %>
+<% end %>
+
+<%= render "home/header" %>
+<%= render "home/slide" %>
+<%= render "home/different" %>
+<%= render "home/media" %>
+<%= render "home/courses" %>
+<%= render "home/subscribe" %>
+<%= render "home/event" %>
+<%= render "home/footer" %>
+<%= render "home/regist_advisory" %>
+<%= render "home/regist_courses" %>
+<section id="course-details" class="hidden-section">
+</section>
+<!-- Added by ANS804 - Daonx 2017/08/16 -->
+<section id="event-detail" class="hidden-section">
+    <input type="hidden" name="view-event-detail-from-link" id="view-event-detail-from-link" value="<%= @eventDetailId == nil ? 0 : @eventDetailId %>">
+</section>
+<!-- End - Added by ANS804 - Daonx 2017/08/16 -->
+<section id="regist-event" class="hidden-section">
+    <input type="hidden" name="view-regist-event-from-link" id="view-regist-event-from-link" value="<%= @idEvent == nil ? 0 : @idEvent %>">
+</section>
+<!--Add by quypn 2017/08/31-->
+<%= render "home/show_event_nearest" %>
+<!--End add by quypn 2017/08/31-->
+<%= render "home/popup_msg" %>

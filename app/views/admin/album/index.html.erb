@@ -1,0 +1,54 @@
+<% content_for :title do %>
+    <%=t('photos_of_album')%>
+<% end %>
+
+<% content_for :styles do %>
+    <%= stylesheet_link_tag "vendor/iCheck/skins/flat/green", media: "all" %>
+    <%= stylesheet_link_tag "vendor/ekko-lightbox/ekko-lightbox", media: "all" %>
+    <%= stylesheet_link_tag "admin/album/album", media: "all" %>
+<% end %>
+
+<% content_for :lib do %>
+    <%= javascript_include_tag('vendor/iCheck/icheck.min') %>
+    <%= javascript_include_tag('vendor/ekko-lightbox/ekko-lightbox') %>
+<% end %>
+
+<% content_for :scripts do %>
+    <%= javascript_include_tag('admin/album/album') %>
+<% end %>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><%= t('photos_of_album') %></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="div-table-album">
+                <div class="row">
+                    <% if @albums != nil %>
+                        <% @albums.each_with_index do |photo, index| %>
+                            <div class="col-xs-12 col-custom">
+                                <div class="img-item item<%= photo.id %>">
+                                    <a href="<%= photo.img %>" data-toggle="lightbox" data-gallery="example-gallery">
+                                        <img src="<%= photo.thumb %>"/>
+                                    </a>
+                                    <div class="func">
+                                        <i class="fa fa-times-circle delete-img" tabindex="1" id-img="<%= photo.id %>" aria-hidden="true"></i>
+                                        <div class="check-box">
+                                            <input type="checkbox" class="flat choose-img" tabindex="1" value="<%= photo.id %>" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+                <div class="row">
+                    <div class=col-sm-12>
+                        <button type="button" class="btn btn-danger" id="deletes" tabindex="2"><%= t('delete_choosen_photos') %></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

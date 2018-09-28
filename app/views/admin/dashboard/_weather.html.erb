@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="temperature">
+            <%= @weather["list"][0]["dt"] %>
+            <b>Monday</b>, 07:30 AM
+            <span>F</span>
+            <span><b>C</b></span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-2">
+        <div class="weather-icon">
+            <canvas height="84" width="84" id="<%= @weather["list"][0]["weather"][0]["main"].downcase %>"></canvas>
+        </div>
+    </div>
+    <div class="col-sm-10">
+        <div class="weather-text">
+            <h2><%= t(@weather["city"]["name"]) %></h2>
+            <h2><i><%= @weather["list"][0]["weather"][0]["description"].titleize %></i></h2>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12">
+    <div class="weather-text pull-right">
+        <h3>
+            <span class="degrees">
+                <%= @weather["list"][0]["temp"]["min"] %>
+                -
+                <%= @weather["list"][0]["temp"]["max"] %>
+            </span>
+            <span>, <%=@weather["list"][0]["speed"]%> m/s,</span>
+            <span> <%=t('clouds')%>: <%=@weather["list"][0]["clouds"]%>%,</span>
+            <span> <%=@weather["list"][0]["pressure"]%> hpa</span>
+        </h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row weather-days">
+    <% @weather["list"].drop(1).each do |item| %>
+    <div class="col-sm-2 col-xs-4">
+        <div class="daily-weather text-center">
+            <h2 class="day"><%= item["dt"] %></h2>
+            <h3 class="degrees" style="margin: 0px">
+                <%= item["temp"]["day"] %>
+            </h3>
+            <img src="http://openweathermap.org/img/w/<%=item["weather"][0]["icon"]%>.png" alt="<%=item["weather"][0]["main"]%>"/>
+            <h5 style="margin: 0px"><%= item["speed"] %> <i>m/s</i></h5>
+        </div>
+    </div>
+    <% end %>
+    <div class="clearfix"></div>
+</div>

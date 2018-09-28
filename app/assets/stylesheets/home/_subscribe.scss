@@ -1,0 +1,429 @@
+@import 'variables';
+#subscribe{
+    #subs-wrap {
+        background-size  : cover;
+        background-repeat: no-repeat;
+        .row-sub {
+            margin-left: -30px;
+            margin-right: -30px;
+            #row-customize {
+                margin-left: 0px;
+                margin-right: 0px;
+            }
+            #set-width-side-left {
+                #subs-selection-process {
+                    position: relative;
+                    text-align: center;
+                    #subs-mascot {
+                        position: absolute;
+                        width   : 205px;
+                        bottom  : -33px;
+                        right   : -110px;
+                        z-index : 1;
+                    }
+                    #subs-btn-regist {
+                        position: absolute;
+                        text-align: center;
+                        .btn-regist-receive-interview {
+                            color        : #fff;
+                            font-weight  : 600;
+                            border-radius: 17px;
+                            padding      : 0px;
+                            background   : $dark-green;
+                            position     : relative;
+                            left         : 0;
+                            bottom       : 94px;
+                            span {
+                                padding: 6px 20px;
+                                display: inline-block;
+                                background: $dark-green;
+                                border-radius: 17px;
+                                position: relative;
+                                z-index: 3;
+                                text-transform: uppercase;
+                                #font-size: 13px;
+                                &:hover {
+                                    background: $green-hover;
+                                }
+                            }
+                            &.ja{
+                                span{
+                                    font-size: 17px;
+                                }
+                            }
+                            .btn-shadow1 {
+                                position  : absolute;
+                                z-index   : 2;
+                                width     : 100%;
+                                height    : 100%;
+                                left      : 0;
+                                top       : 4px;
+                                background: #35897A;
+                                border-radius: 17px;
+                            }
+                            .btn-shadow2 {
+                                position  : absolute;
+                                z-index   : 1;
+                                width     : 100%;
+                                height    : 100%;
+                                left      : 0;
+                                top       : 8px;
+                                background: #D5D4D9;
+                                border-radius: 17px;
+                            }
+                        }
+                    }
+                }
+            }
+            #set-width-side-right {
+                #subs-email {
+                    padding: 65px 29px 0px;
+                    #subs-e-header {
+                        text-align: center;
+                        p {
+                            font-family: utmAvo;
+                            color: $dark-green;
+                            font-weight: bold;
+                            font-size: 18px;
+                            margin-bottom: 20px;
+                            text-shadow: -1px -1px 0 #fff, 
+                                          1px -1px 0 #fff, 
+                                         -1px 1px 0 #fff, 
+                                          1px 1px 0 #fff, 
+                                          0px 1px 5px #404040;
+                        }
+                        &.ja{
+                            p{
+                                font-family: inherit;
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                    #subs-e-body {
+                        p {
+                            font-family: utmAvo;
+                            color: #fff;
+                            font-size: 16px;
+                            font-weight: bold;
+                            margin-bottom: 16px;
+                        }
+                    }
+                    #subs-e-footer {
+                        font-family: Arial;
+                        margin-bottom: 15px;
+                        .form-group {
+                            position: relative;
+                            #background-back-input {
+                                width: 100%;
+                                height: 34px;
+                                border-radius:7px;
+                                background: #A0A0A0;
+                                position: absolute;
+                                top: 12px;
+                                left:0;
+                            }
+                            #btn-subscribe {
+                                position: relative;
+                                padding: 0;
+                                span {
+                                    position: relative;
+                                    z-index: 2;
+                                    background: $orange;
+                                    padding: 11px 15px;
+                                    border-radius: 4px;
+                                    font-size: 15px;
+                                    &:hover {
+                                        background: $orange-hover;
+                                    }
+                                }
+                                #background-back-btn {
+                                    width: 100%;
+                                    height: 29px;
+                                    border-radius: 4px;
+                                    background: #C15814;
+                                    position: absolute;
+                                    top: 6px;
+                                    left: 0;
+                                    z-index: 1;
+                                }
+                            }
+                            
+                        }                    
+                        #subs-input-email {
+                            font-size: 15px;
+
+                        }
+                        #btn-subscribe {
+                            color: #fff;
+                            font-weight: bold;
+                            position: relative;
+                            background: transparent;
+                        }
+                        .msg {
+                            &.ja {
+                                font-size: 15px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media only screen and (min-width: 550px) {
+        #subs-wrap {
+            .row-sub {
+                #set-width-side-right {
+                    #subs-email {
+                        #subs-e-footer {
+                            .msg {
+                                position: absolute;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media only screen and (min-width: 1024px) {
+        #subs-wrap {
+            .row-sub {
+                #set-width-side-left {
+                    #subs-selection-process {
+                        #subs-btn-regist {
+                            left: 50%;
+                            .btn-regist-receive-interview {
+                                position: relative;
+                                left: -50%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media only screen and (min-width: 1025px) {
+        #subs-wrap {
+            .row-sub {
+                #set-width-side-left {
+                    width: 47.5%!important;
+                }
+                #set-width-side-right {
+                    width: 52.5%!important;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 1024px) and (min-width: 769px) {
+        #set-width-side-left {
+            width: 50%!important;
+        }
+
+        #set-width-side-right {
+            width: 50%!important;
+            #subs-email {
+                padding: 25px 0px 0!important;
+                #subs-e-header {
+                    p {
+                        margin-bottom: 12px;
+                    }
+                }
+                #subs-e-footer {
+                    margin-bottom: -4px;
+                }
+                #img-decoration {
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 1024px) {
+        #subs-wrap {
+            .row-sub {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+    }
+    @media only screen and (max-width: 768px) {
+        #subs-wrap {
+            .row-sub {
+                #set-width-side-left {
+                    #subs-selection-process {
+                        margin-top: 35px;
+                        #subs-mascot {
+                            right: 10px;
+                            bottom  : -7px;
+                        }
+                        #subs-btn-regist {
+                            position: relative;
+                        }
+                    }
+                }
+                #set-width-side-right {
+                    #subs-email {
+                        padding: 0 29px 0!important;
+                        #subs-e-header {
+                            p {
+                                margin-bottom: 5px!important;
+                            }
+                        }
+                        #subs-e-body {
+                            p {
+                                margin-bottom: 8px!important;
+                            }
+                        }
+                        #subs-e-footer {
+                            margin-bottom: 35px!important;
+                            .form-group {
+                                display: inline-block;
+                                .input-group {
+                                    display: inline-table;
+                                    vertical-align: middle;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #img-decoration {
+            display: none;
+        }
+    }
+    @media only screen and (max-width: 768px) and (min-width: 481px) {
+        #subs-selection-process {
+            .img-process {
+                height: 575px;
+                width: auto;
+            }
+        }
+        #subs-email {
+            #subs-e-footer {
+                .input-group-addon {
+                    width: auto;
+                }
+            }
+
+        }
+    }
+    @media only screen and (max-width: 640px) {
+        #subs-wrap {
+            .row-sub {
+                #set-width-side-left {
+                    #subs-selection-process {
+                        #subs-mascot {
+                            right: -60px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 480px) {
+        #subs-wrap {
+            #row-customize {
+                margin-left: -15px;
+                margin-right: -15px;
+            }
+            .row-sub {                
+                #set-width-side-right {
+                    #subs-email {
+                        #subs-e-footer {
+                            margin-bottom: 20px!important;
+                            /*.msg {
+                                position: unset;
+                            }*/
+                            .form-group {
+                                display: inline-block;
+                                .input-group {
+                                    display: inline-table;
+                                    vertical-align: middle;
+                                }
+                                #btn-subscribe {
+                                    // margin-top: 15px;
+                                    span, #background-back-btn {
+                                        font-family: BryantLG;
+                                        border-radius: 17px;
+                                        padding: 6px 10px;
+                                        font-size: 13px;
+                                    }
+                                    #background-back-btn {
+                                        top:0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #subs-selection-process {
+            margin-top: 15px;
+            #subs-mascot {
+                display: none;
+            }
+        }
+        #set-width-side-right {
+            #subs-email {
+                #subs-e-header,#subs-e-body {
+                    display: none;
+                }
+            }
+        }
+        .btn-regist-receive-interview {
+            bottom: 77px!important;
+        }
+    }
+    @media only screen and (max-width: 414px) {
+        .btn-regist-receive-interview {
+            bottom: 72px!important;
+        }
+        #subs-wrap {
+            .row-sub {
+                #set-width-side-right {
+                    #subs-email {
+                        padding: 0!important;
+                        #subs-e-footer {
+                            margin-bottom: 15px!important;
+                            .form-group {
+                                #background-back-input {
+                                    top: 5px;
+                                }
+                                #subs-input-email {
+                                    height: 35px;
+                                    padding: 4px 12px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .padding-right-left-0 {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    }
+    @media only screen and (max-width: 320px) {
+        #subs-email {
+            padding: 0px 0 0 !important;
+            margin-top: -13px;
+            #subs-e-footer {
+                margin-bottom: 10px !important;
+                .form-group {
+                    #btn-subscribe {
+                        span {
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+        .btn-regist-receive-interview {
+            bottom: 60px!important;
+            span {
+                font-size: 12px;
+            }
+        }
+    }
+}

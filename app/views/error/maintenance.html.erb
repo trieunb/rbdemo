@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="author" content="BrSE-School">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <%= csrf_meta_tags %>
+        <%= favicon_link_tag "favicon.ico" %>
+        <%= stylesheet_link_tag "vendor/bootstrap/bootstrap.min", media: "all" %>
+        <%= stylesheet_link_tag "vendor/font-awesome/font-awesome.min", media: "all" %>
+        <%= stylesheet_link_tag "vendor/nprogress/nprogress", media: "all" %>
+        <%= stylesheet_link_tag "admin/custom", media: "all" %>
+        <style>
+            @font-face{
+                font-family: appleberry;
+                src: url('/fonts/appleberry.ttf');
+            }
+            .nav-md {
+                background: transparent;
+                height: 100%;
+                background-image: url(/images/maintenance/background-maintenance.jpg);
+                background-size: cover;
+            }
+            img#maintenance {
+                max-width: 50%;
+                padding: 40px 0 49px;
+            }
+            #text-maintenance p {
+                font-family: appleberry;
+                font-size: 40px;
+                color: #3C9685;
+                margin-bottom: 13px;
+            }
+            #text-maintenance p:last-child {
+                font-size: 30px;
+                color: #47B6E4;
+            }
+            @media only screen and (max-width: 1600px) {
+                img#maintenance {
+                    max-width: 50%;
+                    padding: 40px 0 27px;
+                }
+                #text-maintenance p {
+                    font-size: 40px;
+                    margin-bottom: 7px;
+                }
+                #text-maintenance p:last-child {
+                    font-size: 30px;
+                }
+            }
+            @media only screen and (max-width: 1280px) {
+                img#maintenance {
+                    padding: 58px 0 29px;
+                }
+                #text-maintenance p {
+                    font-size: 39px;
+                    margin-bottom: -2px;
+                }
+                #text-maintenance p:last-child {
+                    font-size: 26px;
+                }
+            }
+            @media only screen and (max-width: 1024px) {
+                img#maintenance {
+                    max-width: 61%;
+                }
+                #text-maintenance p {
+                    margin-bottom: -8px;
+                    font-size: 30px;
+                }
+                #text-maintenance p:last-child {
+                    font-size: 20px;
+                }
+            }
+            @media only screen and (max-width: 768px) {
+                img#maintenance {
+                    max-width: 80%;
+                    padding: 58px 0 27px;
+                }
+                #text-maintenance p {
+                    margin-bottom: -10px;
+                }
+            }
+            @media only screen and (max-width: 640px) {
+                .nav-md {
+                    padding-top: 60px;
+                }
+                img#maintenance {
+                    padding: 0 0 27px;
+                }
+            }
+            @media only screen and (max-width: 480px) {
+                .nav-md {
+                    background-size: unset; 
+                }
+                img#maintenance {
+                    padding: 0;
+                }
+                #text-maintenance {
+                    padding-top: 30px;
+                }
+                #text-maintenance p {
+                    font-size: 25px;
+                    margin-bottom: 13px;
+                }
+                #text-maintenance p:last-child {
+                    font-size: 20px;
+                }
+            }
+            @media only screen and (max-width: 414px) {
+                #text-maintenance p {
+                    font-size: 20px;
+                }
+                #text-maintenance p:last-child {
+                    font-size: 17px;
+                }
+            }
+            @media only screen and (max-width: 320px) {
+                #text-maintenance p {
+                    font-size: 18px;
+                }
+                #text-maintenance p:last-child {
+                    font-size: 17px;
+                }
+            }
+        </style>
+    </head>
+    <body class="nav-md">
+        <div class="container body">
+            <div class="main_container">
+                <!-- page content -->
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="text-center text-center">
+                            <img id="maintenance" src="/images/maintenance/maintenance.png" alt="maintenance">
+                        </div>
+                        <div id="text-maintenance" class="text-center">
+                            <p>Sorry, we're down for maintenance.</p>
+                            <p>We'll be back shortly.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /page content -->
+            </div>
+        </div>
+        <%= javascript_include_tag('vendor/jquery/jquery-3.2.1.min') %>
+        <%= javascript_include_tag('vendor/bootstrap/bootstrap.min') %>
+    </body>
+</html>

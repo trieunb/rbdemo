@@ -1,0 +1,173 @@
+<% content_for :title do %>
+    <%=@mode == 'I' ? 'Add question' : 'Edit question'%>
+<% end %>
+
+<% content_for :styles do %>
+    <%= stylesheet_link_tag "vendor/switchery/switchery.min", question: "all" %>
+    <%= stylesheet_link_tag "vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.min", question: "all" %>
+    <%#= stylesheet_link_tag "admin/question/question-add", question: "all" %>
+<% end %>
+
+<% content_for :lib do %>
+    <script src="/ckeditor/ckeditor.js"></script>
+    <%= javascript_include_tag('vendor/switchery/switchery.min') %>
+    <%= javascript_include_tag('vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.min') %>
+<% end %>
+
+<% content_for :scripts do %>
+    <script>
+        var mode = '<%= @mode %>';
+    </script>
+    <%= javascript_include_tag('admin/question/add-edit-question') %>
+<% end %>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3><%=@mode == 'I' ? 'Add question' : 'Edit question'%></h3>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+<div class="row">
+
+    <div class="<%=  @mode == 'U' ? 'col-md-6' : '' %> col-xs-12"">
+        <div class="x_panel">
+
+            <div class="x_title">
+                <% if @mode == 'I' %>
+                <h2><%= t('question_title_edit') %></h2>
+                <% else %>
+                <h2><%= t('main_language') %> <small><%= t('vietnamese') %></small></h2>
+                <% end %>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+                <form class          ="form-horizontal input_mask"
+                      id             ="form-question-main"
+                      enctype        ="multipart/form-data"
+                      action         ="/admin/questions/save-questions"
+                      accept-charset ="UTF-8"
+                      method         ="post">
+
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" id="authenticity_token">
+                    <input type="hidden" name="mode" value="<%= @mode %>">
+
+                    <% if @question != nil && @question.id != nil %>
+                        <input type="hidden" name="question[id]" id="id" value="<%= @question.id %>">
+                    <% end %>
+    
+                    <!-- question -->
+                    <div class="form-group">
+                        <label for="question">
+                            <%= t('question_question') %>
+                            <span class="sign_required">*</span>
+                        </label>
+                        <textarea class="form-control form_auto_tabindex"
+                                  name ="question[question]"
+                                  id   ="question"
+                                  rows ="3"><%= (@question != nil && @question.question != nil) ? @question.question : '' %></textarea>
+                    </div>
+    
+                    <!-- answer -->
+                    <div class="form-group">
+                        <label for="answer">
+                            <%= t('question_answer') %>
+                            <span class="sign_required">*</span>
+                        </label>
+                        <textarea class="form-control form_auto_tabindex"
+                                  name ="question[answer]"
+                                  id   ="answer"
+                                  rows ="3"><%= (@question != nil && @question.answer != nil) ? @question.answer : '' %></textarea>
+                    </div>
+
+                    <!-- submit -->
+                    <div class="form-group">
+                        <button type     ="button" 
+                                class    ="btn btn-primary form_auto_tabindex" 
+                                id       ="btn-save-question">
+                            <%= t('save') %>                        
+                        </button>
+                        <% if @mode == 'U' %>
+                            <button type     ="button" 
+                                    class    ="btn btn-danger form_auto_tabindex" 
+                                    id       ="btn-delete-question">
+                                <%= t('delete') %>
+                            </button>
+                        <% end %>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <% if @mode == 'U' %>    
+    <div class="col-md-6 col-xs-12 col-trans">
+        <form class          ="form-horizontal input_mask"
+              id             ="form-question-trans"
+              action         ="/admin/questions/update-question-trans"
+              accept-charset ="UTF-8"
+              method         ="post">
+            <div class="x_panel">
+
+                <div class="x_title">
+                    <h2><%= t('translate') %></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <select id="language-trans" name="question[lang]" class="form-control">
+                                <% @lang.each_with_index do |item, index| %>
+                                    <option value="<%=item.language_code%>"><%=item.language_name%></option>
+                                <% end %>
+                            </select>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" id="authenticity_token">
+                    <input type="hidden" name="question[id]" value="<%= @question_ja.id %>">
+
+                    <!-- question -->
+                    <div class="form-group">
+                        <label for="question">
+                            <%= t('question_question') %>
+                            <span class="sign_required">*</span>
+                        </label>
+                        <textarea class="form-control form_auto_tabindex"
+                                  name ="question[question]"
+                                  id   ="trans_question"
+                                  rows ="3"><%= (@question_ja != nil && @question_ja.question != nil) ? @question_ja.question : '' %></textarea>
+                    </div>
+    
+                    <!-- answer -->
+                    <div class="form-group">
+                        <label for="answer">
+                            <%= t('question_answer') %>
+                            <span class="sign_required">*</span>
+                        </label>
+                        <textarea class="form-control form_auto_tabindex"
+                                  name ="question[answer]"
+                                  id   ="trans_answer"
+                                  rows ="3"><%= (@question_ja != nil && @question_ja.answer != nil) ? @question_ja.answer : '' %></textarea>
+                    </div>
+
+                    <!-- submit -->
+                    <div class="form-group">
+                        <button type  ="button" 
+                                class ="btn btn-primary form_auto_tabindex" 
+                                id    ="trans-btn-save-question"><%= t('save_translate') %>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <% end %>
+
+</div>

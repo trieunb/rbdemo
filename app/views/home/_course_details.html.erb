@@ -1,0 +1,111 @@
+<div class="class-info" id="lazy-load-course-deteils">
+    <div class="container">
+        <div class="body">
+            <div class="border-top"></div>
+            <div class="header">
+                <div class="short-info">
+                    <input type="hidden" id="id-class" value="<%=@class.id%>">
+                    <input type="hidden" id="beauty-id" value="<%=@class.beauty_id%>">
+                    <% if @class.icon != '' && @class.name != ''%>
+                    <img src="<%=@class.icon%>" alt="<%=@class.name%>" />
+                    <br>
+                    <div class="class-name"><%=@class.name%></div>
+                    <% end %>
+                    <h1 class="<%=@lang%>"><%=@class.title%></h1>
+                </div>
+                <div class="addtional-info">
+                    <ul>
+                        <li class="item">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span><%=@class.view%></span>
+                        </li>
+                        <li class="item">
+                            <i class="fa fa-commenting" aria-hidden="true"></i>
+                            <span><%=@class.comment%></span>
+                        </li>
+                        <li class="item">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <span><%=@class.location_nm%></span>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="item-facebook">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </li>
+                    </ul>
+                    <button type="button" class="btn-brse btn-default-width" id="btn-regist-course" tabindex="11">
+                        <span><%=t('register')%></span>
+                        <div class="btn btn-brse btn-shadow1"></div>
+                    </button>
+                </div>
+            </div>
+            <div class="details <%=@lang%>">
+                <h1><%=t('course_description')%></h1>
+                <div>
+                    <table class="table custom-table">
+                        <tr>
+                            <th><%=t('content')%></th>
+                            <td><%=raw(@class.content)%></td>
+                        </tr>
+                        <tr>
+                            <th><%=t('target')%></th>
+                            <td><%=@class.target%></td>
+                        </tr>
+                        <tr>
+                            <th><%=t('time')%></th>
+                            <td><%=@class.time%></td>
+                        </tr>
+                        <% if @class.admission != '' && @class.admission != '<p></p>' %>
+                        <tr>
+                            <th><%=t('admission')%></th>
+                            <td><%=@class.admission%></td>
+                        </tr>
+                        <% end %>
+                        <% if @class.opening != '' && @class.opening != '<p></p>' %>
+                        <tr>
+                            <th><%=t('opening')%></th>
+                            <td><%=@class.opening%></td>
+                        </tr>
+                        <% end %>
+                        <% if @class.study_time != '' && @class.study_time != '<p></p>' %>
+                        <tr>
+                            <th><%=t('study_time')%></th>
+                            <td><%=@class.study_time%></td>
+                        </tr>
+                        <% end %>
+                        <tr>
+                            <th><%=t('fee')%></th>
+                            <td class="color-orange"><%=@class.price%></td>
+                        </tr>
+                        <% if @class.quantity != '' && @class.quantity != '<p></p>' %>
+                        <tr>
+                            <th><%=t('quantity_student')%></th>
+                            <td><%=@class.quantity%></td>
+                        </tr>
+                        <% end %>
+                        <% if @class.benefits != '' && @class.benefits != '<p></p>' %>
+                        <tr>
+                            <th><%=t('benefits')%></th>
+                            <td><%=raw(@class.benefits)%></td>
+                        </tr>
+                        <% end %>
+                    </table>
+                </div>
+                <h1><%=t('curriculum')%></h1>
+                <div class="border-bottom"><%=raw(@class.curriculum)%></div>
+                <h1><%=t('student_requirement')%></h1>
+                <div class="border-bottom"><%=raw(@class.requirements)%></div>
+            </div>
+            <div class="div-fb-comments">
+                <div class="fb-comments" data-href="<%=$domain%>/course-detail/<%=@class.beauty_id%>?lang=<%=@lang%>" data-width="100%" data-numposts="5"></div>
+            </div>
+            <div class="div-close">
+                <button type="button" class="btn-brse btn-default-width" id="close-course-details" tabindex="11">
+                    <span><%=t('close')%></span>
+                    <div class="btn btn-brse btn-shadow1"></div>
+                </button>
+            </div>
+            <div class="footer"></div>
+        </div>
+    </div>
+</div>

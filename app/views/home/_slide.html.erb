@@ -1,0 +1,82 @@
+<section id="slide">
+    <div class="slide-container row">
+        <div class="col2 col-sm-7 lazy-load" data-original="/images/slide/bg.png">
+            <img data-original="/images/slide/bg.png" class="bg-slide lazy-load"/>
+            <div class="content-slide" id="content-slide">
+                <div class="slide-imgs">
+                    <% @dataSlide['slides'].each_with_index do |item, index| %>
+                        <a href="<%=item["link"]%>" target="_blank">
+                            <img src="<%=item["img"]%>"/>
+                        </a>
+                    <% end %>
+                </div>
+                <h1><%=t('brse_school')%></h1>
+            </div>
+            <input type="hidden" id="showVideoAboutUs" value="<%= @showVideoAboutUs == 1 ? '1' : '0' %>">
+            <div class="video-about-us" id="video-about-us">
+                <div class="tv">
+                    <img src="/images/slide/tv.png" alt="tv" class="screen"/>
+                    <iframe width="560" height="315" src="<%=@setting.intro_video%>" frameborder="0" allowfullscreen></iframe>
+                    <img src="/images/slide/turn-off.png" alt="turn off" class="trurn-off" id="trurn-off" tabindex="2" />
+                </div>
+            </div>
+            <div class="msg-of-direction" id="msg-of-direction">
+                <div class="avatar show-pc">
+                    <img src="<%=@setting.img_of_direction%>" alt="Akazawa" class="img-avatar"/>
+                    <p class="name <%=@lang%>"><%=t('representative_message')%></p>
+                    <p class="name <%=@lang%>"><%=t('akazawa')%></p>
+                </div>
+                <div class="text">
+                    <label class="lbl-greeting"><%=t('menu_message')%></label>
+                    <div class="msg-content"><%=raw(@setting.greeting)%></div>
+                    <div class="avatar show-mobile">
+                        <img src="<%=@setting.img_of_direction%>" alt="Akazawa" class="img-avatar"/>
+                        <p class="name <%=@lang%>"><%=t('representative_message')%></p>
+                        <p class="name <%=@lang%>"><%=t('akazawa')%></p>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn-brse btn-close-greeting" id="btn-close-greeting">
+                            <span><%=t('close')%></span>
+                            <div class="btn btn-brse btn-shadow1"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="letter-img" id="letter-img">
+                <div class="letter-img-bg">
+                </div>
+                <div class="letter-img-content">
+                </div>
+                <img class="letter-img-content-mobi"/>
+            </div>
+        </div>
+        <div class="col1 col-sm-5">
+            <% @dataSlide['letters'].each_with_index do |item, index| %>
+                <div class="col-letter col-sm-12 <%= index==0 ? 'active' : '' %>" style="background: <%=item["background"]%>" video="<%=item["url_video"]%>" typ="<%=item["typ"]%>">
+                    <div class="col-xs-4 icon">
+                        <img data-original="<%=item["icon"]%>" alt="<%=item["title"]%>" class="lazy-load" />
+                    </div>
+                    <div class="col-xs-8 content">
+                        <h2 class="<%=@lang%>"><%=item["title"]%></h2>
+                        <div class="letter <%=@lang%>">
+                            <%=raw(item["content"])%>
+                        </div>
+                        <div class="div-readmore" tabindex="2">
+                            <div class="border1"></div>
+                            <div class="border2"></div>
+                            <button type="button" class="btn-readmore readmore-letter" id="show-about-us-<%= index %>"><%=t('read_more')%></button>
+                        </div>
+                        <div class="div-readmore hidden" tabindex="2">
+                            <div class="border1"></div>
+                            <div class="border2"></div>
+                            <button type="button" class="btn-readmore btn-close-letter" id="hide-about-us-<%= index %>"><%=t('close')%></button>
+                        </div>
+                    </div>
+                    <div class="div-arrow">
+                        <div class="arrow"></div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    <div>
+</section>

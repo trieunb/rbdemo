@@ -1,0 +1,111 @@
+<% content_for :title do %>
+    <%=t('list_regist_course')%>
+<% end %>
+
+<% content_for :styles do %>
+    <%= stylesheet_link_tag "vendor/datatable/datatable", media: "all" %>
+    <%= stylesheet_link_tag "vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min", media: "all" %>
+<% end %>
+
+<% content_for :lib do %>
+    <%= javascript_include_tag('vendor/datatable/datatable') %>
+    <%= javascript_include_tag('vendor/moment/moment') %>
+    <%= javascript_include_tag('vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min') %>
+<% end %>
+
+<% content_for :scripts do %>
+    <%= javascript_include_tag('admin/regist-course/list-regist-courses') %>
+<% end %>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><%=t('search_conditions')%></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link" tabindex="9"><i class="fa fa-chevron-up"></i></a></li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <form class="form-horizontal input_mask" id="form-search" action="/admin/regist-courses/search" accept-charset="UTF-8" method="post">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" id="authenticity_token">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="class_id"><%=t('course')%></label>
+                                <select class="form-control" name="search[class_id]" id="class_id">
+                                    <option value="-1"></option>
+                                    <% @classes.each_with_index do |item, index| %>
+                                        <option value="<%=item.id%>"><%=item.title%></option>
+                                    <% end %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="name"><%=t('name')%></label>
+                                <input class="form-control" name="search[name]" id="name" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="date_from"><%=t('date_regist')%></label>
+                                <div class="date-from-to">
+                                    <div class="date-from">
+                                        <div class="input-group datepicker">
+                                            <input type="text" class="form-control date" id="date_from" name="search[date_from]">
+                                            <span class="input-group-addon" tabindex="4">
+                                               <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="split">
+                                        <span>-</span>
+                                    </div>
+                                    <div class="date-to">
+                                        <div class="input-group datepicker">
+                                            <input type="text" class="form-control date" id="date_to" name="search[date_to]">
+                                            <span class="input-group-addon" tabindex="6">
+                                               <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="status"><%=t('status')%></label>
+                                <select class="form-control" name="search[status]" id="status">
+                                    <option value="-1"></option>
+                                    <% @status.each_with_index do |item, index| %>
+                                        <option value="<%=item.number%>"><%=item.name%></option>
+                                    <% end %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button type="button" class="btn btn-primary" id="btn-search" tabindex="8"><%=t('search')%></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><%=t('list_regist_course')%></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="div-table-regist-courses">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= yield :title %></title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="author" content="BrSE-School">
+        <%= csrf_meta_tags %>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <%= favicon_link_tag "favicon.ico" %>
+        <%= stylesheet_link_tag "vendor/bootstrap/bootstrap.min", media: "all" %>
+        <%= stylesheet_link_tag "vendor/font-awesome/font-awesome.min", media: "all" %>
+        <%= stylesheet_link_tag "vendor/nprogress/nprogress", media: "all" %>
+        <%= yield :styles %>
+        <%= stylesheet_link_tag "admin/custom", media: "all" %>
+    </head>
+    <body class="nav-md <%= @language %>">
+        <script>
+            var locale = '<%= @language %>';
+        </script>
+        <div class="container body">
+            <div class="main_container">
+                <%= render "admin/topMenu/topMenu" %>
+                <%= render "admin/leftMenu/leftMenu" %>
+                <!-- page content -->
+                <div class="right_col" role="main">
+                    <%= yield %>
+                </div>
+                <!-- /page content -->
+                <!-- footer content -->
+                <footer>
+                    <div class="pull-right">
+                        BrSE School - <%=t('admin_page_by')%> <a href="http://ans-asia.com/">A.N.S Asia</a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <button type="button" class="btn-to-top hidden" id="btn-to-top"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+                </footer>
+                <!-- /footer content -->
+            </div>
+        </div>
+        <div class="loading-flat hidden"></div>
+        <%= image_tag("/images/loading.gif",  alt: "Loading...", class: "loading-img hidden") %>
+        <div id="percent-upload" class="percent-upload hidden">
+            <div class="container-cus">
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                        <span class="text-left"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            var _text = <%=@msg['msg_content'].to_json.html_safe%>;
+            var _type_msg = <%=@msg['msg_typ'].to_json.html_safe%>;
+            var _title = <%=@msg['msg_title'].to_json.html_safe%>;
+        </script>
+        <%= javascript_include_tag('admin/admin-lib') %>
+        <%= yield :lib %>
+        <%= javascript_include_tag('common/common') %>
+        <%= javascript_include_tag('common/brse-school') %>
+        <%= javascript_include_tag('admin/custom') %>
+        <%= yield :scripts %>
+    </body>
+</html>

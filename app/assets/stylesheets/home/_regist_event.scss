@@ -1,0 +1,358 @@
+@import 'variables';
+#regist-event{
+    .class-info {
+        height: 100%;
+        overflow: auto;
+
+        .container {
+            position: relative;
+            height: 100%;
+            display: table;
+
+            .middle {
+                display: table-cell;
+                vertical-align: middle;
+                height: 100%; 
+
+                #regist-event-wrap-body {
+                    background-image : url('/images/regist-event/bg.png');
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    min-height: 731px;
+                    position: relative;
+
+                    .row-customize {
+                        margin-left  : 0px;
+                        margin-right : 0px;
+                    }
+
+                    #regist-event-circle {
+                        position: absolute;
+                        color: #fff;
+                        font-size: 28px;
+                        top: 5px;
+                        left: 10px;
+                        font-family: appleberry;
+                        span {
+                            position: absolute;
+                            top: 36px;
+                            left: 27px;
+                        }
+                        &.ja {
+                            span {
+                                font-size: 23px;
+                                top: 39px;
+                                left: 12px;
+                            }
+                        }
+                    }
+
+                    #regist-event-clound {
+                        position: absolute;
+                        top: 9px;
+                    }
+
+                    #regist-event-rect {
+                        display: none;
+                        position: absolute;
+                        background-image : url('/images/regist-event/rect.jpg');
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        width: calc(100% - 30px);
+                        height: calc(100% - 75px);
+                        margin-left: 30px;
+                        margin-top: 75px;
+                    }
+
+                    #regist-event-mascot {
+                        position: absolute;
+                        left: 20px;
+                        bottom: -5px;
+                    }
+
+                    #regist-event-form {
+                        margin-top: 125px;
+
+                        #event_title {
+                            color: #D75988;
+                            font-weight: 600;
+                            font-size: 28px;
+                            text-transform: uppercase;
+                        }
+
+                        .event_text_date {
+                            color: #50B29F;
+                            font-weight: 600;
+                            font-size: 20px;
+                        }
+
+                        #event_text_date_center {
+                            border-left: 1px dotted;
+                            display: inline-block;
+                            height: 17px;
+                            vertical-align: text-bottom;
+                            width: 1px;
+                        }
+
+                        .label {
+                            color: #888;
+                            font-size: 16px;
+                            font-weight: 600;
+                        }
+
+                        .div-checkbox {
+                            display: block;
+                            position: relative;
+                            margin-left: 170px;
+
+                            /* Base for label styling */
+                            [type="checkbox"]:not(:checked) + label,
+                            [type="checkbox"]:checked + label {
+                                display: inline;
+                                padding-left: 0.8em;
+                                cursor: pointer;
+                            }
+
+                            /* checkbox aspect */
+                            [type="checkbox"]:not(:checked) + label:before,
+                            [type="checkbox"]:checked + label:before {
+                                content: '';
+                                position: absolute;
+                                left: 0; 
+                                top: 0;
+                                width: 1.25em; 
+                                height: 1.25em;
+                                border: 3px solid $light-blue;
+                                background: #fff;
+                                border-radius: 4px;
+                                box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+                            }
+
+                            /* checked mark aspect */
+                            [type="checkbox"]:not(:checked) + label:after,
+                            [type="checkbox"]:checked + label:after {
+                                content: '✔';
+                                position: absolute;
+                                top: .25em; 
+                                left: .2em;
+                                font-size: 1em;
+                                line-height: 0.8;
+                                color: #D75988;
+                                transition: all .2s;
+                            }
+
+                            /* checked mark aspect changes */
+                            [type="checkbox"]:not(:checked) + label:after {
+                                opacity: 0;
+                                transform: scale(0);
+                            }
+                            [type="checkbox"]:checked + label:after {
+                                opacity: 1;
+                                transform: scale(1);
+                            }
+
+
+                            /* hover style just for information */
+                            label:focus:before, 
+                            label:hover:before {
+                                border: 3px solid $dark-green!important;
+                            }
+                        }
+
+                        #span_choose_test {
+                            color: #5EBEE5;
+                        }
+
+                        .div-button {
+                            margin-left: 170px;
+                            text-align: center;
+
+                            .btn-regist-event{
+                                color: #fff;
+                                font-weight: 600;
+                                border-radius: 20px;
+                                padding: 0px;
+                                background: $orange;
+                                position: relative;
+                                border: none;
+                                text-transform: uppercase;
+                                float: left;
+                                margin-bottom: 15px;
+                                span{
+                                    padding: 10px 15px 10px 15px;
+                                    display: inline-block;
+                                    background: $orange;
+                                    border-radius: 20px;
+                                    position: relative;
+                                    z-index: 3;
+                                }
+                                .btn-shadow1{
+                                    position: absolute;
+                                    z-index: 2;
+                                    width: 100%;
+                                    height: 100%;
+                                    left: 0;
+                                    top: 4px;
+                                    background: $shadow-orange;
+                                }
+
+                                &:hover,
+                                &:active,
+                                &:focus {
+                                    span {
+                                        background: $orange-hover;
+                                    }
+                                }
+                            }
+
+                            .btn-regist-event-close {
+                                text-transform: uppercase;
+                                float: right;
+                                margin-bottom: 15px;
+
+                                &:hover,
+                                &:active,
+                                &:focus {
+                                    span {
+                                        background: $blue-hover;
+                                    }
+                                }
+                            }
+                        }
+
+                        .div-msg {
+                            clear: both;
+                            margin-left: 170px;
+                        }
+                    }
+                }
+
+                #regist-event-wrap-footer {
+                    background-image : url('/images/regist-event/footer1.png');
+                    position: relative;
+
+                    .form-group {
+                        margin-bottom: 0px;
+                    }
+
+                    #div-event-place {
+                        text-align: center;
+                        padding: 15px;
+                        color: #fff;
+                        font-weight: 600;
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 1200px) {
+        .class-info {
+            .container {
+                .middle {
+                    #regist-event-wrap-body {
+                        #regist-event-clound {
+                            transform: scale(1, 1.2) translate(13px, 54px);
+                        }
+
+                        #regist-event-form {
+                            .div-button,
+                            .div-msg,
+                            .div-checkbox {
+                                margin-left: 140px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 1024px) {
+        
+    }
+    @media only screen and (max-width: 980px) {
+        .class-info {
+            .container {
+                .middle {
+                    #regist-event-wrap-body {
+                        #regist-event-clound {
+                            display: none;
+                        }
+
+                        #regist-event-rect {
+                            display: block;
+                        }
+
+                        #regist-event-mascot {
+                            display: none;
+                        }
+
+                        #regist-event-body {
+                            padding-left: 70px;
+                            padding-right: 70px;
+                        }
+
+                        #regist-event-form {
+                            .div-checkbox {
+                                margin-left: 80px;
+                            }
+                            .div-button,
+                            .div-msg {
+                                margin-left: 0px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 768px) {
+        
+    }
+    @media only screen and (max-width: 648px) {
+
+    }
+    @media only screen and (max-width: 480px) {
+        .class-info {
+            .container {
+                .middle {
+                    #regist-event-wrap-body {
+                        #regist-event-body {
+                            padding-left: 30px;
+                            padding-right: 30px;
+                        }
+
+                        #regist-event-form {
+                            .div-checkbox {
+                                margin-left: 0px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 320px) {
+        .class-info {
+            .container {
+                display: block;
+
+                .middle {
+                    display: block;
+                    vertical-align: unset;
+
+                    #regist-event-wrap-body {
+                        #regist-event-form {
+                            .div-button {
+                                .btn-regist-event,
+                                .btn-regist-event-close {
+                                    float: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

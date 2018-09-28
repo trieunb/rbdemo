@@ -1,0 +1,44 @@
+<% content_for :title do %>
+    <%=t('add_album')%>
+<% end %>
+
+<% content_for :styles do %>
+    <%= stylesheet_link_tag "vendor/cropper/cropper.min", media: "all" %>
+    <%= stylesheet_link_tag "admin/album/album", media: "all" %>
+<% end %>
+
+<% content_for :lib do %>
+    <%= javascript_include_tag('vendor/cropper/cropper') %>
+<% end %>
+
+<% content_for :scripts do %>
+    <%= javascript_include_tag('admin/album/addPhotos') %>
+<% end %>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><%= t('upload_photos') %></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="div-table-album">
+                <div class="div-upload">
+                    <div class="preview-img row">
+                    </div>
+                    <div class="new-upload">
+                        <label for="files" class="label-file" tabindex="1"><%= t('choose_another_photos') %></label>
+                        <input class="file" id="files" type="file" tabindex="1" multiple accept=".jpg,.jpeg,.png">
+                    </div>
+                </div>
+                <h2 class="hidden" id="title-thumb"><%= t('custom_thumbnail_of_photo') %></h2>
+                <div class="div-crop row">
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-sm-12">
+                        <button type="button" class="btn btn-primary" id="upload" tabindex="2"><%= t('upload_photos') %></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

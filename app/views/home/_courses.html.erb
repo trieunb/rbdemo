@@ -1,0 +1,132 @@
+<section id="courses">
+    <input type="hidden" name="view-detail-from-link" id="view-detail-from-link" value="<%=@idClass == nil ? 0 : @idClass%>">
+    <input type="hidden" name="show-form-apply-from-link" id="show-form-apply-from-link" value="<%=@showApply == nil ? 0 : @showApply%>">
+    <input type="hidden" name="show-message-verify" id="show-message-verify" value="<%=@verify == nil ? '' : @verify%>">
+    
+    <div class="container">
+
+        <div class="title-header">
+            <h1 class="<%=@lang%>"><%=t('poppular_courses')%></h1>
+            <div class="line"></div>
+        </div>
+
+        <div class="div-btn-function <%=@lang%>">
+            <button type="button" class="btn-brse fnc-1 btn-change-courses active btn-default-width" show="courses-brse" text="BrSE" tabindex="5">
+                <span><%=t('training_brse')%></span>
+                <div class="btn btn-brse btn-shadow1"></div>
+            </button>
+            <button type="button" class="btn-brse fnc-2 btn-change-courses btn-default-width" show="courses-se" text="SE" tabindex="5">
+                <span><%=t('training_se')%></span>
+                <div class="btn btn-brse btn-shadow1"></div>
+            </button>
+        </div>
+
+        <div class="div-courses-brse row" id="courses-brse">
+            <div class="col-sm-6 courses-col courses-vi">
+                <div class="title-location title-vi lazy-load" data-original="/images/courses/title_bg.png">
+                    <img data-original="<%=@dataCourses['brse_vi'].image_title%>" alt="<%=t('training_in_viet_nam')%>" class="lazy-load"/>
+                    <div class="title-left-white-bg">BrSE</div>
+                    <div class="title-left lazy-load" data-original="/images/courses/title_right_bg.png">
+                        BrSE
+                    </div>
+                </div>
+                <div class="course-content lazy-load" data-original="/images/courses/col_bg.png">
+                    <div class="classes row">
+                    <% @dataCourses['brse_vi_class'].each_with_index do |item, index| %>
+                        <div class="col-xs-4 col-class">
+                            <img data-original="<%=item['icon']%>" alt="<%=item['name']%>" class="lazy-load"/>
+                            <button type="button" id-class="<%=item['id']%>" beauty-id="<%=item['beauty_id']%>" class="btn-class-detail show-class-detail lazy-load <%=@lang%>" data-original="/images/courses/btn_bg.png" tabindex="5"><%=item['name']%></button>
+                        </div>
+                    <% end %>
+                    </div>
+                    <h1 class="<%=@lang%>"><%=@dataCourses['brse_vi'].title%></h1>
+                    <% if @dataCourses['brse_vi'].price > 0%>
+                    <h3><%=t('fee')%>: <%=number_to_currency(@dataCourses['brse_vi'].price, :precision => 0, :locale => @lang, :unit => '')%> <%=@dataCourses['brse_vi'].unitprice%>/<%=@dataCourses['brse_vi'].unit%></h3>
+                    <% else %>
+                    <h3><%=t('fee')%>: <%=t('no_tuition_fees')%></h3>
+                    <% end %>
+                    <img data-original="<%=@dataCourses['brse_vi'].image%>" alt="<%=@dataCourses['brse_vi'].title%>" class="lazy-load"/>
+                </div>
+            </div>
+
+            <div class="col-sm-6 courses-col courses-ja">
+                <div class="title-location title-ja lazy-load" data-original="/images/courses/title_bg.png">
+                    <img data-original="<%=@dataCourses['brse_jp'].image_title%>" alt="<%=t('training_in_japan')%>" class="lazy-load"/>
+                    <div class="title-left-white-bg">BrSE</div>
+                    <div class="title-left lazy-load" data-original="/images/courses/title_right_bg.png">
+                        BrSE
+                    </div>
+                </div>
+                <div class="course-content lazy-load" data-original="/images/courses/col_bg.png">
+                    <h1 class="in-jp"><%=@dataCourses['brse_jp'].title%></h1>
+                    <h2 class="<%= @lang %> description"><%=@dataCourses['brse_jp'].description%></h2>
+                    <% if @dataCourses['brse_jp'].price > 0%>
+                    <h3 class="in-jp"><%=t('fee')%>: <%=number_to_currency(@dataCourses['brse_jp'].price, :precision => 0, :locale => @lang, :unit => '')%> <%=@dataCourses['brse_jp'].unitprice%>/<%=@dataCourses['brse_jp'].unit%></h3>
+                    <% else %>
+                    <h3 class="in-jp"><%=t('fee')%>: <%=t('no_tuition_fees')%></h3>
+                    <% end %>
+                    <button type="button" class="btn-brse btn-detail-courses-jp show-class-detail btn-default-width" id-class="<%=@dataCourses['brse_jp_class'].id%>" beauty-id="<%=@dataCourses['brse_jp_class'].beauty_id%>" tabindex="5">
+                        <span><%=t('detail')%></span>
+                        <div class="btn btn-brse btn-shadow1"></div>
+                    </button>
+                    <br>
+                    <img class="in-jp lazy-load" data-original="<%=@dataCourses['brse_jp'].image%>" alt="<%=@dataCourses['brse_jp'].title%>"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="div-courses-brse row" id="courses-se">
+            <div class="col-sm-6 courses-col courses-vi">
+                <div class="title-location title-vi lazy-load" data-original="/images/courses/title_bg.png">
+                    <img data-original="<%=@dataCourses['se_vi'].image_title%>" alt="<%=t('training_in_japan')%>" class="lazy-load"/>
+                    <div class="title-left-white-bg">SE</div>
+                    <div class="title-left lazy-load" data-original="/images/courses/title_right_bg.png">
+                        SE
+                    </div>
+                </div>
+                <div class="course-content lazy-load" data-original="/images/courses/col_bg.png">
+                    <div class="classes row">
+                    <% @dataCourses['se_vi_class'].each_with_index do |item, index| %>
+                        <div class="col-xs-4 col-class">
+                            <img data-original="<%=item['icon']%>" alt="<%=item['name']%>" class="lazy-load"/>
+                            <button type="button" id-class="<%=item['id']%>" beauty-id="<%=item['beauty_id']%>" class="btn-class-detail show-class-detail lazy-load <%=@lang%>" data-original="/images/courses/btn_bg.png" tabindex="5"><%=item['name']%></button>
+                        </div>
+                    <% end %>
+                    </div>
+                    <h1 class="<%=@lang%>"><%=@dataCourses['se_vi'].title%></h1>
+                    <% if @dataCourses['se_vi'].price > 0%>
+                    <h3><%=t('fee')%>: <%=number_to_currency(@dataCourses['se_vi'].price, :precision => 0, :locale => @lang, :unit => '')%> <%=@dataCourses['se_vi'].unitprice%>/<%=@dataCourses['se_vi'].unit%></h3>
+                    <% else %>
+                    <h3><%=t('fee')%>: <%=t('no_tuition_fees')%></h3>
+                    <% end %>
+                    <img data-original="<%=@dataCourses['se_vi'].image%>" alt="<%=@dataCourses['se_vi'].title%>" class="lazy-load"/>
+                </div>
+            </div>
+            <div class="col-sm-6 courses-col courses-ja">
+                <div class="title-location title-ja lazy-load" data-original="/images/courses/title_bg.png">
+                    <img data-original="<%=@dataCourses['se_jp'].image_title%>" alt="<%=t('training_in_japan')%>" class="lazy-load"/>
+                    <div class="title-left-white-bg">BrSE</div>
+                    <div class="title-left lazy-load" data-original="/images/courses/title_right_bg.png">
+                        BrSE
+                    </div>
+                </div>
+                <div class="course-content lazy-load" data-original="/images/courses/col_bg.png">
+                    <h1 class="in-jp"><%=@dataCourses['se_jp'].title%></h1>
+                    <h2 class="<%= @lang %> description"><%=@dataCourses['se_jp'].description%></h2>
+                    <% if @dataCourses['se_jp'].price > 0%>
+                    <h3 class="in-jp"><%=t('fee')%>: <%=number_to_currency(@dataCourses['se_jp'].price, :precision => 0, :locale => @lang, :unit => '')%> <%=@dataCourses['se_jp'].unitprice%>/<%=@dataCourses['se_jp'].unit%></h3>
+                    <% else %>
+                    <h3 class="in-jp"><%=t('fee')%>: <%=t('no_tuition_fees')%></h3>
+                    <% end %>
+                    <button type="button" class="btn-brse btn-detail-courses-jp show-class-detail" id-class="<%=@dataCourses['se_jp_class'].id%>" beauty-id="<%=@dataCourses['se_jp_class'].beauty_id%>" tabindex="5">
+                        <span><%=t('detail')%></span>
+                        <div class="btn btn-brse btn-shadow1"></div>
+                    </button>
+                    <br>
+                    <img class="in-jp lazy-load" data-original="<%=@dataCourses['se_jp'].image%>" alt="<%=@dataCourses['se_jp'].title%>"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

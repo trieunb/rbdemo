@@ -1,0 +1,191 @@
+<section id="event">
+    <div id="wrap-all">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12" id="e-set-width-left">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="album">
+                                <div id="alb-header">
+                                    <span class="<%=@lang%>"><%= t('event_album_photo_title') %></span>
+                                </div>
+                                <div id="alb-body">
+                                    <div id="e-btn-left">
+                                        <img src="/images/event/album/icon/arrow_left.png" alt="">
+                                    </div>
+
+                                    <div id="e-btn-right">
+                                        <img src="/images/event/album/icon/arrow_right.png" alt="">                                          
+                                    </div>
+                                
+                                    
+                                    <div id="div-wrap-album">
+                                        <% if @dataEvent['photos'] != [] %>
+                                        <div class="alb-slide">
+                                            <% @dataEvent['photos'].each  do |photo|  %>
+                                            <% 
+                                                thumb = (photo == nil ? '' : photo['thumb'])
+                                                image = (photo == nil ? '' : photo['img'])  
+                                            %>
+                                            
+                                                <div class="alb-slide-img">
+                                                    <% if thumb != '' %>
+                                                        <div class="div-wrap-img">
+                                                            <a href="<%= image %>" data-toggle="lightbox" data-type="image" data-gallery="gallery-album">
+                                                                <img src="<%= thumb %>" alt="" class="img-visiable">
+                                                            </a>
+                                                        </div>
+                                                    <% end %>
+                                                </div>
+                                            <% end %>
+                                        </div>
+                                        <% end %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <% if @dataEvent != nil &&  @dataEvent['events'] != nil %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="event-open">
+                                <div id="e-op-header">
+                                    <span class="title">
+                                        <%= t('event_eventtime_title') %>
+                                    </span>
+                                    <div id="image-ring">
+                                        <div id="image-ring-wrap">
+                                            <img src="/images/event/event-open/event-ring.png" alt="" id="ring">
+                                            <% @index = 0 %>
+                                            <% @dataEvent['events'].each do |event| %>                                                    
+                                                <% if event['start'].to_i > Time.now.to_i %>
+                                                    <% @index = @index + 1 %>
+                                                <% end %>
+                                            <% end %>
+
+                                            <span id="number-event"
+                                                  title="<%= @index %> <%= (@index > 1) ? 'events' : 'event' %> new">
+                                                <%= @index %>                                                
+                                            </span>
+                                        </div>
+                                        
+
+                                    </div>
+                                </div>
+
+                                <div id="e-op-body">
+                                    <div id="e-op-b-wrap">
+                                        <span class="title">
+                                            
+                                        </span>
+                                        <div id="count-down">
+                                            <div id="count-down-detail">
+                                                <div class="box">
+                                                    <p class="value days">00</p>
+                                                    <p class="time"><%= t('event_time_text_day') %></p>
+                                                </div>
+                                                <div class="box">
+                                                    <p class="value hours">00</p>
+                                                    <p class="time"><%= t('event_time_text_hour') %></p>
+                                                </div>
+                                                <div class="box">
+                                                    <p class="value minutes">00</p>
+                                                    <p class="time"><%= t('event_time_text_minutes') %></p>
+                                                </div>
+                                                <div class="box">
+                                                    <p class="value seconds">00</p>
+                                                    <p class="time"><%= t('event_time_text_seconds') %></p>
+                                                </div>
+                                            </div>
+                                            <div id="regist-attend">
+                                                <div class="text-center">
+                                                    <button class="button-event-detail">
+                                                        <div class="background"></div>
+                                                        <span class="text"><%= t('event_time_text_details') %></span>
+                                                    </button>
+                                                    <button class="button-regist">
+                                                        <div class="background"></div>
+                                                        <span class="text"><%= t('event_time_text_regist_attend') %></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="clearfix"></div>
+
+                                        <div class="event-time-wrap">
+                                            <div class="event-time-slide">
+                                                <% @dataEvent['events'].each do |event| %>
+                                                    <div class="content">
+                                                        <p class            ="refer-date" 
+                                                           data-id          ="<%= event['id'] %>"
+                                                           data-link        ="<%= event['link'] %>"
+                                                           data-date        ="<%= event['start'].to_s[0...19] %>"
+                                                           data-title       ="<%= event['title'] %>"
+                                                           data-select      ="<%= (event['start'].to_i > Time.now.to_i) ? 1 : 0 %>"
+                                                           data-date-choose = "0">
+                                                            <%= event['start'].to_s[0...10].gsub(/-/,"/") %>
+                                                        </p>
+                                                    </div>
+                                                <% end %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="clearfix"></div> -->
+                        </div>
+                    </div>
+                    <% end %>
+
+                </div>
+                
+
+                <div class="col-lg-6 col-md-12" id="e-set-width-right">
+                    <div id="e-set-width-right-row">
+                        
+                        <div id="question">
+                            <div id="qst-header">
+                                <span class="<%=@lang%>"><%= t('event_question_title') %></span>
+                            </div>
+                            <div id="qst-body">
+
+                                <div id="div-wrap-question">
+                                    <div class="qst-slide">
+                                        <% @dataEvent['questions'].each  do |qa|  %>
+                                        <% 
+                                            question = (qa == nil ? '' : qa['question'])
+                                            answer   = (qa == nil ? '' : qa['answer'])  
+                                        %>
+                                            <div class="qst-sld-group">
+                                                <% if question != '' %>
+                                                    <div class="qst-sld-content">
+                                                        <div class="qst-sld-ct-wrap">
+                                                            <div class="qst-sld-ct-answer">
+                                                                <div><%= raw(answer) %></div>
+                                                            </div>
+                                                            
+                                                            <div class="qst-sld-ct-question" data-show="1">
+                                                                <%= image_tag('/images/event/question/question-mark.png', :class => 'img-question-mark') %>
+                                                                <div><%= raw(question) %></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <% end %>                                                
+                                            </div>
+                                        <% end %>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

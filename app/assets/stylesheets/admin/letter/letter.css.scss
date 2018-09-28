@@ -1,0 +1,17 @@
+.div-review-embed{
+    position: relative;
+    i{
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        color: #d9534f;
+        font-size: 25px;
+        cursor: pointer;
+    }
+}
+input[readonly="readonly"].wb{
+    background: #fff !important;
+}
+.mb-0{
+    margin-bottom: 0px;
+}

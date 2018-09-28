@@ -1,0 +1,76 @@
+<% content_for :title do %>
+    List Media
+<% end %>
+
+<% content_for :styles do %>
+    <%= stylesheet_link_tag "vendor/datatable/datatable", media: "all" %>
+    <%= stylesheet_link_tag "vendor/switchery/switchery.min", media: "all" %>
+    <%#= stylesheet_link_tag "admin/question/question-list", media: "all" %>
+<% end %>
+
+<% content_for :lib do %>
+    <%= javascript_include_tag('vendor/datatable/datatable') %>
+    <%= javascript_include_tag('vendor/switchery/switchery.min') %>
+<% end %>
+
+<% content_for :scripts do %>
+    <%= javascript_include_tag('admin/question/question') %>
+<% end %>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><%= t('question_title_list') %></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="div-table-question">
+                <table id          ="datatable-responsive" 
+                       class       ="table table-striped table-bordered dt-responsive middle"
+                       cellspacing ="0" 
+                       width       ="100%">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th><%=t('question_question')%></th>
+                            <th><%=t('question_answer')%></th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if @questions != nil %>
+                            <% @questions.each_with_index do |question, index| %>
+                            <tr>
+                                <td class="text-center">
+                                    <a href="/admin/questions/edit?id=<%= question.id %>" tabindex="3">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+
+                                <!-- question -->
+                                <td class="text-justify">
+                                    <%= raw(question.question) %>
+                                </td>
+
+                                <!-- answer -->
+                                <td class="text-justify">
+                                    <%= raw(question.answer) %>
+                                </td>
+
+                                <!-- delete -->
+                                <td class="text-center">
+                                    <button type         ="button"
+                                            class        ="btn btn-xs btn-danger btn-del-question"
+                                            id-question  ="<%= question.id %>"
+                                            tabindex     ="3">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <% end %>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

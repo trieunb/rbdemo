@@ -1,0 +1,42 @@
+<div id="wrapper">
+    <div id="wrapper-center">
+        <div id="content">
+            <div id="body">
+                <div id="body-top">
+                    <div id="text-avatar">
+                        <p id='welcom'><%=t('mail_title')%></p>
+                        <p id="name-subscribe"><%=t('regist_success')%></p>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div id="body-content">
+                    <div id="wrap">
+                        <p class="mail-thanks-content-title"><%= t('mail_thanks_for_regist') %></p>
+                        <p class="mail-thanks-content"><%= t('mail_contact_for_subscribe_1') %></p>
+                        <p class="mail-thanks-content"><%= t('mail_contact_for_subscribe_2') %></p>
+                    </div>
+                </div>
+                <div id="body-footer">
+                    <p id="text-footer-title"><%=t('mail_footer_1')%></p>
+                    <div class="wrap-content">
+                        <p class="text-content"><%=t('mail_footer_2')%></p>
+                        <span class="email-content"><a href="mailto:<%=@setting['email']%>"><%=@setting['email']%></a></span>
+                    </div>
+                </div>
+            </div>
+            <div id="footer" style="background-color:#ffffff">
+                <div class="wrap">
+                    <div id="info-company">
+                        <p class="text-content-email"><%=t('mail_footer_3')%></p>
+                        <p class="text-content-address-company">
+                            BrSe School - ANS Asia <%=@setting['address']%>
+                        </p>
+                        <a href="<%=$domain%>/<%=@lang == 'vi' ? '' : @lang%>">http://brse-school.vn/</a>
+                        <p class="text-phone"> <%=t('phone_number')%>: <%=@setting['phone_dn']%> </p>
+                        <p class="text-coppy-right">© <%=Date.today.year%> A.N.S Asia co.,ltd. All right reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

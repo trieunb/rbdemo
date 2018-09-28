@@ -1,0 +1,13 @@
+#toggle_show {
+    display: none;
+}
+.background span.input-group-addon {
+    &:hover,&:focus {
+        background-color: #fff;
+    }
+}
+#icon_preview,
+#logo_preview,
+#url_preview {
+    max-height: 150px;
+}

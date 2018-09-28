@@ -1,0 +1,37 @@
+
+@font-face{
+    font-family: BryantLG;
+    src: url('/fonts/UTM_BryantLG.ttf');
+    font-weight: 100;
+}
+.text-justify {
+    text-align: justify;
+}
+#icon-different {
+    max-width: 123px;
+}
+#title {
+    max-width: 400px;
+}
+#td_content {
+    max-width: 260px;
+    min-width: 260px;
+    width: 260px;
+}
+#content {
+    font-size: 15px;
+    font-family: BryantLG;
+    color: #8499A0;
+    letter-spacing: -0.25px;
+    font-weight: bold;
+}
+@media only screen and (max-width: 1024px) {
+    .text-nowrap {
+        white-space: normal;
+    }
+}
+@media only screen and (max-width: 640px) {
+    #icon-different {
+        max-width: 59px;
+    }
+}

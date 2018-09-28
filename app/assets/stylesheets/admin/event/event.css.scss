@@ -1,0 +1,23 @@
+#image {
+    max-width: 200px;
+    max-height: 120px;
+}
+#title {
+    min-width: 100px;
+    max-width: 150px;
+    a {
+        color: #005aff;
+    }
+}
+#place {
+    @extend #title;
+}
+#start,
+#end {
+    min-width: 127px;
+    max-width: 127px;
+}
+.link_event {
+    color: #3FBAE8;
+}
+

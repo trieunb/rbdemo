@@ -1,0 +1,90 @@
+<% content_for :title do %>
+    List Media
+<% end %>
+
+<% content_for :styles do %>
+    <%= stylesheet_link_tag "vendor/datatable/datatable", media: "all" %>
+    <%= stylesheet_link_tag "vendor/switchery/switchery.min", media: "all" %>
+    <%= stylesheet_link_tag "admin/different/different-list", media: "all" %>
+<% end %>
+
+<% content_for :lib do %>
+    <%= javascript_include_tag('vendor/datatable/datatable') %>
+    <%= javascript_include_tag('vendor/switchery/switchery.min') %>
+<% end %>
+
+<% content_for :scripts do %>
+    <%= javascript_include_tag('admin/different/different') %>
+<% end %>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><%= t('different_title_list') %></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="div-table-different">
+                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive middle" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th><%=t('different_title')%></th>
+                            <th><%=t('different_content')%></th>
+                            <th><%=t('different_icon')%></th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if @differents != nil %>
+                            <% @differents.each_with_index do |different, index| %>
+                            <tr>
+                                <td class="text-center">
+                                    <a href="/admin/differents/edit?id=<%= different.id %>" tabindex="3">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+
+                                <!-- title -->
+                                <td class="text-nowrap">
+                                    <p class       ="text-overflow" 
+                                       id          ="title">
+                                        <%= different.title %>
+                                    </p>
+                                </td>
+
+                                <!-- content -->
+                                <td class="text-justify" id="td_content">
+                                    <div id="content">
+                                        <div><%=raw(different.content)%></div>
+                                    </div>
+                                </td>
+
+                                <!-- icon -->
+                                <td class="text-center">
+                                    <img src="<%= different.icon %>" id="icon-different"/>
+                                </td>
+
+                                <!-- show -->
+                                <td class="text-center">
+                                    <input type="checkbox" class="js-switch show-different" id-different="<%=different.id%>" <%=different.show ? 'checked=checked' : ''%> tabindex="3" val="1"/>
+                                </td>
+
+                                <!-- delete -->
+                                <td class="text-center">
+                                    <button type         ="button"
+                                            class        ="btn btn-xs btn-danger btn-del-different"
+                                            id-different ="<%= different.id %>"
+                                            tabindex     ="3">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <% end %>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

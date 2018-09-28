@@ -1,0 +1,286 @@
+@import 'variables';
+#regist-advisory{
+    .class-info {
+        height: 100%;
+        overflow: auto;
+
+        .container {
+            position: relative;
+            height: 100%;
+            display: table;
+
+            .middle {
+                display: table-cell;
+                vertical-align: middle;
+                height: 100%; 
+
+                #regist-advisory-wrap {
+
+                    #regist-advisory-wrap-header {
+                        background-image : url('/images/regist-advisory/header.png');
+
+                        .row-customize {
+                            margin-left  : 0px;
+                            margin-right : 0px;
+                        }
+
+                        #regist-advisory-header {
+                            color        : #fff;
+                            text-align   : center;
+                            padding      : 15px 0px;
+                            font-size    : 20px;
+                            line-height  : 20px;
+                        }
+                    }
+
+                    #regist-advisory-wrap-line {
+                        background-image : url('/images/regist-advisory/line.png');
+                        height: 11px;
+                    }
+
+                    #regist-advisory-wrap-body {
+                        background-image : url('/images/regist-advisory/bg.png');
+
+                        .row-customize {
+                            margin-left  : 0px;
+                            margin-right : 0px;
+                        }
+
+                        #regist-advisory-body {
+                            text-align: center;
+
+                            #regist-advisory-controls {
+                                padding-top: 25px;
+
+                                .form-group {
+                                    margin-bottom: 25px;
+                                }
+
+                                select {
+                                    color: #888;
+                                }
+
+                                select.selected {
+                                    color: #555;
+                                }
+
+                                select option {
+                                    color: #555;
+                                }
+
+                                select option[data-default] {
+                                    color: #888;
+                                }
+
+                                #regist_advisory_content {
+                                    resize: none;
+                                }
+
+                                #regist-advisory-btn-regist {
+                                    .btn-regist-advisory {
+                                        // color: #fff;
+                                        // font-weight: 600;
+                                        // background: transparent;
+                                        // border: none;
+                                        // float: left;
+                                        // margin-bottom: 25px;
+                                        color: #fff;
+                                        font-weight: 600;
+                                        border-radius: 20px;
+                                        padding: 0px;
+                                        position: relative;
+                                        border: none;
+                                        float: left;
+                                        margin-bottom: 25px;
+                                        text-transform: uppercase;
+
+                                        // .btn-regist-advisory-left {
+                                        //     border-top-left-radius: 20px;
+                                        //     border-bottom-left-radius: 20px;
+                                        //     padding: 0px;
+                                        //     background: $dark-green;
+                                        //     position: relative;
+                                        //     float: left;
+
+                                            span{
+                                                // padding: 6px 20px;
+                                                // display: inline-block;
+                                                // background: $dark-green;
+                                                // border-top-left-radius: 20px;
+                                                // border-bottom-left-radius: 20px;
+                                                // position: relative;
+                                                // z-index: 3;
+                                                // text-transform: uppercase;
+                                                padding: 6px 20px;
+                                                display: inline-block;
+                                                background: $dark-green;
+                                                border-radius: 20px;
+                                                position: relative;
+                                                z-index: 3;
+                                            }
+
+                                            .btn-shadow1{
+                                                position: absolute;
+                                                z-index: 2;
+                                                width: 100%;
+                                                height: 100%;
+                                                left: 0;
+                                                top: 4px;
+                                                background: $shadow-green;
+                                                border-radius: 20px;
+                                                // border-top-left-radius: 20px;
+                                                // border-bottom-left-radius: 20px;
+                                                // border-bottom-right-radius: 0px;
+                                            }
+
+                                        //     .btn-shadow2{
+                                        //         position: absolute;
+                                        //         z-index: 1;
+                                        //         width: 100%;
+                                        //         height: 100%;
+                                        //         left: 0;
+                                        //         top: 8px;
+                                        //         background: #D5D4D9;
+                                        //         border-top-left-radius: 20px;
+                                        //         border-bottom-left-radius: 20px;
+                                        //         border-bottom-right-radius: 0px;
+                                        //     }
+                                        // }
+
+                                        // &:hover .btn-regist-advisory-left,
+                                        // &:active .btn-regist-advisory-left,
+                                        // &:focus .btn-regist-advisory-left {
+                                        //     span {
+                                        //         background: $green-hover;
+                                        //     }
+                                        // }
+
+                                        // .btn-regist-advisory-right {
+                                        //     border-top-right-radius: 20px;
+                                        //     border-bottom-right-radius: 20px;
+                                        //     padding: 0px;
+                                        //     background: #287F6E;
+                                        //     position: relative;
+                                        //     float: left;
+
+                                        //     span{
+                                        //         padding: 10px 15px 10px 15px;
+                                        //         display: inline-block;
+                                        //         background: #287F6E;
+                                        //         border-top-right-radius: 20px;
+                                        //         border-bottom-right-radius: 20px;
+                                        //         position: relative;
+                                        //         z-index: 3;
+                                        //         text-transform: uppercase;
+                                        //         line-height: unset;
+                                        //         top: 0px;
+                                        //     }
+
+                                        //     .btn-shadow1{
+                                        //         position: absolute;
+                                        //         z-index: 2;
+                                        //         width: 100%;
+                                        //         height: 100%;
+                                        //         left: 0;
+                                        //         top: 4px;
+                                        //         background: #226053;
+                                        //         border-top-right-radius: 20px;
+                                        //         border-bottom-right-radius: 20px;
+                                        //         border-bottom-left-radius: 0px;
+                                        //     }
+
+                                        //     .btn-shadow2{
+                                        //         position: absolute;
+                                        //         z-index: 1;
+                                        //         width: 100%;
+                                        //         height: 100%;
+                                        //         left: 0;
+                                        //         top: 8px;
+                                        //         background: #D5D4D9;
+                                        //         border-top-right-radius: 20px;
+                                        //         border-bottom-right-radius: 20px;
+                                        //         border-bottom-left-radius: 0px;
+                                        //     }
+                                        // }
+
+                                        &:hover .btn-regist-advisory-right,
+                                        &:active .btn-regist-advisory-right,
+                                        &:focus .btn-regist-advisory-right {
+                                            span {
+                                                background: #25685B;
+                                            }
+                                        }
+                                    }
+
+                                    .btn-regist-advisory-close {
+                                        float: right;
+                                        margin-bottom: 25px;
+                                        text-transform: uppercase;
+
+                                        &:hover,
+                                        &:active,
+                                        &:focus {
+                                            span {
+                                                background: $blue-hover;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .div-msg {
+                                    clear: both;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 1024px) {
+
+    }
+    @media only screen and (max-width: 980px) {
+
+    }
+    @media only screen and (max-width: 768px) {
+
+    }
+    @media only screen and (max-width: 648px) {
+
+    }
+    @media only screen and (max-width: 480px) {
+        
+    }
+    @media only screen and (max-width: 320px) { 
+        .class-info {
+            .container {
+                display: block;
+                
+                .middle {
+                    display: block;
+                    vertical-align: unset;
+
+                    #regist-advisory-wrap {
+                        #regist-advisory-wrap-body {
+                            #regist-advisory-body {
+                                #regist-advisory-controls {
+                                    #regist-advisory-btn-regist {
+                                        .btn-regist-advisory {
+                                            float: none;
+                                        }
+
+                                        .btn-regist-advisory-close {
+                                            float: none;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

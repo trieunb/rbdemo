@@ -1,0 +1,39 @@
+<!-- top navigation -->
+<div class="top_nav">
+    <div class="nav_menu">
+        <nav>
+            <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+            </div>
+            <ul class="nav navbar-nav navbar-right" id="profile-menu">
+                <li class="">
+                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <%= image_tag("/images/img.jpg",  alt: "Account") %> <%=session[:user_nm]%>
+                        <span class=" fa fa-angle-down"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-usermenu pull-right">
+                        <li><a href="/admin/profile"> <%=t('profile_admin')%></a></li>
+                        <li>
+                            <a href="/admin/setting">
+                                <span><%=t('settings')%></span>
+                            </a>
+                        </li>
+                        <li><a href="/admin/logout"><i class="fa fa-sign-out pull-right"></i> <%=t('log_out')%></a></li>
+                        <li class="hidden-md hidden-lg">
+                            <a href="javascript:;" class="lang-top-menu lang-admin" lang="vi" data-toggle="tooltip" title="Tiếng Việt">
+                                VI
+                            </a>
+                            <a href="javascript:;" class="lang-top-menu lang-admin" lang="ja" data-toggle="tooltip" title="日本語">
+                                JA
+                            </a>
+                            <a href="javascript:;" class="lang-top-menu lang-admin" lang="en" data-toggle="tooltip" title="English">
+                                EN
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<!-- /top navigation -->

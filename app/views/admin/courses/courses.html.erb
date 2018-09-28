@@ -1,0 +1,213 @@
+<% content_for :title do %>
+    <%=t('courses_admin')%>
+<% end %>
+
+<% content_for :styles do %>
+    <style>
+        .view-fee{
+            display: inline-block;
+            width: 100px !important;
+        }
+    </style>
+<% end %>
+
+<% content_for :lib do %>
+<% end %>
+
+<% content_for :scripts do %>
+    <%= javascript_include_tag('admin/courses/courses') %>
+<% end %>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><%=t('choose_course')%></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link" tabindex="3"><i class="fa fa-chevron-up"></i></a></li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="level"><%=t('course_level')%></label>
+                            <select id="level" class="form-control" tabindex="1">
+                                <% @data['level'].each_with_index do |item, index| %>
+                                    <option value="<%=item.number%>"><%=item.name%></option>
+                                <% end %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="place"><%=t('place')%></label>
+                            <select id="place" class="form-control" tabindex="2">
+                                <% @data['place'].each_with_index do |item, index| %>
+                                    <option value="<%=item.number%>"><%=item.name%></option>
+                                <% end %>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><%=t('main_language')%> <small><%=t('vietnamese')%></small></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <form class="form-horizontal input_mask" id="form-course-main" enctype="multipart/form-data" action="/admin/courses/update-course" accept-charset="UTF-8" method="post">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" id="authenticity_token">
+                    <input type="hidden" name="course[id]" id="id" value="<%=@course['course_ja'].id%>">
+                    <div class="form-group">
+                        <label for="title"><%=t('title')%> <span class="sign_required">*</span></label>
+                        <input class="form-control" name="course[title]" id="title" placeholder="<%=t('title')%>" value="<%=@course['course_vi'].title%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="description"><%=t('description')%></label>
+                        <input class="form-control" name="course[description]" id="description" placeholder="<%=t('description')%>" value="<%=@course['course_vi'].description%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="image_title"><%=t('image_title')%> (420x38px) <span class="sign_required">*</span></label>
+                        <br>
+                        <div style="background-image: url(/images/courses/title_bg.png); background-size: cover;">
+                            <img id="img_preview0" src="<%=@course['course_vi'].image_title%>" alt="<%=@course['course_vi'].image_title%>" style="    max-width: 100%;"/>
+                            <input type="hidden" id="size0" id-view="image-title-name">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <input class="form-control"  id="image-title-name" placeholder="<%=t('image_title')%>" readonly="readonly" style="background: #fff !important;" value="<%=@course['course_vi'].image_title%>"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </button>
+                                <input type="file" class="file" name="course[image_title]" id="image_title" id-view="image-title-name" err-idx="0" accept=".jpg,.png" tabindex="6"/>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="image"><%=t('image')%> (481x233px) <span class="sign_required">*</span></label>
+                        <br>
+                        <div>
+                            <img id="img_preview1" src="<%=@course['course_vi'].image%>" alt="<%=@course['course_vi'].image%>" style="max-width: 100%;"/>
+                            <input type="hidden" id="size1" id-view="image-name">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <input class="form-control"  id="image-name" placeholder="<%=t('image')%>" readonly="readonly" style="background: #fff !important;" value="<%=@course['course_vi'].image%>"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </button>
+                                <input type="file" class="file" name="course[image]" id="image" accept=".jpg,.png" id-view="image-name" err-idx="1" tabindex="7"/>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="price"><%=t('fee_admin')%> <span class="sign_required">*</span></label>
+                        <br>
+                        <input class="form-control view-fee text-right money" name="course[price]" id="price" placeholder="<%=t('fee_admin')%>" value="<%=@course['course_vi'].price%>" />
+                        <select name="course[unit_price]" class="form-control view-fee" id="unit_price">
+                            <% @data['unit'].each_with_index do |item, index| %>
+                                <option value="<%=item.number%>" <%=@course['course_vi'].unit_price == item.number ? 'selected=selected' : ''%>><%=item.name%></option>
+                            <% end %>
+                        </select>
+                        <span>/</span>
+                        <input class="form-control view-fee" name="course[unit]" id="unit" placeholder="<%=t('unit')%>" value="<%=@course['course_vi'].unit%>" />
+                    </div>
+                    <div class="form-group">
+                        <button type="button" id="btn-update-course" class="btn btn-primary" tabindex="11"><%=t('save')%></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <form class="form-horizontal input_mask" id="form-course-trans" enctype="multipart/form-data" action="/admin/courses/update-course-trans" accept-charset="UTF-8" method="post">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><%=t('translate')%></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <select id="language-trans" name="course[lang]" class="form-control" tabindex="12" id-course="<%=@course['course_ja'].id%>">
+                                <% @data['lang'].each_with_index do |item, index| %>
+                                    <option value="<%=item.language_code%>"><%=item.language_name%></option>
+                                <% end %>
+                            </select>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" id="authenticity_token">
+                    <input type="hidden" name="course[id]" id="trans_id" value="<%=@course['course_ja'].id%>">
+                    <div class="form-group">
+                        <label for="trans_title"><%=t('title')%> <span class="sign_required">*</span></label>
+                        <input class="form-control" name="course[title]" id="trans_title" placeholder="<%=t('title')%>" value="<%=@course['course_ja'].title%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="trans_description"><%=t('description')%></label>
+                        <input class="form-control" name="course[description]" id="trans_description" placeholder="<%=t('description')%>" value="<%=@course['course_ja'].description%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="image_title"><%=t('image_title')%> (420x38px) <span class="sign_required">*</span></label>
+                        <br>
+                        <div style="background-image: url(/images/courses/title_bg.png); background-size: cover;">
+                            <img id="img_preview2" src="<%=@course['course_ja'].image_title%>" alt="<%=@course['course_ja'].image_title%>" style="max-width: 100%;"/>
+                            <input type="hidden" id="size2" id-view="trans-image-title-name">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <input class="form-control"  id="trans-image-title-name" placeholder="<%=t('image_title')%>" readonly="readonly" style="background: #fff !important;" value="<%=@course['course_ja'].image_title%>"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </button>
+                                <input type="file" class="file" name="course[image_title]" id="trans_image_title" err-idx="2" id-view="trans-image-title-name" accept=".jpg,.png" tabindex="15"/>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="image"><%=t('image')%> (481x233px) <span class="sign_required">*</span></label>
+                        <br>
+                        <div>
+                            <img id="img_preview3" src="<%=@course['course_ja'].image%>" alt="<%=@course['course_ja'].image%>" style="max-width: 100%;"/>
+                            <input type="hidden" id="size3" id-view="trans-image-name">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <input class="form-control"  id="trans-image-name" placeholder="<%=t('image')%>" readonly="readonly" style="background: #fff !important;" value="<%=@course['course_ja'].image%>"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </button>
+                                <input type="file" class="file" name="course[image]" id="trans_image" accept=".jpg,.png" err-idx="3" id-view="trans-image-name" tabindex="16"/>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="price"><%=t('fee_admin')%> <span class="sign_required">*</span></label>
+                        <br>
+                        <input class="form-control view-fee text-right money" disabled="disabled" placeholder="<%=t('fee_admin')%>" value="<%=@course['course_ja'].price%>" id="trans_price"/>
+                        <select class="form-control view-fee" disabled="disabled" id="trans_unit_price">
+                            <% @data['unit'].each_with_index do |item, index| %>
+                                <option value="<%=item.number%>" <%=@course['course_ja'].unit_price == item.number ? 'selected=selected' : ''%>><%=item.name%></option>
+                            <% end %>
+                        </select>
+                        <span>/</span>
+                        <input class="form-control view-fee" name="course[unit]" id="trans_unit" placeholder="<%=t('unit')%>" value="<%=@course['course_ja'].unit%>" />
+                    </div>
+                    <div class="form-group">
+                        <button type="button" id="btn-update-course-trans" class="btn btn-primary" tabindex="18"><%=t('save_translate')%></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

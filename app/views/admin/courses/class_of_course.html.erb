@@ -1,0 +1,370 @@
+<% content_for :title do %>
+    <%=@mode == 'I' ? t('add_class') : t('edit_class')%>
+<% end %>
+
+<% content_for :styles do %>
+    <%= stylesheet_link_tag "vendor/switchery/switchery.min", media: "all" %>
+<% end %>
+
+<% content_for :lib do %>
+    <script src="/ckeditor/ckeditor.js"></script>
+    <%= javascript_include_tag('vendor/switchery/switchery.min') %>
+<% end %>
+
+<% content_for :scripts do %>
+    <script>
+        var mode = '<%=@mode%>'
+    </script>
+    <%= javascript_include_tag('admin/courses/class') %>
+<% end %>
+<div class="page-title">
+    <div class="title_left">
+        <h3><%=@mode == 'I' ? t('add_class') : t('edit_class')%></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class=" <%=@mode == 'U' ? 'col-md-6' : ''%> col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <% if @mode == 'I' %>
+                <h2><%=t('class_information')%></h2>
+                <% else %>
+                <h2><%=t('main_language')%> <small><%=t('vietnamese')%></small></h2>
+                <% end %>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <form class="form-horizontal input_mask" id="form-class-main" enctype="multipart/form-data" action="/admin/courses/save-class" accept-charset="UTF-8" method="post">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" id="authenticity_token">
+                    <input name="mode" type="hidden" value="<%=@mode%>">
+                    <input type="hidden" name="class[id]" id="id" value="<%=@class_vi != nil ? @class_vi.id : ''%>" />
+                    <input type="hidden" name="class[beauty_id]" id="beauty_id" value="<%=@class_vi != nil ? @class_vi.beauty_id : ''%>" />
+                    <input type="hidden" id="width_height" data-height="" data-width="">
+
+                    <div class="row">
+
+                        <div class="<%=@mode == 'U' ? 'col-xs-12' : 'col-xs-12 col-sm-12 col-md-6'%>">
+                            <div class="form-group">
+                                <label for="title"><%=t('name')%> <span class="sign_required">*</span></label>
+                                <input class="form-control" name="class[title]" id="title" placeholder="<%=t('name')%>" value="<%=@class_vi != nil ? @class_vi.title : ''%>" />
+                            </div>
+                        </div>
+
+                        <div class="<%=@mode == 'U' ? 'col-xs-12' : 'col-xs-12 col-sm-12 col-md-6'%>">
+                            <div class="form-group">
+                                <label for="name"><%=t('title')%> <span class="sign_required">*</span></label>
+                                <input class="form-control" name="class[name]" id="name" placeholder="<%=t('title')%>" value="<%=@class_vi != nil ? @class_vi.name : ''%>" />
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="content"><%=t('content_admin')%> <span class="sign_required">*</span></label>
+                                <textarea class="form-control ckeditor-custom" name="class[content]" id="content" placeholder="<%=t('content_admin')%>" rows="5"><%=@class_vi != nil ? @class_vi.content : ''%></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="target"><%=t('target_admin')%> <span class="sign_required">*</span></label>
+                                <input class="form-control" name="class[target]" id="target" placeholder="<%=t('target_admin')%>" value="<%=@class_vi != nil ? @class_vi.target : ''%>" />
+                            </div>
+                        </div>
+
+                        <div class="<%=@mode == 'U' ? 'col-xs-12' : 'col-xs-12 col-sm-12 col-md-6'%>">
+                            <div class="form-group">
+                                <label for="time"><%=t('time_admin')%> <span class="sign_required">*</span></label>
+                                <input class="form-control" name="class[time]" id="time" placeholder="<%=t('time_admin')%>" value="<%=@class_vi != nil ? @class_vi.time : ''%>" />
+                            </div>
+                        </div>
+
+                        <div class="<%=@mode == 'U' ? 'col-xs-12' : 'col-xs-12 col-sm-12 col-md-6'%>">
+                            <div class="form-group">
+                                <label for="admission"><%=t('admission_admin')%></label>
+                                <input class="form-control" name="class[admission]" id="admission" placeholder="<%=t('admission_admin')%>" value="<%=@class_vi != nil ? @class_vi.admission : ''%>" />
+                            </div>
+                        </div>
+
+                        <div class="<%=@mode == 'U' ? 'col-xs-12' : 'col-xs-12 col-sm-12 col-md-6'%>">
+                            <div class="form-group">
+                                <label for="quantity"><%=t('quantity_student_admin')%></label>
+                                <input class="form-control" name="class[quantity]" id="quantity" placeholder="<%=t('quantity_student_admin')%>" value="<%=@class_vi != nil ? @class_vi.quantity : ''%>" />
+                            </div>
+                        </div>
+
+                        <div class="<%=@mode == 'U' ? 'col-xs-12' : 'col-xs-12 col-sm-12 col-md-6'%>">
+                            <div class="form-group">
+                                <label for="opening"><%=t('opening_admin')%></label>
+                                <input class="form-control" name="class[opening]" id="opening" placeholder="<%=t('opening_admin')%>" value="<%=@class_vi != nil ? @class_vi.opening : ''%>" />
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="study_time"><%=t('study_time_admin')%></label>
+                                <input class="form-control" name="class[study_time]" id="study_time" placeholder="<%=t('study_time_admin')%>" value="<%=@class_vi != nil ? @class_vi.study_time : ''%>" />
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="price"><%=t('fee_admin')%> <span class="sign_required">*</span></label>
+                                <input class="form-control" name="class[price]" id="price" placeholder="<%=t('fee_admin')%>" value="<%=@class_vi != nil ? @class_vi.price : ''%>" />
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="benefits"><%=t('benefits_admin')%></label>
+                                <textarea class="form-control ckeditor-custom" name="class[benefits]" id="benefits" placeholder="<%=t('benefits_admin')%>" rows="5"><%=@class_vi != nil ? @class_vi.benefits : ''%></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="curriculum"><%=t('curriculum_admin')%> <span class="sign_required">*</span></label>
+                                <textarea class="form-control ckeditor-custom" name="class[curriculum]" id="curriculum" placeholder="<%=t('curriculum_admin')%>" rows="5"><%=@class_vi != nil ? @class_vi.curriculum : ''%></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="requirements"><%=t('requirements')%> <span class="sign_required">*</span></label>
+                                <textarea class="form-control ckeditor-custom" name="class[requirements]" id="requirements" placeholder="<%=t('requirements')%>" rows="5"><%=@class_vi != nil ? @class_vi.requirements : ''%></textarea>
+                            </div>
+                        </div>
+
+                        <div class="<%=@mode == 'U' ? 'col-xs-12' : 'col-xs-12 col-sm-12 col-md-6'%>">
+                            <div class="form-group">
+                                <label for="course_id"><%=t('course')%></label>
+                                <select id="course_id" name="class[course_id]" class="form-control" tabindex="14">
+                                    <% @courses.each_with_index do |item, index| %>
+                                        <option value="<%=item.id%>" <%=@class_vi != nil && item.id == @class_vi.course_id ? 'selected=selected' : ''%>><%=item.title%></option>
+                                    <% end %>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="<%=@mode == 'U' ? 'col-xs-12' : 'col-xs-12 col-sm-12 col-md-6'%>">
+                            <div class="form-group">
+                                <label for="location"><%=t('location')%></label>
+                                <select id="location" name="class[location]" class="form-control" tabindex="15">
+                                    <% @location.each_with_index do |item, index| %>
+                                        <option value="<%=item.number%>" <%=@class_vi != nil && item.number == @class_vi.location ? 'selected=selected' : ''%>><%=item.name%></option>
+                                    <% end %>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="<%=@mode == 'U' ? 'col-xs-12' : 'col-xs-12 col-sm-12 col-md-6'%>">
+                            <div class="form-group">
+                                <label for="icon"><%=t('icon')%>  (129 x 126px)<span class="sign_required">*</span></label>
+
+                                <br>
+
+                                <img id="img_preview" src="<%=@class_vi != nil ? @class_vi.icon : ''%>" width="200"/>
+
+                                <div class="input-group" style="margin-bottom: 0px;">
+                                    <input class       ="form-control"  
+                                           id          ="icon-name" 
+                                           value       ="<%=@class_vi != nil ? @class_vi.icon : ''%>" 
+                                           placeholder ="<%=t('icon')%>" 
+                                           readonly    ="readonly" 
+                                           style       ="background: #fff !important;" />
+
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-primary" style="margin-bottom: 0px;">
+                                            <i class="fa fa-upload" aria-hidden="true"></i>
+                                        </button>
+                                        <input type="file" class="file" name="class[icon]" id="icon" accept=".jpg,.png" tabindex="16"/>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="<%=@mode == 'U' ? 'col-xs-6' : 'col-xs-6 col-sm-6 col-md-3'%>">
+                            <div class="form-group">
+                                <label for="show"><%=t('show')%></label><br>
+                                <%if @class_vi == nil %>
+                                <input type="checkbox" class="js-switch" name="class[show]" id="show" tabindex="17" />
+                                <% else %>
+                                <input type="checkbox" class="js-switch" name="class[show]" id="show" <%=@class_vi.show ? 'checked=checked' : ''%> tabindex="17" />
+                                <% end %>
+                            </div>
+                        </div>
+
+                        <!-- <div class="<%=@mode == 'U' ? 'col-xs-6' : 'col-xs-6 col-sm-6 col-md-3'%>">
+                            <div class="form-group">
+                                <label for="sent_email"><%=t('sent_email')%></label><br>
+                                <input type="checkbox" class="js-switch" name="class[sent_email]" id="sent_email" <%=@mode == 'I' ? 'checked=checked' : ''%> tabindex="17" />
+                            </div>
+                        </div> -->
+
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary" id="btn-save-class" tabindex="18" ><%=t('save')%></button>
+                                <% if @mode == 'U' %>
+                                <button type="button" class="btn btn-danger" id="btn-delete-class" tabindex="19" ><%=t('delete')%></button>
+                                <% end %>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <% if @mode == 'U' %>
+    <div class="col-md-6 col-xs-12 col-trans">
+        <form class="form-horizontal input_mask" id="form-class-trans" action="/admin/courses/update-class" accept-charset="UTF-8" method="post">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><%=t('translate')%></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <select id="language-trans" name="class[lang]" class="form-control" tabindex="20">
+                                <% @lang.each_with_index do |item, index| %>
+                                    <option value="<%=item.language_code%>"><%=item.language_name%></option>
+                                <% end %>
+                            </select>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" id="authenticity_token">
+                    <input type="hidden" name="class[id]" value="<%=@class_ja.id%>" />
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="trans_title"><%=t('name')%> <span class="sign_required">*</span></label>
+                                <input class="form-control" name="class[title]" id="trans_title" placeholder="<%=t('name')%>" value="<%=@class_ja.title%>" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="trans_name"><%=t('title')%> <span class="sign_required">*</span></label>
+                                <input class="form-control" name="class[name]" id="trans_name" placeholder="<%=t('title')%>" value="<%=@class_ja.name%>" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="trans_content"><%=t('content_admin')%> <span class="sign_required">*</span></label>
+                                <textarea class="form-control ckeditor-custom" name="class[content]" id="trans_content" placeholder="<%=t('content_admin')%>" rows="5"><%=@class_ja.content%></textarea>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="trans_target"><%=t('target_admin')%> <span class="sign_required">*</span></label>
+                                <input class="form-control" name="class[target]" id="trans_target" placeholder="<%=t('target_admin')%>" value="<%=@class_ja.target%>" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="trans_time"><%=t('time_admin')%> <span class="sign_required">*</span></label>
+                                <input class="form-control" name="class[time]" id="trans_time" placeholder="<%=t('time_admin')%>" value="<%=@class_ja.time%>" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="trans_admission"><%=t('admission_admin')%></label>
+                                <input class="form-control" name="class[admission]" id="trans_admission" placeholder="<%=t('admission_admin')%>" value="<%=@class_ja.admission%>" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="trans_quantity"><%=t('quantity_student_admin')%></label>
+                                <input class="form-control" name="class[quantity]" id="trans_quantity" placeholder="<%=t('quantity_student_admin')%>" value="<%=@class_ja.quantity%>" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="trans_opening"><%=t('opening_admin')%></label>
+                                <input class="form-control" name="class[opening]" id="trans_opening" placeholder="<%=t('opening_admin')%>" value="<%=@class_ja.opening%>" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="trans_study_time"><%=t('study_time_admin')%></label>
+                                <input class="form-control" name="class[study_time]" id="trans_study_time" placeholder="<%=t('study_time_admin')%>" value="<%=@class_ja.study_time%>" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="trans_price"><%=t('fee_admin')%> <span class="sign_required">*</span></label>
+                                <input class="form-control" name="class[price]" id="trans_price" placeholder="<%=t('fee_admin')%>" value="<%=@class_ja.price%>" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="trans_benefits"><%=t('benefits_admin')%></label>
+                                <textarea class="form-control ckeditor-custom" name="class[benefits]" id="trans_benefits" placeholder="<%=t('benefits_admin')%>" rows="5"><%=@class_ja.benefits%></textarea>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="trans_curriculum"><%=t('curriculum_admin')%> <span class="sign_required">*</span></label>
+                                <textarea class="form-control ckeditor-custom" name="class[curriculum]" id="trans_curriculum" placeholder="<%=t('curriculum_admin')%>" rows="5"><%=@class_ja.curriculum%></textarea>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="trans_requirements"><%=t('requirements')%> <span class="sign_required">*</span></label>
+                                <textarea class="form-control ckeditor-custom" name="class[requirements]" id="trans_requirements" placeholder="<%=t('requirements')%>" rows="5"><%=@class_ja.requirements%></textarea>
+                            </div>
+                        </div>
+                        <div class="hidden-sm hidden-xs">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label><%=t('course')%></label>
+                                    <select class="form-control" disabled="disabled">
+                                        <% @courses.each_with_index do |item, index| %>
+                                            <option value="<%=item.id%>" <%=item.id == @class_ja.course_id ? 'selected=selected' : ''%>><%=item.title%></option>
+                                        <% end %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label><%=t('location')%></label>
+                                    <select class="form-control" disabled="disabled">
+                                        <% @location.each_with_index do |item, index| %>
+                                            <option value="<%=item.number%>" <%=item.number == @class_ja.location ? 'selected=selected' : ''%>><%=item.name%></option>
+                                        <% end %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label><%=t('icon')%></label>
+                                    <%if @class_ja.icon != ''%>
+                                    <br>
+                                    <img src="<%=@class_ja.icon%>" alt="<%=@class_ja.title%>" width="200"/>
+                                    <% end %>
+                                    <input class="form-control"  value="<%=@class_ja.icon%>" placeholder="<%=t('icon')%>" disabled="disabled" />
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label><%=t('show')%></label><br>
+                                    <input type="checkbox" class="js-switch" <%=@class_ja.show ? 'checked=checked' : ''%> disabled="disabled"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary" id="btn-save-class-trans" tabindex="33"><%=t('save_translate')%></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <% end %>
+</div>

@@ -1,0 +1,48 @@
+<section id="media" class="lazy-load" data-original="/images/media/bg.png">
+    <div class="container">
+        <div class="m-header">
+            <p class="title text-center <%=@lang%>">
+                <%= t('media_title') %>
+            </p>
+        </div>
+        <div class="m-body">
+            <div class="col-md-10 col-md-offset-1 padding-left-right-0">
+                <% @dataMedia.each do |data| %>
+                    <div class="col-sm-4 col-xs-6 padding-left-right-0">
+                        <div class="wrap-button text-center col-centered" style="border: 13px solid <%= data['background'] %>">
+                            <div class="description">
+                                <div class="des-info">
+                                    <div class="des-inf-relative">
+                                        <div class="des-inf-background"></div>
+                                        <a class="media-link" 
+                                           data-href="<%= data['url'] %>" 
+                                           data-format="<%= data['format'] %>"
+                                           data-title="<%= data['node'] %>">
+                                            <img class="lazy-load" data-original="<%= data['logo'] %>" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="des-lid" style="background: <%= data['background'] %>">
+                                    <img class="lazy-load" data-original="<%= data['icon'] %>" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+
+    <div id="mediaModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="modal-body">
+                        <!-- <iframe width="400" height="300" frameborder="0" allowfullscreen=""></iframe> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,143 @@
+<div class="col-md-3 left_col">
+    <div class="left_col scroll-view">
+        <div class="navbar nav_title" style="border: 0;">
+            <a href="javascript:void(0)" class="site_title"><%= image_tag("/images/logo_icon.png",  alt: "Logo", style: "width: 25px;margin-bottom: 10px;") %> <span><%=t('admin_page')%></span></a>
+        </div>
+        <div class="clearfix"></div>
+        <!-- menu profile quick info -->
+        <div class="profile clearfix">
+            <div class="profile_pic">
+                <%= image_tag("/images/img.jpg",  alt: "Account", class: "img-circle profile_img") %>
+            </div>
+            <div class="profile_info">
+                <span><%=t('welcome')%>,</span>
+                <h2><%=session[:user_nm]%></h2>
+            </div>
+        </div>
+        <!-- /menu profile quick info -->
+        <br />
+        <!-- sidebar menu -->
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+                <ul class="nav side-menu <%= @language %>">
+                    <li class="menu-admin-item <%=@menuId == 1 ? 'active' : ''%>" menu="1">
+                        <a href="/admin">
+                            <i class="fa fa-tachometer"></i> <%=t('dashboard')%>
+                        </a>
+                    </li>
+                    <li class="menu-admin-item <%=@menuId == 2 ? 'active' : ''%>" menu="2">
+                        <a href="/admin/regist-courses" id="number-regist-course">
+                            <i class="fa fa-graduation-cap"></i> <%=t('regist_courses')%>
+                            <% if @countRegistCouse > 0 %><span class="badge bg-red"><%=@countRegistCouse%></span><%end%>
+                        </a>
+                    </li>
+                    <li class="menu-admin-item <%=@menuId == 3 ? 'active' : ''%>" menu="3">
+                        <a href="/admin/regist-advisories" id="number-regist-advisories">
+                            <i class="fa fa-volume-control-phone"></i> <%=t('regist_advisories')%>
+                            <% if @countRegistAdvisories > 0 %>
+                                <span class="badge bg-red"><%=@countRegistAdvisories%></span>
+                            <% end %>
+                        </a>
+                    </li>
+                    <li class="menu-admin-item <%=@menuId == 4 ? 'active' : ''%>" menu="4">
+                        <a href="/admin/regist-events" id="number-regist-events">
+                            <i class="fa fa-calendar-plus-o"></i> <%=t('regist_events')%>
+                            <% if @countRegistEvents > 0 %>
+                                <span class="badge bg-red"><%=@countRegistEvents%></span>
+                            <% end %>
+                        </a>
+                    </li>
+                    <li class="menu-admin-item <%=@menuId == 5 ? 'active' : ''%>" menu="5">
+                        <a href="/admin/subscribes" id="number-subscribes">
+                            <i class="fa fa-eye"></i> <%=t('subscribes')%>
+                            <% if @countSubscribes > 0 %>
+                                <span class="badge bg-red"><%=@countSubscribes%></span>
+                            <% end %>
+                        </a>
+                    </li>
+                    <li class="menu-admin-item <%=@menuId == 6 ? 'active' : ''%>" menu="6">
+                        <a><i class="fa fa-calendar"></i> <%=t('events')%> <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/admin/events"><%=t('list_events')%></a></li>
+                            <li><a href="/admin/events/create"><%=t('add_event')%></a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-admin-item <%=@menuId == 7 ? 'active' : ''%>" menu="7">
+                        <a><i class="fa fa-play-circle"></i> <%=t('slides')%> <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/admin/slides"><%=t('list_slides')%></a></li>
+                            <li><a href="/admin/slides/create"><%=t('add_slide')%></a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-admin-item <%=@menuId == 8 ? 'active' : ''%>" menu="8">
+                        <a><i class="fa fa-leanpub"></i> <%=t('courses_admin')%> <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/admin/courses"><%=t('course_info')%></a></li>
+                            <li><a href="/admin/courses/classes"><%=t('list_classes')%></a></li>
+                            <li><a href="/admin/courses/class"><%=t('add_class')%></a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-admin-item <%=@menuId == 9 ? 'active' : ''%>" menu="9">
+                        <a><i class="fa fa-book"></i> <%=t('albums')%> <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/admin/albums"><%=t('list_albums')%></a></li>
+                            <li><a href="/admin/albums/add-photos"><%=t('add_album')%></a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-admin-item <%=@menuId == 10 ? 'active' : ''%>" menu="10">
+                        <a><i class="fa fa-video-camera"></i> <%=t('media_admin')%> <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/admin/media"><%=t('list_media')%></a></li>
+                            <li><a href="/admin/medias/create"><%=t('add_media')%></a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-admin-item <%=@menuId == 11 ? 'active' : ''%>" menu="11">
+                        <a><i class="fa fa-file-text"></i> <%=t('letters')%> <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/admin/letters"><%=t('list_letters')%></a></li>
+                            <li><a href="/admin/letter/create"><%=t('add_letter')%></a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-admin-item <%=@menuId == 12 ? 'active' : ''%>" menu="12">
+                        <a><i class="fa fa-venus-mars"></i> <%=t('differents')%> <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/admin/differents"><%=t('list_differents')%></a></li>
+                            <li><a href="/admin/differents/create"><%=t('add_different')%></a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-admin-item <%=@menuId == 13 ? 'active' : ''%>" menu="13">
+                        <a><i class="fa fa-question-circle"></i> <%=t('questions_admin')%> <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/admin/questions"><%=t('list_questions')%></a></li>
+                            <li><a href="/admin/questions/create"><%=t('add_question')%></a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-admin-item <%=@menuId == 14 ? 'active' : ''%>" menu="14">
+                        <a><i class="fa fa-users"></i> <%=t('users')%> <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/admin/users"><%=t('list_users')%></a></li>
+                            <li><a href="/admin/users/create"><%=t('add_user')%></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /sidebar menu -->
+        <!-- /menu footer buttons -->
+        <div class="sidebar-footer hidden-small" id="sidebar-footer">
+            <a data-toggle="tooltip" lang="vi" class="lang-admin" data-placement="top" title="Tiếng Việt">
+                VI
+            </a>
+            <a data-toggle="tooltip" lang="ja" class="lang-admin" data-placement="top" title="日本語">
+                JA
+            </a>
+            <a data-toggle="tooltip" lang="en" class="lang-admin" data-placement="top" title="English">
+                EN
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="/admin/logout">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            </a>
+        </div>
+        <!-- /menu footer buttons -->
+    </div>
+</div>

@@ -1,0 +1,34 @@
+class CreateDifferents < ActiveRecord::Migration[5.1]
+    def self.up
+        create_table :differents, id: false do |t|
+            t.column :id,           :int,         :limit      => 10,    :null => false
+            t.column :lang,         :string,      :limit      => 5,     :null => false
+            t.column :title,        :string,      :limit      => 50,    :null => false
+            t.column :content,      :string,      :limit      => 1000,  :null => false
+            t.column :icon,         :string,      :limit      => 255,   :null => false
+            t.column :show,         :boolean,     :default    => false
+            t.column :created_at,   :datetime,    :null       => false
+            t.column :created_by,   :string,      :limit      => 10
+            t.column :updated_at,   :datetime
+            t.column :updated_by,   :string,      :limit      => 10
+            t.column :deleted_at,   :datetime
+            t.column :deleted_by,   :string,      :limit      => 10
+        end
+        execute "ALTER TABLE differents ADD PRIMARY KEY (id,lang);"
+        Different.create :id => 1, :lang => 'vi', :title => 'Giảng dạy tiếng Nhật căn bản, IT, business', :content => '<p><span class="fa fa-arrow-circle-o-right"></span> Tiếng Nhật chuyên ngành và hội thoại được chú trọng hàng đầu tại BrSE School.</p><p><span class="fa fa-arrow-circle-o-right"></span> Bài giảng được xây dựng từ thực tế, giúp học viên sử dụng được ngay trong môi trường tiếng Nhật sau khi tốt nghiệp.</p>', :icon => '/images/different/icon1.png', :show => true
+        Different.create :id => 1, :lang => 'ja', :title => 'Giảng dạy tiếng Nhật căn bản, IT, business', :content => '<p><span class="fa fa-arrow-circle-o-right"></span> Tiếng Nhật chuyên ngành và hội thoại được chú trọng hàng đầu tại BrSE School.</p><p><span class="fa fa-arrow-circle-o-right"></span> Bài giảng được xây dựng từ thực tế, giúp học viên sử dụng được ngay trong môi trường tiếng Nhật sau khi tốt nghiệp.</p>', :icon => '/images/different/icon1.png', :show => true
+        Different.create :id => 1, :lang => 'en', :title => 'Giảng dạy tiếng Nhật căn bản, IT, business', :content => '<p><span class="fa fa-arrow-circle-o-right"></span> Tiếng Nhật chuyên ngành và hội thoại được chú trọng hàng đầu tại BrSE School.</p><p><span class="fa fa-arrow-circle-o-right"></span> Bài giảng được xây dựng từ thực tế, giúp học viên sử dụng được ngay trong môi trường tiếng Nhật sau khi tốt nghiệp.</p>', :icon => '/images/different/icon1.png', :show => true
+        Different.create :id => 2, :lang => 'vi', :title => 'Trải nghiệm dự án thực tế với vai trò BrSE, SE', :content => '<p><span class="fa fa-arrow-circle-o-right"></span> Xuyên suốt khóa học cùng với học viên là các dự án được xây dựng từ thực tế.</p><p><span class="fa fa-arrow-circle-o-right"></span> Trong dự án, học viên trao đổi thường xuyên với các kỹ sư Nhật để nâng cao khả năng làm việc với người Nhật.</p>', :icon => '/images/different/icon2.png', :show => true
+        Different.create :id => 2, :lang => 'ja', :title => 'Trải nghiệm dự án thực tế với vai trò BrSE, SE', :content => '<p><span class="fa fa-arrow-circle-o-right"></span> Xuyên suốt khóa học cùng với học viên là các dự án được xây dựng từ thực tế.</p><p><span class="fa fa-arrow-circle-o-right"></span> Trong dự án, học viên trao đổi thường xuyên với các kỹ sư Nhật để nâng cao khả năng làm việc với người Nhật.</p>', :icon => '/images/different/icon2.png', :show => true
+        Different.create :id => 2, :lang => 'en', :title => 'Trải nghiệm dự án thực tế với vai trò BrSE, SE', :content => '<p><span class="fa fa-arrow-circle-o-right"></span> Xuyên suốt khóa học cùng với học viên là các dự án được xây dựng từ thực tế.</p><p><span class="fa fa-arrow-circle-o-right"></span> Trong dự án, học viên trao đổi thường xuyên với các kỹ sư Nhật để nâng cao khả năng làm việc với người Nhật.</p>', :icon => '/images/different/icon2.png', :show => true
+        Different.create :id => 3, :lang => 'vi', :title => 'Thực tập tại Nhật Bản trước khi xin việc', :content => '<p><span class="fa fa-arrow-circle-o-right"></span> Học viên được thực tập 3 tháng tại công ty ANS với bề dày 30 năm lịch sử.</p><p><span class="fa fa-arrow-circle-o-right"></span> Đội ngũ kỹ sư giàu kinh nghiệm của ANS sẽ là người hướng dẫn học viên trong suốt quá trình thực tập.</p>', :icon => '/images/different/icon3.png', :show => true
+        Different.create :id => 3, :lang => 'ja', :title => 'Thực tập tại Nhật Bản trước khi xin việc', :content => '<p><span class="fa fa-arrow-circle-o-right"></span>Học viên được thực tập 3 tháng tại công ty ANS với bề dày 30 năm lịch sử.</p><p><span class="fa fa-arrow-circle-o-right">Đội ngũ kỹ sư giàu kinh nghiệm của ANS sẽ là người hướng dẫn học viên trong suốt quá trình thực tập.</p>', :icon => '/images/different/icon3.png', :show => true
+        Different.create :id => 3, :lang => 'en', :title => 'Thực tập tại Nhật Bản trước khi xin việc', :content => '<p><span class="fa fa-arrow-circle-o-right"></span> Học viên được thực tập 3 tháng tại công ty ANS với bề dày 30 năm lịch sử.</p><p><span class="fa fa-arrow-circle-o-right"></span> Đội ngũ kỹ sư giàu kinh nghiệm của ANS sẽ là người hướng dẫn học viên trong suốt quá trình thực tập.</p>', :icon => '/images/different/icon3.png', :show => true
+        Different.create :id => 4, :lang => 'vi', :title => 'Giới thiệu việc làm tại Nhật Bản', :content => '<p><span class="fa fa-arrow-circle-o-right"></span> Chuyển sang làm việc với vị trí BrSE.</p><p><span class="fa fa-arrow-circle-o-right"></span> Được tuyển dụng vào các công ty IT thị trường Nhật Bản và trở thành BrSE. </p><p><span class="fa fa-arrow-circle-o-right"></span> BrSE, SE muốn làm việc tại Nhật sẽ được giới thiệu đến các công ty Nhật Bản.</p>', :icon => '/images/different/icon4.png', :show => true
+        Different.create :id => 4, :lang => 'ja', :title => 'Giới thiệu việc làm tại Nhật Bản', :content => '<p><span class="fa fa-arrow-circle-o-right"></span> Chuyển sang làm việc với vị trí BrSE.</p><p><span class="fa fa-arrow-circle-o-right"></span> Được tuyển dụng vào các công ty IT thị trường Nhật Bản và trở thành BrSE. </p><p><span class="fa fa-arrow-circle-o-right"></span> BrSE, SE muốn làm việc tại Nhật sẽ được giới thiệu đến các công ty Nhật Bản.</p>', :icon => '/images/different/icon4.png', :show => true
+        Different.create :id => 4, :lang => 'en', :title => 'Giới thiệu việc làm tại Nhật Bản', :content => '<p><span class="fa fa-arrow-circle-o-right"></span> Chuyển sang làm việc với vị trí BrSE.</p><p><span class="fa fa-arrow-circle-o-right"></span> Được tuyển dụng vào các công ty IT thị trường Nhật Bản và trở thành BrSE. </p><p><span class="fa fa-arrow-circle-o-right"></span> BrSE, SE muốn làm việc tại Nhật sẽ được giới thiệu đến các công ty Nhật Bản.</p>', :icon => '/images/different/icon4.png', :show => true
+    end
+    def self.down
+        drop_table :differents
+    end
+end

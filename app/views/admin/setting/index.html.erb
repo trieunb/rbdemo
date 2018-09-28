@@ -1,0 +1,267 @@
+<% content_for :title do %>
+    <%=t('settings')%>
+<% end %>
+
+<% content_for :styles do %>
+<% end %>
+
+<% content_for :lib do %>
+    <script src="/ckeditor/ckeditor.js"></script>
+<% end %>
+
+<% content_for :scripts do %>
+    <%= javascript_include_tag('admin/settings/setting') %>
+<% end %>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3><%=t('settings')%></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><%=t('main_language')%> <small><%=t('vietnamese')%></small></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <form class="form-horizontal input_mask" enctype="multipart/form-data" id="form-setting-main" action="/admin/setting/update" accept-charset="UTF-8" method="post">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" id="authenticity_token">
+                    <div class="form-group">
+                        <label for="description"><%=t('description')%> <span class="sign_required">*</span></label>
+                        <textarea class="form-control" name="setting[description]" id="description" placeholder="<%=t('description')%>" rows="5"><%=@setting['setting_vi'].description%></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="keyword"><%=t('key_word')%> <span class="sign_required">*</span></label>
+                        <input type="text" class="form-control" name="setting[keyword]" id="keyword" placeholder="<%=t('key_word')%>" value="<%=@setting['setting_vi'].keyword%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="address"><%=t('address')%> <span class="sign_required">*</span></label>
+                        <input type="text" class="form-control" name="setting[address]" id="address" placeholder="<%=t('address')%>" value="<%=@setting['setting_vi'].address%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="intro_video"><%=t('intro_video')%> <span class="sign_required">*</span></label>
+                        <input type="text" class="form-control" name="setting[intro_video]" id="intro_video" placeholder="<%=t('url_of_intro_video')%>" value="<%=@setting['setting_vi'].intro_video%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="welcome"><%=t('welcome')%> <span class="sign_required">*</span></label>
+                        <textarea class="form-control ckeditor" name="setting[welcome]" id="welcome" placeholder="<%=t('welcome')%>" rows="5"><%=@setting['setting_vi'].welcome%></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="different"><%=t('different')%> <span class="sign_required">*</span></label>
+                        <textarea class="form-control ckeditor" name="setting[different]" id="different" placeholder="<%=t('different')%>" rows="5"><%=@setting['setting_vi'].different%></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="greeting"><%=t('greeting')%> <span class="sign_required">*</span></label>
+                        <textarea class="form-control ckeditor-custom" name="setting[greeting]" id="greeting" placeholder="<%=t('greeting')%>" rows="5"><%=@setting['setting_vi'].greeting%></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="selection_process"><%=t('selection_process')%> (510x575px) <span class="sign_required">*</span></label>
+                        <br>
+                        <div>
+                            <img id="img_preview0" src="<%=@setting['setting_vi'].selection_process%>" alt="<%=@setting['setting_vi'].selection_process%>" style="max-width: 300px;"/>
+                            <input type="hidden" id="size0" id-view="selection_process_name">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <input class="form-control"  id="selection_process_name" placeholder="<%=t('selection_process')%>" readonly="readonly" style="background: #fff !important;" value="<%=@setting['setting_vi'].selection_process%>"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </button>
+                                <input type="file" class="file" name="setting[selection_process]" id="selection_process" accept=".jpg,.png" id-view="selection_process_name" err-idx="0" tabindex="8" />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="facebook"><%=t('facebook')%> <span class="sign_required">*</span></label>
+                        <input type="text" class="form-control" name="setting[facebook]" id="facebook" placeholder="<%=t('facebook_link')%>" value="<%=@setting['setting_vi'].facebook%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="google_plus"><%=t('google_plus')%> <span class="sign_required">*</span></label>
+                        <input type="text" class="form-control" name="setting[google_plus]" id="google_plus" placeholder="<%=t('google_plus_link')%>" value="<%=@setting['setting_vi'].google_plus%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="skype"><%=t('skype')%> <span class="sign_required">*</span></label>
+                        <input type="text" class="form-control" name="setting[skype]" id="skype" placeholder="<%=t('skype')%>" value="<%=@setting['setting_vi'].skype%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="ameblo"><%=t('ameblo')%> <span class="sign_required">*</span></label>
+                        <input type="text" class="form-control" name="setting[ameblo]" id="ameblo" placeholder="<%=t('ameblo')%>" value="<%=@setting['setting_vi'].ameblo%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_dn"><%=t('phone_da_nang')%> <span class="sign_required">*</span></label>
+                        <input type="text" class="form-control" name="setting[phone_dn]" id="phone_dn" placeholder="<%=t('phone_of_da_nang')%>" value="<%=@setting['setting_vi'].phone_dn%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_hn"><%=t('phone_ha_noi')%> <span class="sign_required">*</span></label>
+                        <input type="text" class="form-control" name="setting[phone_hn]" id="phone_hn" placeholder="<%=t('phone_of_ha_noi')%>" value="<%=@setting['setting_vi'].phone_hn%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_tokyo"><%=t('phone_tokyo')%> <span class="sign_required">*</span></label>
+                        <input type="text" class="form-control" name="setting[phone_tokyo]" id="phone_tokyo" placeholder="<%=t('phone_of_tokyo')%>" value="<%=@setting['setting_vi'].phone_tokyo%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><%=t('email')%> <span class="sign_required">*</span></label>
+                        <input type="text" class="form-control" name="setting[email]" id="email" placeholder="<%=t('email')%>" value="<%=@setting['setting_vi'].email%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="position_lat"><%=t('position_lattitude')%> <span class="sign_required">*</span></label>
+                        <input type="text" class="form-control" name="setting[position_lat]" id="position_lat" placeholder="<%=t('position_lattitude')%>" value="<%=@setting['setting_vi'].position_lat%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="position_lng"><%=t('position_longitude')%> <span class="sign_required">*</span></label>
+                        <input type="text" class="form-control" name="setting[position_lng]" id="position_lng" placeholder="<%=t('position_longitude')%>" value="<%=@setting['setting_vi'].position_lng%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="img_of_direction"><%=t('image_of_direction')%> (250x380px) <span class="sign_required">*</span></label>
+                        <br>
+                        <div>
+                            <img id="img_preview1" src="<%=@setting['setting_vi'].img_of_direction%>" alt="<%=@setting['setting_vi'].img_of_direction%>" style="max-width: 200px;"/>
+                            <input type="hidden" id="size1" id-view="img_of_direction_name">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <input class="form-control"  id="img_of_direction_name" placeholder="<%=t('image_of_direction')%>" readonly="readonly" style="background: #fff !important;" value="<%=@setting['setting_vi'].img_of_direction%>"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </button>
+                                <input type="file" class="file" name="setting[img_of_direction]" id="img_of_direction" accept=".jpg,.png" id-view="img_of_direction_name" err-idx="1"/>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" id="update-setting" class="btn btn-primary" tabindex="19"><%=t('save')%></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xs-12">
+        <form class="form-horizontal input_mask" enctype="multipart/form-data" id="form-setting-trans" action="/admin/setting/update-trans" accept-charset="UTF-8" method="post">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><%=t('translate')%></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <select id="language-trans" name="setting[lang]" class="form-control" tabindex="20">
+                                <% @setting['lang'].each_with_index do |item, index| %>
+                                    <option value="<%=item.language_code%>"><%=item.language_name%></option>
+                                <% end %>
+                            </select>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" id="authenticity_token">
+                    <div class="form-group">
+                        <label for="trans_description"><%=t('description')%> <span class="sign_required">*</span></label>
+                        <textarea class="form-control" name="setting[description]" id="trans_description" placeholder="<%=t('description')%>" rows="5"><%=@setting['setting_ja'].description%></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="trans_keyword"><%=t('key_word')%> <span class="sign_required">*</span></label>
+                        <input type="text" class="form-control" name="setting[keyword]" id="trans_keyword" placeholder="<%=t('key_word')%>" value="<%=@setting['setting_ja'].keyword%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="trans_address"><%=t('address')%> <span class="sign_required">*</span></label>
+                        <input type="text" class="form-control" name="setting[address]" id="trans_address" placeholder="<%=t('address')%>" value="<%=@setting['setting_ja'].address%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="trans_intro_video"><%=t('intro_video')%> <span class="sign_required">*</span></label>
+                        <input type="text" class="form-control" name="setting[intro_video]" id="trans_intro_video" placeholder="<%=t('url_of_intro_video')%>" value="<%=@setting['setting_ja'].intro_video%>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="trans_welcome"><%=t('welcome')%> <span class="sign_required">*</span></label>
+                        <textarea class="form-control ckeditor" name="setting[welcome]" id="trans_welcome" placeholder="<%=t('welcome')%>" rows="5"><%=@setting['setting_ja'].welcome%></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="trans_different"><%=t('different')%> <span class="sign_required">*</span></label>
+                        <textarea class="form-control ckeditor" name="setting[different]" id="trans_different" placeholder="<%=t('different')%>" rows="5"><%=@setting['setting_ja'].different%></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="trans_greeting"><%=t('greeting')%> <span class="sign_required">*</span></label>
+                        <textarea class="form-control ckeditor-custom" name="setting[greeting]" id="trans_greeting" placeholder="<%=t('greeting')%>" rows="5"><%=@setting['setting_ja'].greeting%></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="trans_selection_process"><%=t('selection_process')%> (510x575px) <span class="sign_required">*</span></label>
+                        <br>
+                        <div>
+                            <img id="img_preview2" src="<%=@setting['setting_ja'].selection_process%>" alt="<%=@setting['setting_ja'].selection_process%>" style="max-width: 300px;"/>
+                            <input type="hidden" id="size2" id-view="trans_selection_process_name">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <input class="form-control"  id="trans_selection_process_name" placeholder="<%=t('selection_process')%>" readonly="readonly" style="background: #fff !important;" value="<%=@setting['setting_ja'].selection_process%>"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </button>
+                                <input type="file" class="file" name="setting[selection_process]" id="trans_selection_process" accept=".jpg,.png" id-view="trans_selection_process_name" err-idx="2" tabindex="28" />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="hidden-sm hidden-xs">
+                        <div class="form-group">
+                            <label><%=t('facebook')%></label>
+                            <input type="text" class="form-control" value="<%=@setting['setting_ja'].facebook%>" disabled="disabled"/>
+                        </div>
+                        <div class="form-group">
+                            <label><%=t('google_plus')%></label>
+                            <input type="text" class="form-control" value="<%=@setting['setting_ja'].google_plus%>" disabled="disabled"/>
+                        </div>
+                        <div class="form-group">
+                            <label><%=t('skype')%></label>
+                            <input type="text" class="form-control" disabled="disabled" value="<%=@setting['setting_ja'].skype%>" />
+                        </div>
+                        <div class="form-group">
+                            <label><%=t('ameblo')%></label>
+                            <input type="text" class="form-control" disabled="disabled" value="<%=@setting['setting_ja'].ameblo%>" />
+                        </div>
+                        <div class="form-group">
+                            <label><%=t('phone_da_nang')%></label>
+                            <input type="text" class="form-control" disabled="disabled" value="<%=@setting['setting_ja'].phone_dn%>" />
+                        </div>
+                        <div class="form-group">
+                            <label><%=t('phone_ha_noi')%></label>
+                            <input type="text" class="form-control" disabled="disabled" value="<%=@setting['setting_ja'].phone_hn%>" />
+                        </div>
+                        <div class="form-group">
+                            <label><%=t('phone_tokyo')%></label>
+                            <input type="text" class="form-control" disabled="disabled" value="<%=@setting['setting_ja'].phone_tokyo%>" />
+                        </div>
+                        <div class="form-group">
+                            <label><%=t('email')%></label>
+                            <input type="text" class="form-control" disabled="disabled" value="<%=@setting['setting_vi'].email%>" />
+                        </div>
+                        <div class="form-group">
+                            <label><%=t('position_lattitude')%></label>
+                            <input type="text" class="form-control" disabled="disabled" value="<%=@setting['setting_ja'].position_lat%>" />
+                        </div>
+                        <div class="form-group">
+                            <label><%=t('position_longitude')%></label>
+                            <input type="text" class="form-control" disabled="disabled" value="<%=@setting['setting_ja'].position_lng%>" />
+                        </div>
+                        <div class="form-group">
+                            <label><%=t('image_of_direction')%> (250x380px)</label>
+                            <br>
+                            <div>
+                                <img src="<%=@setting['setting_ja'].img_of_direction%>" alt="<%=@setting['setting_ja'].img_of_direction%>" style="max-width: 200px;"/>
+                            </div>
+                            <br>
+                            <input class="form-control"  placeholder="<%=t('image_of_direction')%>" disabled="disabled" value="<%=@setting['setting_ja'].img_of_direction%>" style="margin-bottom: 15px"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" id="update-setting-trans" class="btn btn-primary" tabindex="29"><%=t('save_translate')%></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

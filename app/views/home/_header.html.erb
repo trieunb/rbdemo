@@ -1,0 +1,92 @@
+<header id="header">
+    <div class="top-menu">
+        <div class="container">
+            <div class="logo-img <%=@lang%>">
+                <img data-original="/images/logo.png" alt="logo" id="logo" class="lazy-load" tabindex="1" />
+            </div>
+            <div class="menu-title <%=@lang%>">
+                <h1>
+                    <%=t('we_make_it_together')%>
+                </h1>
+            </div>
+            <div class="social">
+                <ul>
+                    <li class="scale" tabindex="1">
+                        <a href="<%=@setting.facebook%>" target="_blank" class="lazy-load" data-original="/images/common/social_bg.png">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="scale" tabindex="1">
+                        <a href="<%=@setting.skype%>" class="lazy-load" data-original="/images/common/social_bg.png">
+                            <i class="fa fa-skype" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="scale" tabindex="1">
+                        <a href="<%=@setting.google_plus%>" class="lazy-load" target="_blank" data-original="/images/common/social_bg.png">
+                            <i class="fa fa-google-plus" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="scale" tabindex="1">
+                        <a href="<%=@setting.ameblo%>" target="_blank" class="lazy-load" data-original="/images/common/social_bg.png">
+                            <img data-original="/images/common/ameblo.png" alt="ameblo" class="ameblo lazy-load"/>
+                        </a>
+                    </li>
+                    <li class="button" tabindex="1">
+                        <button type="button" class="btn btn-apply btn-default-width" id="btn-apply-course">
+                            <span class="<%=@lang%>"><%=t('apply_now')%></span>
+                            <div class="btn btn-apply btn-shadow1"></div>
+                            <div class="btn btn-apply btn-shadow2"></div>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="margin-for-top"></div>
+    <div class="main-menu" id="main-menu">
+        <div class="container">
+            <ul class="nav-menu view-mobile event-menu">
+                <li class="btn-toggle-menu">
+                    <a href="javascript:void(0)"><i class="fa fa-align-justify" aria-hidden="true"></i></a>
+                </li>
+            </ul>
+            <ul class="nav-menu view-pc menu-mobile event-menu" id="nav-menu-main">
+                <li>
+                    <a href="javascript:void(0)" class="active menu-item <%=@lang%>" id="menu-home" section="header" tabindex="1"><%=t('home')%></a>
+                </li><!-- 
+                <li>
+                    <a href="javascript:void(0)" class="menu-item <%=@lang%>" id="menu-message" section="slide" tabindex="1"><%=t('menu_message')%></a>
+                </li> -->
+                <li>
+                    <a href="javascript:void(0)" class="menu-item <%=@lang%>" id="menu-media" section="media" tabindex="1"><%=t('media')%></a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="menu-item <%=@lang%>" id="menu-courses" section="courses" tabindex="1"><%=t('courses')%></a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="menu-item <%=@lang%>" id="menu-contact" section="footer" tabindex="1"><%=t('contact')%></a>
+                </li>
+            </ul>
+            <ul class="nav-menu view-lang">
+                <li>
+                    <a href="javascript:void(0)" class="lang active header-lang" id="vi" tabindex="1">
+                        <img src="/images/header/vn.png" alt="vi" class="no-color"/>
+                        <img src="/images/header/vn-color.png" alt="vi" class="color"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="lang header-lang" id="ja" tabindex="1">
+                        <img src="/images/header/jp.png" alt="ja" class="no-color"/>
+                        <img src="/images/header/jp-color.png" alt="ja" class="color"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="lang header-lang" id="en" tabindex="1">
+                        <img src="/images/header/en.png" alt="en" class="no-color"/>
+                        <img src="/images/header/en-color.jpg" alt="en" class="color"/>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>

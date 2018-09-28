@@ -1,0 +1,26 @@
+<section id="different">
+    <div class="container different-container">
+        <div class="row different-container <%=@lang%>">
+            <div class="title-header">
+                <h1 class="<%=@lang%>"><%=t('what_make_us_different')%></h1>
+                <div class="line"></div>
+            </div>
+            <div class="intro <%=@lang%>"><%=raw(@setting["different"])%></div>
+            <% @dataDifferent.each_with_index do |item, index| %>
+                <div class="col-xs-6 col-sm-6 col-md-3 col-different">
+                    <div class="icon">
+                        <img data-original="<%=item["icon"]%>" class="lazy-load"/>
+                    </div>
+                    <div class="title <%=@lang%>">
+                        <span>
+                            <%=item["title"]%>
+                        </span>
+                    </div>
+                    <div class="content <%=@lang%>">
+                        <%=raw(item["content"])%>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</section>

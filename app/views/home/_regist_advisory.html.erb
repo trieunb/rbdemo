@@ -1,0 +1,123 @@
+<section id="regist-advisory" class="regist-advisory hidden-section">
+	<input type="hidden" name="show-regist-advisory" id="show-regist-advisory" value="<%=@showRegistAdvisory == nil ? '0' : @showRegistAdvisory%>">
+	<div class="class-info ">
+		<div class="container">
+			<div class="middle">
+				<div class="col-md-6 col-md-offset-3" id="regist-advisory-wrap">
+					<div id="regist-advisory-wrap-header">
+				        <div class="row">
+				            <div class="col-md-10 col-md-offset-1">
+				                <div class="row-customize">
+				                	<div class="col-md-12 col-sm-12" id="">
+				                    	<div id="regist-advisory-header">
+				                    		<span><%= t('regist_advisory') %></span>
+				                    		<br>
+				                    		<span><%= t('regist_advisory_header') %></span>
+				                    	</div>
+				                	</div>
+				                </div>
+				            </div>
+				        </div>
+					</div>
+					<div id="regist-advisory-wrap-line">
+					</div>
+					<div id="regist-advisory-wrap-body">
+				        <div class="row">
+				            <div class="col-md-10 col-md-offset-1">
+				                <div class="row-customize">
+				                    <div class="col-md-12 col-sm-12" id="">
+				                        <div id="regist-advisory-body">
+				                        	<div id="regist-advisory-controls">
+				                        		<div class="form-group">
+				                        			<div class="had-err">
+				                        				<input id="regist_advisory_nm" type="text" class="form-control regist_advisory_nm required" value="" placeholder="<%= t('full_name') %>" maxlength="50">
+				                        				<p class="msg err err-required"><%= t('please_input_name') %></p>
+				                        			</div>
+				                        		</div>
+				                        		<div class="form-group">
+				                        			<div class="had-err">
+				                        				<input id="regist_advisory_phone" type="tel" class="form-control regist_advisory_phone only-number required" value="" placeholder="<%= t('phone_number') %>" maxlength="20">
+				                        				<p class="msg err err-required"><%= t('please_input_phone_number') %></p>
+				                        			</div>
+				                        		</div>
+				                        		<div class="form-group">
+				                        			<div class="had-err">
+				                       					<input id="regist_advisory_email" type="tel" class="form-control regist_advisory_email required email" value="" placeholder="<%= t('email') %>" maxlength="255">
+				                        				<p class="msg err err-required"><%= t('please_input_email') %></p>
+				                        				<p class="msg err err-email"><%= t('email_not_correct') %></p>
+				                        			</div>
+				                        		</div>
+				                        		<div class="form-group">
+				                        			<div class="had-err">
+				                        				<input id="regist_advisory_add" type="text" class="form-control regist_advisory_add required" value="" placeholder="<%= t('address') %>" maxlength="200">
+				                        				<p class="msg err err-required"><%= t('please_input_address') %></p>
+				                        			</div>
+				                        		</div>
+				                        		<div class="form-group">
+				                        			<div class="had-err">
+				                    					<select id="regist_advisory_education_level" class="form-control regist_advisory_education_level required">
+															<option value="-1" selected data-default><%= t('select_education_level') %></option>
+															<% if @dataEducationlevel.present? %>
+																<% @dataEducationlevel.each do |item| %>
+																	<option value="<%= item.number %>">
+																		<%= item.name %>
+																	</option>
+															   	<% end %>
+														   	<% end %>
+														</select>
+				                        				<p class="msg err err-required"><%= t('please_choose_education_level') %></p>
+				                        			</div>
+				                        		</div>
+				                        		<div class="form-group">
+				                        			<div class="had-err">
+				                    					<select id="regist_advisory_course_type" class="form-control regist_advisory_course_type required">
+															<option value="-1" selected data-default><%= t('choose_course') %></option>
+															<% if @dataCourseType.present? %>
+																<% @dataCourseType.each do |item| %>
+																	<option value="<%= item.number %>">
+																		<%= item.name %>
+																	</option>
+															   	<% end %>
+														   	<% end %>
+														</select>
+				                        				<p class="msg err err-required"><%= t('please_choose_course') %></p>
+				                        			</div>
+				                        		</div>
+				                        		<div class="form-group">
+				                        			<div class="had-err">
+				                        				<textarea id="regist_advisory_content" class="form-control regist_advisory_content required" rows="4" value="" placeholder="<%= t('message') %>" maxlength="500"></textarea>
+				                        				<p class="msg err err-required"><%= t('please_enter_the_counseling_content') %></p>
+				                        			</div>
+				                        		</div>
+				                        		<div class="form-group">
+				                        			<div class="">
+						                                <div id="regist-advisory-btn-regist">
+						                                    <button type="button" class="btn-regist-advisory btn-default-width">
+							                                    <%# <div class="btn-regist-advisory-left"> %>
+							                                    	<span><%= t('register') %></span>
+							                                        <div class="btn btn-shadow1"></div>
+							                                    <%# </div>
+							                                    <div class="btn-regist-advisory-right">
+							                                    	<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+							                                        <div class="btn btn-shadow1"></div>
+							                                    </div> %>
+						                                    </button>
+						                                    <button type="button" class="btn-brse btn-regist-advisory-close btn-default-width">
+						                                    	<span><%= t('close') %></span>
+						                                        <div class="btn btn-brse btn-shadow1"></div>
+						                                    </button>
+						                                </div>
+						                            </div>
+						                        </div>
+				                        	</div>
+				                        </div>
+				                    </div>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,93 @@
+<% content_for :title do %>
+    <%=t('add_user')%>
+<% end %>
+
+<% content_for :styles do %>
+<% end %>
+
+<% content_for :lib do %>
+<% end %>
+
+<% content_for :scripts do %>
+    <%= javascript_include_tag('admin/users/add-user') %>
+<% end %>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3><%=t('add_user')%></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><%=t('user_information')%></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <form class="form-horizontal input_mask" id="form-add-user" action="/admin/users/save-user" accept-charset="UTF-8" method="post" autocomplete="off">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" id="authenticity_token">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="name"><%=t('full_name')%> <span class="sign_required">*</span></label>
+                                <input type="text" class="form-control" name="user[name]" id="name" placeholder="<%=t('full_name')%>"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="username"><%=t('username')%> <span class="sign_required">*</span></label>
+                                <input type="text" class="form-control" name="user[username]" id="username" placeholder="<%=t('username')%>"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="password"><%=t('password')%></label>
+                                <input type="password" class="form-control" name="user[password]" id="password" placeholder="<%=t('password')%>" autocomplete="fakepasswordremembered"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="confirmpass"><%=t('confirm_password')%></label>
+                                <input type="password" class="form-control" name="user[confirmpass]" id="confirmpass" placeholder="<%=t('confirm_password')%>" autocomplete="fakepasswordremembered"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="email"><%=t('email')%> <span class="sign_required">*</span></label>
+                                <input type="text" class="form-control" name="user[email]" id="email" placeholder="<%=t('email')%>"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="phone"><%=t('phone_number')%> <span class="sign_required">*</span></label>
+                                <input type="text" class="form-control" name="user[phone]" id="phone" placeholder="<%=t('phone_number')%>"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="address"><%=t('address')%> <span class="sign_required">*</span></label>
+                                <input type="text" class="form-control" name="user[address]" id="address" placeholder="<%=t('address')%>"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary" id="btn-save-user" tabindex="8"><%=t('save')%></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

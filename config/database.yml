@@ -1,0 +1,23 @@
+default: &default
+  # adapter: sqlserver
+  # host: 192.168.5.222
+  # username: sa
+  # password: ans
+  adapter: mysql2
+  encoding: utf8
+  host: 192.168.5.223
+  username: ans
+  password: ans123
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  database: brse-school
+  socket: /tmp/mysql.sock
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

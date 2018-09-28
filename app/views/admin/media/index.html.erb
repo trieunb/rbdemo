@@ -1,0 +1,109 @@
+<% content_for :title do %>
+    List Media
+<% end %>
+
+<% content_for :styles do %>
+    <%= stylesheet_link_tag "vendor/datatable/datatable", media: "all" %>
+    <%= stylesheet_link_tag "vendor/switchery/switchery.min", media: "all" %>
+    <%= stylesheet_link_tag "admin/media/media", media: "all" %>
+<% end %>
+
+<% content_for :lib do %>
+    <%= javascript_include_tag('vendor/datatable/datatable') %>
+    <%= javascript_include_tag('vendor/switchery/switchery.min') %>
+<% end %>
+
+<% content_for :scripts do %>
+    <%= javascript_include_tag('admin/media/media') %>
+<% end %>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><%= t('media_title_list') %></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="div-table-media">
+                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive middle" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th><%=t('media_icon')%></th>
+                            <th><%=t('media_logo')%></th>
+                            <th><%=t('media_url')%></th>
+                            <th><%=t('media_background')%></th>
+                            <th><%=t('media_format')%></th>
+                            <th><%=t('media_note')%></th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if @medias != nil %>
+                        <% @medias.each_with_index do |media, index| %>
+                        <tr>
+                            <td class="text-center">
+                                <a href="/admin/medias/edit?id=<%= media.id %>" tabindex="3">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </a>
+                            </td>
+
+                            <!-- icon -->
+                            <td class="text-center">
+                                <img src="<%= media.icon %>" id="icon-media"/>
+                            </td>
+
+                            <!-- logo -->
+                            <td class="text-center">
+                                <img src="<%= media.logo %>" id="logo-media"/>
+                            </td>
+
+                            <!-- url -->
+                            <td class="text-center text-nowrap">
+                                <p class       ="text-overflow text-center margin-0" 
+                                   id          ="url"
+                                   data-toggle ="tooltip"
+                                   data-trigger="click hover"
+                                   title       ="<%= media.url %>">
+                                    <%= media.url %>
+                                </p>
+                            </td>
+
+                            <!-- background -->
+                            <td class="text-center">
+                                <div class="margin-0" id="background" style="background: <%= media.background %>"></div>
+                            </td>
+
+                            <!-- format -->
+                            <td class="text-center">
+                                <%= media.name_format %>
+                            </td>
+
+                            <!-- note -->
+                            <td class="text-center">
+                                <p class       ="text-overflow text-center margin-0" 
+                                   id          ="note"
+                                   data-toggle ="tooltip"
+                                   data-trigger="click hover"
+                                   title       ="<%= media.node %>">
+                                    <%= media.node %>
+                                </p>
+                            </td>
+
+                            <!-- delete -->
+                            <td class="text-center">
+                                <button type      ="button"
+                                        class     ="btn btn-xs btn-danger btn-del-media"
+                                        id-media  ="<%= media.id %>"
+                                        tabindex  ="3">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <% end %>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

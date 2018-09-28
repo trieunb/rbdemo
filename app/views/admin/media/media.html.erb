@@ -1,0 +1,258 @@
+<% content_for :title do %>
+    <%=@mode == 'I' ? 'Add media' : 'Edit media'%>
+<% end %>
+
+<% content_for :styles do %>
+    <%= stylesheet_link_tag "vendor/switchery/switchery.min", media: "all" %>
+    <%= stylesheet_link_tag "vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.min", media: "all" %>
+    <%= stylesheet_link_tag "admin/media/media-add", media: "all" %>
+<% end %>
+
+<% content_for :lib do %>
+    <script src="/ckeditor/ckeditor.js"></script>
+    <%= javascript_include_tag('vendor/switchery/switchery.min') %>
+    <%= javascript_include_tag('vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.min') %>
+<% end %>
+
+<% content_for :scripts do %>
+    <script>
+        var mode = '<%= @mode %>';
+    </script>
+    <%= javascript_include_tag('admin/media/add-edit-media') %>
+<% end %>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3><%= @mode == 'I' ? t('media_add') : t('media_edit') %></h3>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+<div class="row">
+
+    <div class="col-xs-12">
+        <div class="x_panel">
+
+            <div class="x_title">
+                <% if @mode == 'I' %>
+                <h2><%= t('media_title_edit') %></h2>
+                <% else %>
+                <h2><%= t('main_language') %> <small><%= t('vietnamese') %></small></h2>
+                <% end %>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+                <form class          ="form-horizontal input_mask"
+                      id             ="form-media-main"
+                      enctype        ="multipart/form-data"
+                      action         ="/admin/medias/save-media"
+                      accept-charset ="UTF-8"
+                      method         ="post">
+
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" id="authenticity_token">
+                    <input type="hidden" name="mode" value="<%= @mode %>">
+                    <input type="hidden" id="width_height_icon" data-height="" data-width="">
+                    <input type="hidden" id="width_height_logo" data-height="" data-width="">
+                    <input type="hidden" id="width_height_url" data-height="" data-width="">
+
+                    <% if @media != nil && @media.id != nil %>
+                        <input type="hidden" name="media[id]" id="id" value="<%= @media.id %>">
+                    <% end %>
+                    
+                    <!-- icon -->
+                    <div class="form-group">
+                        <label for="icon_media">
+                            <%= t('icon') %>
+                            <span class="sign_required">*</span>
+                        </label>
+
+                        <div class="clearfix"></div>
+
+                        <img id    ="icon_preview" 
+                             src   ="<%= (@media != nil && @media.icon != nil) ? @media.icon : '' %>"/>
+
+                        <div class="input-group">
+                            <input class       ="form-control" 
+                                   id          ="icon_media" 
+                                   placeholder ="<%= t('icon') %>" 
+                                   readonly    ="readonly"
+                                   value       ="<%= (@media != nil && @media.icon != nil) ? @media.icon.split('/').last : '' %>"/>
+                            <span class="input-group-btn">
+                                <button type        ="button"
+                                        class       ="btn btn-primary form_auto_tabindex"
+                                        data-target ="icon_media_upload">
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </button>
+                                <input type     ="file"
+                                       class    ="file"
+                                       name     ="media[icon]"
+                                       id       ="icon_media_upload"
+                                       accept   =".jpg,.png,.jpeg"/>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- logo -->
+                    <div class="form-group">
+                        <label for="logo_media">
+                            <%= t('media_logo') %>
+                            <span class="sign_required">*</span>
+                        </label>
+
+                        <div class="clearfix"></div>
+                        
+                        <img id    ="logo_preview" 
+                             src   ="<%= (@media != nil && @media.logo != nil) ? @media.logo : '' %>"/>
+
+                        <div class="input-group">
+                            <input class       ="form-control" 
+                                   id          ="logo_media" 
+                                   placeholder ="<%= t('media_logo') %>" 
+                                   readonly    ="readonly"
+                                   value       ="<%= (@media != nil && @media.logo != nil) ? @media.logo.split('/').last : '' %>"/>
+                            <span class="input-group-btn">
+                                <button type        ="button"
+                                        class       ="btn btn-primary form_auto_tabindex"
+                                        data-target ="logo_media_upload">
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </button>
+                                <input type     ="file"
+                                       class    ="file"
+                                       name     ="media[logo]"
+                                       id       ="logo_media_upload"
+                                       accept   =".jpg,.png,.jpeg"/>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- format -->
+                    <div class="form-group">
+                        <label for="format">
+                            <%= t('media_format') %>
+                        </label>
+                        <div class="input-group">
+                            <select name  ="media[format]"
+                                    id    ="format"
+                                    class ="form-control form_auto_tabindex">
+                                <% if @libraries != nil %>
+                                    <% @libraries.each do |library| %>
+                                        <option value="<%= (library != nil && library.number != nil) ? library.number : '' %>"
+                                                <%= "selected" if (library != nil && library.number != nil && @media != nil && @media.format != nil && library.number == @media.format)  %>>
+                                            <%= (library != nil && library.name != nil) ? library.name : '' %>
+                                        </option>
+                                    <% end %>
+                                <% else %>
+                                    <option value="0">None</option>
+                                <% end %>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- url -->
+                    <div class="form-group">
+                        <label for="url">
+                            <%= t('media_url') %>
+                            <span class="sign_required">*</span>
+                        </label>
+
+                        <div class="clearfix"></div>
+                        
+                        <img id    ="url_preview"
+                             class ="toggle_show"
+                             src   ="<%= (@media != nil && @media.url != nil && !@media.url.match(/(.jpg|.jpeg|.png)$/).nil?) ? @media.url : '' %>"/>
+                        
+                        <div class="<%= 
+                                        if (@media != nil && @media.url != nil) 
+                                            @media.format == 1 ? 'form-group' : 'input-group'
+                                        end 
+                                    %>">
+                            <input class                ="form-control ime-disabled form_auto_tabindex"
+                                   name                 ="media[url_name]"
+                                   id                   ="url_media"
+                                   data-name-file-web   ="<%=
+                                                            if (@media != nil && @media.url != nil) 
+                                                                @media.format == 1 ? @media.url : ''
+                                                            end 
+                                                        %>"
+                                   data-name-file-video ="<%=
+                                                            if (@media != nil && @media.url != nil) 
+                                                                @media.format == 2 ? @media.url.split('/').last : ''
+                                                            end 
+                                                        %>"
+                                   data-name-file-img   ="<%=
+                                                            if (@media != nil && @media.url != nil) 
+                                                                @media.format == 3 ? @media.url.split('/').last : ''
+                                                            end 
+                                                        %>"
+                                   placeholder          ="<%= t('media_url') %>"/
+                                   value                ="<%= 
+                                                            if (@media != nil && @media.url != nil) 
+                                                                @media.format == 1 ? @media.url : @media.url.split('/').last
+                                                            end 
+                                                        %>">
+                            <span class="input-group-btn toggle_show">
+                                <button type        ="button" 
+                                        class       ="btn btn-primary form_auto_tabindex" 
+                                        data-target ="url_media_upload">
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </button>
+                                <input type     ="file"
+                                       class    ="file"
+                                       name     ="media[url]"
+                                       id       ="url_media_upload"/>
+                            </span>
+                        </div>
+                    </div>
+    
+                    <!-- background -->
+                    <div class="form-group">
+                        <label for="background">
+                            <%= t('background') %>
+                            <span class="sign_required">*</span>
+                        </label>
+                        <div class="input-group background">
+                            <input class       ="form-control form_auto_tabindex"
+                                   name        ="media[background]"
+                                   id          ="background"
+                                   placeholder ="<%= t('background') %>"
+                                   value       ="<%= (@media != nil && @media.background != nil) ? @media.background : '' %>" />
+                            <span class="input-group-addon cursor-pointer form_auto_tabindex"><i> </i></span>
+                        </div>
+                    </div>
+    
+                    <!-- note -->
+                    <div class="form-group">
+                        <label for="note">
+                            <%= t('media_note') %>
+                        </label>
+                        <textarea class="form-control form_auto_tabindex"
+                                  name ="media[note]"
+                                  id   ="note"
+                                  rows ="3"><%= (@media != nil && @media.node != nil) ? @media.node : '' %></textarea>
+                    </div>
+
+                    <!-- submit -->
+                    <div class="form-group">
+                        <button type     ="button" 
+                                class    ="btn btn-primary form_auto_tabindex" 
+                                id       ="btn-save-media">
+                            <%= t('save') %>                        
+                        </button>
+                        <% if @mode == 'U' %>
+                            <button type     ="button" 
+                                    class    ="btn btn-danger form_auto_tabindex" 
+                                    id       ="btn-delete-media">
+                                <%= t('delete') %>
+                            </button>
+                        <% end %>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>

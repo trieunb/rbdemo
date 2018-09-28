@@ -1,0 +1,187 @@
+<% content_for :title do %>
+    <%=t('list_users')%>
+<% end %>
+
+<% content_for :styles do %>
+    <%= stylesheet_link_tag "vendor/datatable/datatable", media: "all" %>
+<% end %>
+
+<% content_for :lib do %>
+    <%= javascript_include_tag('vendor/datatable/datatable') %>
+<% end %>
+
+<% content_for :scripts do %>
+    <script>
+        var table;
+        $(document).ready(function() {
+            table = $('#datatable-responsive').DataTable({
+                            'language': getDataTableLang(),
+                            "aoColumnDefs": [{ "bSortable": false, "aTargets": [ 0, 6, 7 ] }],
+                            "order": [[ 1, "asc" ]]
+                        });
+            setTabIndexTable('#div-table-user');
+            setTabIndexMenu();
+            $('[tabindex=1]').focus();
+            $('#datatable-responsive').on('click', '.btn-del-user', function(){
+                var btn = this;
+                jMessage(8, function(r){
+                    if(r){
+                        deleteUser(btn);
+                    }
+                });
+            });
+            $('#datatable-responsive').on('click', '.btn-reset-pass', function(){
+                var btn = this;
+                jMessage(33, function(r){
+                    if(r){
+                        resetPass(btn);
+                    }
+                });
+            });
+        });
+        /**
+         * deleteUser
+         *
+         * @author      :   quypn - 2017/08/16 - create
+         * @author      :
+         * @return      :   btn - button - button delete had clicked
+         * @access      :   public
+         * @see         :
+         */
+        function deleteUser(btn){
+            try{
+                $.ajax({
+                    type        :   'POST',
+                    url         :   '/admin/users/delete',
+                    dataType    :   'json',
+                    data        :   {
+                        id      :    $(btn).attr('id-user')
+                    }, 
+                    success: function(res) {
+                        if(res.status){
+                            jMessage(9, function(){
+                                table.rows($(btn).parents('tr')).remove().draw();
+                            });
+                        }
+                        else{
+                            jMessage(10, function(){
+                            });
+                        }
+                    }
+                });
+            }
+            catch(e){
+                alert('deleteUser: ' + e.message);
+            }
+        }
+        /**
+         * reset password for user
+         *
+         * @author      :   quypn - 2017/09/15 - create
+         * @author      :
+         * @return      :   btn - button - button delete had clicked
+         * @access      :   public
+         * @see         :
+         */
+        function resetPass(btn){
+            try{
+                $.ajax({
+                    type        :   'POST',
+                    url         :   '/admin/users/reset-pass',
+                    dataType    :   'json',
+                    data        :   {
+                        id      :    $(btn).attr('id-user')
+                    }, 
+                    success: function(res) {
+                        if(res.status){
+                            jMessage(34, function(){
+                            });
+                        }
+                        else{
+                            jMessage(35, function(){
+                            });
+                        }
+                    }
+                });
+            }
+            catch(e){
+                alert('deleteUser: ' + e.message);
+            }
+        }
+    </script>
+<% end %>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><%=t('list_users')%></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="div-table-user">
+                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th><%=t('username')%></th>
+                            <th><%=t('full_name')%></th>
+                            <th><%=t('email')%></th>
+                            <th><%=t('phone_number')%></th>
+                            <th><%=t('address')%></th>
+                            <th>Reset password</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @users.each_with_index do |item, index| %>
+                        <tr>
+                            <td class="text-center">
+                                <a href="/admin/users/edit?id=<%=item.id%>" tabindex="3">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </a>
+                            </td>
+
+                            <td><%=item.username%></td>
+
+                            <td><%=item.name%></td>
+
+                            <td class="text-center text-nowrap">
+                                <p class       ="text-overflow text-center margin-0"
+                                   data-toggle ="tooltip"
+                                   data-trigger="click hover"
+                                   title       ="<%= item.email %>"
+                                   style       ="max-width: 230px;">
+                                   <%= item.email %>
+                                </p>
+                            </td>
+
+                            <td class="text-center"><%=item.phone%></td>
+
+                            <td class="text-center text-nowrap">
+                                <p class       ="text-overflow text-center margin-0"
+                                   data-toggle ="tooltip"
+                                   data-trigger="click hover"
+                                   title       ="<%= item.address %>"
+                                   style       ="max-width: 250px;">
+                                   <%= item.address %>
+                                </p>
+                            </td>
+
+                            <td class="text-center">
+                                <button type="button" class="btn btn-xs btn-warning btn-reset-pass" style="margin: 0px;" tabindex="3" id-user="<%=item.id%>">
+                                    <i class="fa fa-refresh" aria-hidden="true"></i>
+                                </button>
+                            </td>
+
+                            <td class="text-center">
+                                <button type="button" class="btn btn-xs btn-danger btn-del-user" style="margin: 0px;" tabindex="3" id-user="<%=item.id%>">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

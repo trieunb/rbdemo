@@ -1,0 +1,190 @@
+@import 'variables';
+#regist-courses{
+    z-index: 1000;
+    .form-regist{
+        overflow: auto;
+        height: 100%;
+    }
+    .border-top{
+        height: 10px;
+        background-image : url('/images/courses/top-details.png');
+        background-size: cover;
+    }
+    .body{
+        background-image : url('/images/courses/regist-bg.png');
+        background-size: cover;
+        padding: 30px 50px 50px 40px;
+        position: relative;
+    }
+    .title{
+        margin-top: 40px;
+        h1{
+            float: left;
+            margin: 0px;
+            font-family: appleberry;
+            color: $orange;
+            font-size: 30px;
+            text-transform: uppercase;
+        }
+    }
+    #back-to-details, #close-regist-course, #save-regist-course{
+        float: right;
+        span{
+            text-transform: uppercase;
+            padding: 6px 20px 6px 20px;
+            &:hover, &:focus{
+                background: $blue-hover;
+            }
+        }
+    }
+    .div-choose-file{
+        position: relative;
+        width: 100px;
+        height: 40px;
+        display: inline-block;
+        vertical-align: middle;
+        &.ja{
+            width: 150px;
+            label{
+                margin-bottom: 0px;
+                padding: 10px 8px;
+                margin-top: 3px;
+            }
+        }
+        input{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: 1;
+        }
+        label{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            color: #fff;
+            background: $light-blue;
+            border-radius: 8px;
+            padding: 8px;
+            text-align: center;
+            cursor: pointer;
+            &:hover, &:focus{
+                background: $blue-hover;
+            }
+        }
+    }
+    #regist-course{
+        margin-top: 110px;
+        .cv-name{
+            width: calc(100% - 106px);
+            display: inline-block;
+            background: #fff;
+            &.ja{
+                width: calc(100% - 156px);
+            }
+        }
+        .message{
+            resize: none;
+        }
+        .form-group{
+            margin-bottom: 30px;
+        }
+        #id-course-selected{
+            option{
+                color: #555;
+            }
+        }
+    }
+    #save-regist-course{
+        float: left;
+        span{
+            background: $dark-green;
+            padding: 6px 20px 6px 20px;
+            &:hover, &:focus{
+                background: $green-hover;
+            }
+        }
+        .btn-shadow1{
+            background: $shadow-green;
+        }
+    }
+    .footer{
+        height: 40px;
+        background-image : url('/images/courses/footer-regist.png');
+        background-size: cover;
+    }
+    .img-icon{
+        position: absolute;
+        bottom: -18px;
+        width: 30%;
+    }
+    @media only screen and (max-width: 1024px) {
+
+    }
+    @media only screen and (max-width: 980px) {
+
+    }
+    @media only screen and (max-width: 768px) {
+        .title{
+            height: 40px;
+            margin-top: 55px;
+        }
+        #regist-course{
+            margin-top: 30px;
+            .col-custom{
+                margin-bottom: 30px;
+            }
+        }
+    }
+    @media only screen and (max-width: 680px) {
+        .img-icon{
+            display: none;
+        }
+        .body{
+            background-size: auto 100%;
+            background-position-x: 100%;
+        }
+    }
+    @media only screen and (max-width: 480px) {
+        .body{
+            padding: 0px 10px 20px 10px;
+        }
+        .title{
+            margin-top: 20px;
+        }
+    }
+    @media only screen and (max-width: 375px) {
+        .div-choose-file, .div-choose-file.ja{
+            width: 100%;
+            display: block;
+        }
+        #regist-course{
+            .cv-name, .cv-name.ja{
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
+        #back-to-details, #close-regist-course, #save-regist-course{
+            span{
+                text-transform: uppercase;
+                padding: 5px 10px 5px 10px;
+                font-size: 15px;
+            }
+        }
+    }
+    @media only screen and (max-height: 768px) {
+        #regist-course{
+            .form-group{
+                margin-bottom: 20px;
+            }
+        }
+    }
+    @media only screen and (max-height: 680px) {
+        #regist-course{
+            .form-group{
+                margin-bottom: 10px;
+            }
+        }
+    }
+}

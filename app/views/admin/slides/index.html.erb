@@ -1,0 +1,82 @@
+<% content_for :title do %>
+    List slides
+<% end %>
+
+<% content_for :styles do %>
+    <%= stylesheet_link_tag "vendor/datatable/datatable", media: "all" %>
+    <%= stylesheet_link_tag "vendor/switchery/switchery.min", media: "all" %>
+    <%= stylesheet_link_tag "admin/slide/slide", media: "all" %>
+<% end %>
+
+<% content_for :lib do %>
+    <%= javascript_include_tag('vendor/datatable/datatable') %>
+    <%= javascript_include_tag('vendor/switchery/switchery.min') %>
+<% end %>
+
+<% content_for :scripts do %>
+    <%= javascript_include_tag('admin/slide/slide') %>
+<% end %>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><%= t('slide_title_list') %></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="div-table-slide">
+                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive middle" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th><%= t('image') %></th>
+                            <th><%= t('link') %></th>
+                            <th><%= t('show') %></th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @slides.each_with_index do |slide, index| %>
+                        <tr>
+                            <!-- button edit -->
+                            <td class="text-center">
+                                <a href="/admin/slides/edit?id=<%= slide.id %>" tabindex="3">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </a>
+                            </td>
+
+                            <!-- link -->
+                            <td class="text-center">
+                                <img src="<%= slide.img %>" id="img-slide"/>
+                            </td>
+                            <td class="text-center text-nowrap">
+                                <%= slide.link %>
+                            </td>
+
+                            <!-- show -->
+                            <td class="text-center">
+                                <input type     ="checkbox" 
+                                       class    ="js-switch show-slide" 
+                                       id-slide ="<%= slide.id %>" 
+                                       <%= slide.show ? 'checked=checked' : '' %> 
+                                       tabindex ="3" 
+                                       val      ="1"/>
+                            </td>
+
+                            <!-- delete -->
+                            <td class="text-center">
+                                <button type      ="button"
+                                        class     ="btn btn-xs btn-danger btn-del-slide"
+                                        id-slide  ="<%= slide.id %>"
+                                        tabindex  ="3"
+                                        style     ="margin: 0px;">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

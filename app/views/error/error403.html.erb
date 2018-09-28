@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="author" content="BrSE-School">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <%= csrf_meta_tags %>
+        <%= favicon_link_tag "favicon.ico" %>
+        <%= stylesheet_link_tag "vendor/bootstrap/bootstrap.min", media: "all" %>
+        <%= stylesheet_link_tag "vendor/font-awesome/font-awesome.min", media: "all" %>
+        <%= stylesheet_link_tag "vendor/nprogress/nprogress", media: "all" %>
+        <%= stylesheet_link_tag "admin/custom", media: "all" %>
+    </head>
+    <body class="nav-md">
+        <div class="container body">
+            <div class="main_container">
+                <!-- page content -->
+                <div class="col-md-12">
+                    <div class="col-middle">
+                        <div class="text-center text-center">
+                            <h1 class="error-number">403</h1>
+                            <h2>Access denied</h2>
+                            <p>Full authentication is required to access this resource</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /page content -->
+            </div>
+        </div>
+        <%= javascript_include_tag('vendor/jquery/jquery-3.2.1.min') %>
+        <%= javascript_include_tag('vendor/bootstrap/bootstrap.min') %>
+    </body>
+</html>

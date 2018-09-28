@@ -1,0 +1,171 @@
+@import 'variables';
+#course-details{
+    .class-info{
+        height: 100%;
+        overflow: auto;
+    }
+    .body{
+        border-right: solid 1px #ddd;
+        border-left: solid 1px #ddd;
+    }
+    .header, .details, .div-fb-comments, .div-close{
+        padding: 0px 15px;
+    }
+    .border-top{
+        height: 10px;
+        background-image: url(/images/courses/top-details.png);
+        background-size: cover;
+    }
+    .short-info{
+        text-align: center;
+        img{
+            width: 120px;
+        }
+        .class-name{
+            margin-top: 5px;
+            background-image: url(/images/courses/btn_bg.png);
+            background-size: cover;
+            display: inline-block;
+            padding: 5px 10px;
+            color: #fff;
+        }
+        h1{
+            margin-top: 5px;
+            font-family: appleberry;
+            color: $light-blue;
+            &.ja{
+                font-family: nukamiso;
+            }
+        }
+    }
+    .addtional-info{
+        border-bottom: dashed 1px #ddd;
+        ul{
+            list-style: none;
+            padding-left: 0px;
+            display: inline-block;
+            li{
+                display: inline-block;
+                padding-right: 10px;
+                padding-left: 10px;
+                border-right: dotted 1px #ddd;
+                i{
+                    margin-right: 5px;
+                }
+                &:first-child{
+                    padding-left: 0px;
+                }
+                &:last-child{
+                    border-right: none;
+                }
+            }
+            &:last-child{
+                margin-left: 10px;
+            }
+        }
+        #btn-regist-course{
+            float: right;
+            margin-top: -12px;
+            span{
+                background: $dark-green;
+                text-align: center;
+                padding: 6px 20px;
+                text-transform: uppercase;
+                &:hover, &:focus{
+                    background: $green-hover;
+                }
+            }
+            .btn-shadow1{
+                background: $shadow-green;
+            }
+        }
+    }
+    .details{
+        &.ja{
+            h1{
+                font-family: nukamiso;
+            }
+        }
+        h1{
+            font-family: appleberry;
+            color: $orange;
+            font-size: 25px;
+        }
+        .custom-table{
+            tr{
+                th{
+                    background-image: url(/images/courses/td.png);
+                    background-size: cover;
+                    color: #fff;
+                    width: 200px;
+                    text-transform: uppercase;
+                }
+                td{
+                    background: #F7F6F1;
+                    color: #4F4E49;
+                    font-size: 15px;
+                    &.color-orange{
+                        color: $orange;
+                    }
+                }
+                td, th{
+                    padding: 15px 10px;
+                    border: solid 2px #fff;
+                    vertical-align: middle;
+                }
+            }
+        }
+        .border-bottom{
+            padding-bottom: 5px;
+            border-bottom: dashed 1px #ddd;
+        }
+    }
+    .div-fb-comments{
+        margin-top: 20px;
+    }
+    .div-close{
+        text-align: center;
+        margin-bottom: 20px;
+        #close-course-details{
+            margin: 20px;
+            span{
+                padding: 6px 20px;
+                text-transform: uppercase;
+                &:hover, &:focus{
+                    background: $blue-hover;
+                }
+            }
+        }
+    }
+    .footer{
+        height: 40px;
+        background-image: url(/images/courses/footer-details.png);
+        background-size: cover;
+    }
+    @media only screen and (max-width: 680px) {
+        .details{
+            .custom-table{
+                tr{
+                    th{
+                        width: 120px;
+                    }
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 480px) {
+        .addtional-info{
+            text-align: center;
+            padding-bottom: 10px;
+            ul{
+                li{
+                    padding-left: 5px;
+                    padding-right: 5px;
+                }
+            }
+            #btn-regist-course{
+                float: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,119 @@
+<div class="class-info">
+    <div class="container">
+        <div class="middle">
+            <div id="regist-event-wrap-body">
+                <div class="row">
+                    <div id="regist-event-clound">
+                        <%= image_tag('/images/regist-event/cloud.png', :class =>'img-cloud') %>
+                    </div>
+                    <div id="regist-event-rect">
+                        <%#= image_tag('/images/regist-event/rect.jpg', :class =>'img-rect') %>
+                    </div>
+                    <div id="regist-event-circle" class="<%= @lang %>">
+                        <div id="regist-event-circle-content">
+                            <span><%= t('event') %></span>
+                            <%= image_tag('/images/regist-event/bg-event.png', :class =>'img-circle-event') %>
+                        </div>
+                    </div>
+                    <div id="regist-event-mascot">
+                        <%= image_tag('/images/regist-event/mascot.png', :class =>'img-mascot') %>
+                    </div>
+                    <div class="col-md-6 col-md-offset-3" id="regist-event-body">
+                        <div class="row row-customize">
+                            <div class="col-md-12 col-sm-12" id="">
+                                <div id="regist-event-form">
+                                    <div class="form-group">
+                                        <div id="" class="text-center">
+                                            <% if @event.present? %>
+                                                <span id="event_title" data-event_id="<%= @event.id %>"><%= @event.title  %></span>
+                                            <% end %>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div id="" class="text-center">
+                                            <% if @event.present? %>
+                                                <% if @event.start_date == @event.end_date %>
+                                                    <span class="event_text_date"><%= @event.start_date %></span>
+                                                    <span class="event_text_date" id="event_text_date_center"></span>
+                                                    <span class="event_text_date"><%= @event.start_time %>&nbsp;-&nbsp;<%= @event.end_time %></span>
+                                                <% else %>
+                                                    <span class="event_text_date"><%= @event.start_time %>&nbsp;<%= @event.start_date %></span>
+                                                    <span class="event_text_date">&nbsp;~&nbsp;</span>
+                                                    <span class="event_text_date"><%= @event.end_time %>&nbsp;<%= @event.end_date %></span>
+                                                <% end %>
+                                            <% end %>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div id="" class="had-err">
+                                            <input id="regist_event_nm" type="text" class="form-control regist_event_nm required" value="" placeholder="<%= t('full_name') %>" maxlength="50">
+                                            <p class="msg err err-required"><%= t('please_input_name') %></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div id="" class="had-err">
+                                            <input id="regist_event_phone" type="tel" class="form-control regist_event_phone only-number required" value="" placeholder="<%= t('phone_number') %>" maxlength="20">
+                                            <p class="msg err err-required"><%= t('please_input_phone_number') %></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="had-err">
+                                            <input id="regist_event_email" type="tel" class="form-control regist_event_email required email" value="" placeholder="<%= t('email') %>" maxlength="255">
+                                            <p class="msg err err-required"><%= t('please_input_email') %></p>
+                                            <p class="msg err err-email"><%= t('email_not_correct') %></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div id="">
+                                            <span id="span_choose_test"><%= t('choose_test') %></span>
+                                        </div>
+                                    </div>
+                                    <% if @dataTest.present? %>
+                                        <% @dataTest.each do |item| %>
+                                            <div class="form-group">
+                                                <div class="div-checkbox">
+                                                    <p>
+                                                        <input type="checkbox" id="test<%= item.number %>" value="<%= item.number %>"/>
+                                                        <label for="test<%= item.number %>"><%= item.name %></label>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        <% end %>
+                                    <% end %>
+                                    <div class="form-group">
+                                        <div class="div-button">
+                                            <div id="regist-advisory-btn-regist">
+                                                <button type="button" id="btn-regist-event" class="btn-regist-event">
+                                                    <span><%= t('join_now') %></span>
+                                                    <div class="btn btn-regist-event btn-shadow1"></div>
+                                                </button>
+                                                <button type="button" class="btn-brse btn-regist-event-close">
+                                                    <span><%= t('close') %></span>
+                                                    <div class="btn btn-brse btn-shadow1"></div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>      
+            </div>
+            <div id="regist-event-wrap-footer">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="form-group">
+                            <div id="div-event-place">
+                                <% if @event.present? %>
+                                    <span><%= t('place') %>&nbsp;</span>
+                                    <span id="event_place"><%= @event.place %></span>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

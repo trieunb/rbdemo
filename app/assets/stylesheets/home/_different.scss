@@ -1,0 +1,149 @@
+@import 'variables';
+#different{
+    padding: 60px 0px 100px 0px;
+    .different-container{
+        color: #8499A0;
+        font-size: 15px;
+        .intro{
+            text-align: center;
+            padding: 20px 15px 40px 15px;
+            p{
+                display: inline-block;
+                text-align: center;
+                width: 70%;
+            }
+            &.ja{
+                font-size: 15px;
+            }
+        }
+        .col-different{
+            min-height: 380px;
+            .icon{
+                text-align: center;
+                padding-bottom: 15px;
+                max-height: 138px;
+                img{
+                    width: 50%;
+                }
+            }
+            .title{     
+                padding: 5px 20px;
+                text-align: center;
+                text-transform: uppercase;
+                background: $light-blue;
+                color: #fff;
+                font-size: 15px;
+                border: solid 1px $light-blue;
+                display: table;
+                width: 100%;
+                span {
+                    display: table-cell;
+                    vertical-align: middle;
+                    line-height: normal;
+                }
+            }
+            .content{
+                padding: 15px 1px 0px 1px;
+                p{
+                    text-align: justify;
+                    letter-spacing: -0.25px;
+                }
+                &.ja {
+                    p {
+                       letter-spacing: -0.53px; 
+                    }
+                }
+            }
+        }
+    &.ja {
+        .col-different {
+            min-height: 352px;
+        }
+    }
+    }
+    @media only screen and (max-width: 1200px) {
+        .different-container{
+            .col-different{
+                .title{     
+                    padding: 5px 5px;
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 1024px) {
+
+    }
+    @media only screen and (max-width: 991px) {
+        .different-container{
+            .intro{
+                p{
+                    width: 100%;
+                }
+            }
+            .col-different{
+                .title{     
+                    padding: 5px 50px;
+                }
+                .content{
+                    min-height: 135px;
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 768px) {
+
+    }
+    @media only screen and (max-width: 680px) {
+        .different-container{
+            .col-different{
+                .title{     
+                    padding: 5px 10px;
+                }
+                .content{
+                    min-height: 198px;
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 648px) {
+        .different-container{
+            .col-different{
+                .title{     
+                    padding: 5px 10px;
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 480px) {
+        .different-container{
+            .col-different{
+                .title{     
+                    padding: 5px 5px;
+                    // font-size: 14px;
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 450px) {
+        .different-container{
+            .col-different{
+                width: 100%;
+                .content{
+                    min-height: auto;
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 414px) {
+        .different-container{
+            .col-different{
+                .icon{
+                    max-height: 160px;
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 320px) {
+
+    }
+}

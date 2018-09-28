@@ -1,0 +1,69 @@
+<% content_for :title do %>
+    <%=t('list_subscribes')%>
+<% end %>
+
+<% content_for :styles do %>
+    <%= stylesheet_link_tag "vendor/datatable/datatable", media: "all" %>
+    <%= stylesheet_link_tag "vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min", media: "all" %>
+    <%= stylesheet_link_tag "admin/subscribes/list-subscribes", media: "all" %>
+<% end %>
+
+<% content_for :lib do %>
+    <%= javascript_include_tag('vendor/datatable/datatable') %>
+    <%= javascript_include_tag('vendor/moment/moment') %>
+    <%= javascript_include_tag('vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min') %>
+<% end %>
+
+<% content_for :scripts do %>
+    <%= javascript_include_tag('admin/subscribes/list-subscribes') %>
+<% end %>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><%=t('search_conditions')%></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <form class="form-horizontal input_mask" id="form-search" action="/admin/subscribes/search" accept-charset="UTF-8" method="post">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" id="authenticity_token">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="status"><%=t('status')%></label>
+                                <select class="form-control" name="search[status]" id="status">
+                                    <option value="-1"></option>
+                                    <% if @status.present? %>
+                                        <% @status.each_with_index do |item, index| %>
+                                            <option value="<%=item.number%>"><%=item.name%></option>
+                                        <% end %>
+                                    <% end %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button type="button" class="btn btn-primary" id="btn-search"><%=t('search')%></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><%=t('list_subscribes')%></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="div-table-subscribes">
+            </div>
+        </div>
+    </div>
+</div>

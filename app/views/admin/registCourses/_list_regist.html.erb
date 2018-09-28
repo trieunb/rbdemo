@@ -1,0 +1,60 @@
+<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive middle has-control" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th><%=t('Course')%></th>
+            <th><%=t('name')%></th>
+            <th><%=t('phone_number')%></th>
+            <th><%=t('email')%></th>
+            <th><%=t('profile')%></th>
+            <th><%=t('address')%></th>
+            <th><%=t('message')%></th>
+            <th><%=t('registed_at')%></th>
+            <th><%=t('status')%></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @regists.each_with_index do |item, index| %>
+        <tr>
+            <td>
+                <%=item.name_class%>
+            </td>
+            <td>
+                <%=item.name%>
+            </td>
+            <td>
+                <%=item.phone%>
+            </td>
+            <td>
+                <%=item.email%>
+            </td>
+            <td class="text-center">
+                <a class="download-file" href="javascript:void(0)" tabindex="12" link-file="<%=item.profile%>">
+                    <i class="fa fa-download" aria-hidden="true"></i>
+                </a>
+            </td>
+            <td>
+                <%=item.address%>
+            </td>
+            <td>
+                <%=item.message%>
+            </td>
+            <td class="text-center">
+                <%=item.created_at.to_formatted_s(:db).gsub('-', '/')%>
+            </td>
+            <td>
+                <select class="form-control status-regist" tabindex="12" id-regist="<%=item.id%>" old-val="<%=item.status%>" style="min-width: 105px;">
+                    <% @status.each_with_index do |stt, index| %>
+                        <option value="<%=stt.number%>" <%=stt.number == item.status ? 'selected=selected' : ''%>><%=stt.name%></option>
+                    <% end %>
+                </select>
+            </td>
+            <td class="text-center">
+                <button type="button" class="btn btn-xs btn-danger btn-del-regist" style="margin: 0px;" tabindex="12" id-regist="<%=item.id%>">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>

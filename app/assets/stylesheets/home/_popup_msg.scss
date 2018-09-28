@@ -1,0 +1,119 @@
+@import 'variables';
+#popup-msg{
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 0s;
+    z-index: 1111;
+
+    .class-info {
+        height: 100%;
+        overflow: auto;
+
+        .container {
+            position: relative;
+            height: 100%;
+            display: table;
+
+            .middle {
+                display: table-cell;
+                vertical-align: middle;
+                height: 100%; 
+
+                #popup-msg-wrap {
+                    #popup-msg-wrap-body {
+                        background-image : url('/images/popup-msg/msg_bg.png');
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        width: 481px;
+                        height: 171px;
+                        position: relative;
+                        margin: auto;
+                        padding: 10px;
+
+                        .close {
+                            width: 30px;
+                            height: 30px;
+                            position: absolute;
+                            z-index: 2;
+                            right: -16px;
+                            font-weight: bold;
+                            color: #f6f7f9;
+                            background: #F4645F;
+                            opacity: 1;
+                            cursor: pointer;
+                            top: -14px;
+                            @include border-radius(50%);
+                            span {
+                                display: block;
+                                margin-top: -3px;
+                                margin-left: 0px;
+                            }
+                        }
+
+                        #popup-msg-icon {
+                            width: 79px;
+                            height: 76px;
+                            margin: auto;
+                            margin-top: 12px;
+                        }
+
+                        #popup-msg-text {
+                            text-align: center;
+                            margin-top: 3px;
+                            color: #47B6E4;
+                            font-size: 19px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 1024px) {
+
+    }
+    @media only screen and (max-width: 980px) {
+
+    }
+    @media only screen and (max-width: 768px) {
+
+    }
+    @media only screen and (max-width: 648px) {
+        .class-info {
+            .container {
+                .middle {
+                    #popup-msg-wrap {
+                        #popup-msg-wrap-body {
+                            width: 450px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 480px) {
+        .class-info {
+            .container {
+                .middle {
+                    #popup-msg-wrap {
+                        #popup-msg-wrap-body {
+                            width: 350px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 320px) { 
+        .class-info {
+            .container {
+                .middle {
+                    #popup-msg-wrap {
+                        #popup-msg-wrap-body {
+                            width: 250px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

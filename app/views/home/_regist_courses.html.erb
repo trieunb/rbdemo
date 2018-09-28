@@ -1,0 +1,84 @@
+<section id="regist-courses" class="hidden-section">
+    <div class="form-regist">
+        <div class="container">
+            <div class="border-top"></div>
+            <div class="body">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-4">
+                        <div class="title">
+                            <h1><%=t('register')%></h1>
+                        </div>
+                        <form id="regist-course" enctype="multipart/form-data" action="/home/regist-course" accept-charset="UTF-8" method="post">
+                            <input name="utf8" type="hidden" value="✓">
+                            <input type="hidden" name="authenticity_token" id="authenticity_token">
+                            <div class="form-group had-err">
+                                <select class="form-control required" name="regist[class_id]" id="id-course-selected" tabindex="14">
+                                    <option value="0"><%=t('choose_course')%></option>
+                                    <% @dataCourses['brse_vi_class'].each_with_index do |item, index| %>
+                                        <option value="<%=item['id']%>"><%=item['title']%></option>
+                                    <% end %>
+                                    <% @dataCourses['se_vi_class'].each_with_index do |item, index| %>
+                                        <option value="<%=item['id']%>"><%=item['title']%></option>
+                                    <% end %>
+                                    <option value="<%=@dataCourses['brse_jp_class'].id%>"><%=@dataCourses['brse_jp_class'].title%></option>
+                                    <option value="<%=@dataCourses['se_jp_class'].id%>"><%=@dataCourses['se_jp_class'].title%></option>
+                                </select>
+                                <p class="msg err err-required"><%=t('please_choose_course')%></p>
+                            </div>
+                            <div class="form-group had-err">
+                                <input type="text" class="form-control required" name="regist[name]" id="name" placeholder="<%=t('name')%>" maxlength="50" tabindex="14">
+                                <p class="msg err err-required"><%=t('please_input_name')%></p>
+                            </div>
+                            <div class="form-group had-err">
+                                <input type="text" class="form-control required cv-name <%=@lang%>" name="cv-name" id="cv-name" readonly="readonly" placeholder="<%=t('select_your_cv')%>">
+                                <div class="div-choose-file <%=@lang%>">
+                                    <input type="file" name="regist[profile]" id="profile" accept=".doc,.docx,.pdf,.rar,.zip,.xls,.xlsx" tabindex="14">
+                                    <label for="profile">
+                                        <i class="fa fa-upload" aria-hidden="true"></i>
+                                        <span><%=t('profile')%></span>
+                                    </label>
+                                </div>
+                                <p class="msg err err-required"><%=t('please_upload_profile')%></p>
+                                <p class="msg err err-size"><%=t('file_profile_upload_error')%></p>
+                            </div>
+                            <div class="form-group had-err">
+                                <input type="text" class="form-control required" name="regist[address]" id="address" placeholder="<%=t('address')%>" tabindex="14" maxlength="200">
+                                <p class="msg err err-required"><%=t('please_input_address')%></p>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-6 col-custom had-err">
+                                        <input type="email" class="form-control required email" name="regist[email]" id="email" placeholder="<%=t('email')%>" tabindex="14" maxlength="255">
+                                        <p class="msg err err-required"><%=t('please_input_email')%></p>
+                                        <p class="msg err err-email"><%=t('email_not_correct')%></p>
+                                    </div>
+                                    <div class="col-sm-6 had-err">
+                                        <input type="tel" class="form-control required only-number" name="regist[phone]" id="phone" placeholder="<%=t('phone_number')%>" tabindex="14" maxlength="20">
+                                        <p class="msg err err-required"><%=t('please_input_phone_number')%></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="regist[message]" id="message" class="form-control message" rows="6" placeholder="<%=t('message')%>" tabindex="14" maxlength="500"></textarea>
+                                <p class="msg success" id="regist-course-success"><%=t('regist_success')%></p>
+                                <p class="msg err" id="regist-course-err"><%=t('regist_error')%></p>
+                            </div>
+                        </form>
+                        <div class="btn-footer">
+                            <button type="button" class="btn-brse btn-default-width" id="save-regist-course" tabindex="14">
+                                <span><%=t('register')%></span>
+                                <div class="btn btn-brse btn-shadow1"></div>
+                            </button>
+                            <button type="button" class="btn-brse btn-default-width" id="back-to-details" tabindex="14">
+                                <span><%=t('close')%></span>
+                                <div class="btn btn-brse btn-shadow1"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <img src="/images/courses/regist-icon.png" alt="register" class="img-icon"/>
+            </div>
+            <div class="footer"></div>
+        </div>
+    </div>
+</section>

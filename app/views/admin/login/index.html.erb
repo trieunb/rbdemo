@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%=t('login')%></title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="author" content="BrSE-School">
+        <%= csrf_meta_tags %>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <%= favicon_link_tag "favicon.ico" %>
+        <%= stylesheet_link_tag "vendor/bootstrap/bootstrap.min", media: "all" %>
+        <%= stylesheet_link_tag "vendor/font-awesome/font-awesome.min", media: "all" %>
+        <%= stylesheet_link_tag "vendor/nprogress/nprogress", media: "all" %>
+        <%= stylesheet_link_tag "vendor/animate/animate.min", media: "all" %>
+        <%= stylesheet_link_tag "admin/custom", media: "all" %>
+    </head>
+    <body class="login">
+        <div>
+        <div class="login_wrapper">
+            <div class="animate form login_form">
+                <section class="login_content">
+                    <form action="/admin/check-login" method="POST">
+                        <h1 class="text-uppercase"><%=t('login')%></h1>
+                        <input type="hidden" name="authenticity_token" id="authenticity_token" />
+                        <div>
+                            <input type="text" name="username" id="username" class="form-control" placeholder="<%=t('username')%>" required="" value="<%=flash[:username]%>" />
+                        </div>
+                        <div>
+                            <input type="password"  name="password" id="password" autocomplete="off" class="form-control" placeholder="<%=t('password')%>" required="" value="<%=flash[:password]%>" />
+                        </div>
+                        <% if !flash[:notice].blank? %>
+                            <div class="alert alert-error">
+                                <%= flash[:notice] %>
+                            </div>
+                        <% end %>
+                        <div>
+                            <button type="submit" class="btn btn-default submit" id="btn-login"><%=t('login')%></button>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="separator">
+                            <div class="clearfix"></div>
+                            <br />
+                            <div>
+                                <h1><%= image_tag("/images/logo_icon.png",  alt: "Logo", style: "width: 25px;margin-bottom: 10px;") %> <span>BrSE School</span></h1>
+                                <p>©2017 <%=t('login_page_footer')%><br/><%=t('privacy_and_terms')%></p>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+        </div>
+        <%= javascript_include_tag('vendor/jquery/jquery-3.2.1.min') %>
+        <%= javascript_include_tag('vendor/bootstrap/bootstrap.min') %>
+        <%= javascript_include_tag('common/brse-school') %>
+        <script>
+            $( document ).ready(function() {
+                try{
+                    $('#username').focus();
+                    $('#username, #password').on('keydown', function(){
+                        $('.alert').remove();
+                    });
+                } catch (e) {
+                    alert('ready: ' + e.message);
+                }
+            });
+        </script>
+    </body>
+</html>

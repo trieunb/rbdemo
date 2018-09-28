@@ -1,0 +1,81 @@
+<% content_for :title do %>
+    <%=t('edit_user')%>
+<% end %>
+
+<% content_for :styles do %>
+<% end %>
+
+<% content_for :lib do %>
+<% end %>
+
+<% content_for :scripts do %>
+    <%= javascript_include_tag('admin/users/edit-user') %>
+<% end %>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3><%=t('edit_user')%></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><%=t('user_information')%></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <form class="form-horizontal input_mask" id="form-update-user" action="/admin/users/update-user" accept-charset="UTF-8" method="post">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" id="authenticity_token">
+                    <input type="hidden" name="user[id]" id="id" value="<%=@user.id%>">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="name"><%=t('full_name')%> <span class="sign_required">*</span></label>
+                                <input type="text" class="form-control" name="user[name]" id="name" placeholder="<%=t('full_name')%>" value="<%=@user.name%>"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="form-group">
+                                <label><%=t('username')%></label>
+                                <input type="text" class="form-control" disabled="disabled" value="<%=@user.username%>"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="email"><%=t('email')%> <span class="sign_required">*</span></label>
+                                <input type="text" class="form-control" name="user[email]" id="email" placeholder="<%=t('email')%>" value="<%=@user.email%>"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="phone"><%=t('phone_number')%> <span class="sign_required">*</span></label>
+                                <input type="text" class="form-control" name="user[phone]" id="phone" placeholder="<%=t('phone_number')%>" value="<%=@user.phone%>"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="address"><%=t('address')%> <span class="sign_required">*</span></label>
+                                <input type="text" class="form-control" name="user[address]" id="address" placeholder="<%=t('address')%>" value="<%=@user.address%>"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary" id="btn-update-user" tabindex="5"><%=t('update')%></button>
+                                <button type="button" class="btn btn-danger" id="btn-delete-user" tabindex="6"><%=t('delete')%></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

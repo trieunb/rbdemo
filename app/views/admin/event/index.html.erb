@@ -1,0 +1,128 @@
+<% content_for :title do %>
+    List events
+<% end %>
+
+<% content_for :styles do %>
+    <%= stylesheet_link_tag "vendor/datatable/datatable", media: "all" %>
+    <%= stylesheet_link_tag "vendor/switchery/switchery.min", media: "all" %>
+    <%= stylesheet_link_tag "admin/event/event", media: "all" %>
+<% end %>
+
+<% content_for :lib do %>
+    <%= javascript_include_tag('vendor/datatable/datatable') %>
+    <%= javascript_include_tag('vendor/switchery/switchery.min') %>
+<% end %>
+
+<% content_for :scripts do %>
+    <%= javascript_include_tag('admin/event/event') %>
+<% end %>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><%= t('list_events') %></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="div-table-event">
+                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive middle" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th><%= t('title') %></th>
+                            <!-- <th><%#= t('detail') %></th> -->
+                            <th><%= t('start') %></th>
+                            <th><%= t('end') %></th>
+                            <th><%= t('place') %></th>
+                            <th><%= t('image') %></th>
+                            <th><%= t('link') %></th>
+                            <th><%= t('show') %></th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @events.each_with_index do |event, index| %>
+                        <tr>
+                            <!-- button edit -->
+                            <td class="text-center">
+                                <a href="/admin/events/edit?id=<%= event.id %>" tabindex="3">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                            
+                            <!-- title -->
+                            <td>
+                               <a href     ="<%= '/' + @lang + '/event-detail/' + event.link.to_s  %>" 
+                                  class    ="link_event"
+                                  target   ="_blank" 
+                                  tabindex ="3">
+                                    <%= event.title %>
+                                </a>
+                            </td>
+
+                            <!-- detail -->
+                            <!-- <td class="text-justify">
+                                <%#= raw(event.detail) %>
+                            </td> -->
+
+                            <!-- start -->
+                            <td class="text-center text-nowrap">
+                                <p id="start"
+                                   class="margin-0">
+                                    <%= event.start.to_s[0..18] %>
+                                </p>
+                            </td>
+
+                            <!-- end -->
+                            <td class="text-center text-nowrap">
+                                <p id="end"
+                                   class="margin-0">
+                                    <%= event.end.to_s[0..18] %>
+                                </p>
+                            </td>
+
+                            <!-- place -->
+                            <td>
+                                <p id    ="place" 
+                                   class ="margin-0">
+                                    <%= event.place %>
+                                </p>
+                            </td>
+
+                            <!-- image -->
+                            <td class="text-center">
+                                <img src='<%= event.image if File.exist?("#{Rails.public_path}" + event.image) %>'' id="image"/>
+                            </td>
+
+                            <!-- link -->
+                            <td class="text-center">
+                                <%= event.link %>
+                            </td>
+
+                            <!-- show -->
+                            <td class="text-center">
+                                <input type     ="checkbox" 
+                                       class    ="js-switch show-event" 
+                                       id-event ="<%= event.id %>" 
+                                       <%= event.show ? 'checked=checked' : '' %> 
+                                       tabindex ="3" 
+                                       val      ="1"/>
+                            </td>
+
+                            <!-- delete -->
+                            <td class="text-center">
+                                <button type      ="button"
+                                        class     ="btn btn-xs btn-danger btn-del-event"
+                                        id-event  ="<%= event.id %>"
+                                        tabindex  ="3"
+                                        style     ="margin: 0px;">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= yield :title %></title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="<%= yield :description %>">
+        <meta name="keywords" content="<%= yield :keywords %>">
+        <meta name="author" content="BrSE-School">
+        <%= csrf_meta_tags %>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <%= favicon_link_tag "favicon.ico" %>
+        <%= stylesheet_link_tag "vendor/bootstrap/bootstrap.min", media: "all" %>
+        <%= stylesheet_link_tag "vendor/font-awesome/font-awesome.min", media: "all" %>
+        <%= yield :styles %>
+    </head>
+    <body class="<%=@lang%>">
+        <div>
+            <%= yield %>
+        </div>
+        <div class="loading-flat hidden"></div>
+        <%= image_tag("/images/loading.gif",  alt: "Loading...", class: "loading-img hidden") %>
+        <%= javascript_include_tag('vendor/jquery/jquery-3.2.1.min') %>
+        <%= javascript_include_tag('vendor/bootstrap/bootstrap.min') %>
+        <%= javascript_include_tag('vendor/lazyload/lazyload') %>
+        <%= yield :lib %>
+        <%= yield :scripts %>
+    </body>
+</html>

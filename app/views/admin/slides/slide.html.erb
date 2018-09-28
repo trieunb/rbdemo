@@ -1,0 +1,229 @@
+<% content_for :title do %>
+    <%=@mode == 'I' ? 'Add slide' : 'Edit slide'%>
+<% end %>
+
+<% content_for :styles do %>
+    <%= stylesheet_link_tag "vendor/switchery/switchery.min", media: "all" %>
+    <%= stylesheet_link_tag "vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.min", media: "all" %>
+    <%= stylesheet_link_tag "admin/slide/slide", media: "all" %>
+<% end %>
+
+<% content_for :lib do %>
+    <script src="/ckeditor/ckeditor.js"></script>
+    <%= javascript_include_tag('vendor/switchery/switchery.min') %>
+    <%= javascript_include_tag('vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.min') %>
+<% end %>
+
+<% content_for :scripts do %>
+    <script>
+        var mode = '<%= @mode %>';
+    </script>
+    <%= javascript_include_tag('admin/slide/add-edit-slide') %>
+<% end %>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3><%= @mode == 'I' ? t('slide_add') : t('slide_edit') %></h3>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+<div class="row">
+
+    <div class=" <%=  @mode == 'U' ? 'col-md-6' : '' %> col-xs-12">
+        <div class="x_panel">
+
+            <div class="x_title">
+                <% if @mode == 'I' %>
+                <h2><%= t('slide_title_add') %></h2>
+                <% else %>
+                <h2><%= t('main_language') %> <small><%= t('vietnamese') %></small></h2>
+                <% end %>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+                <form class="form-horizontal input_mask" id="form-slide-main" enctype="multipart/form-data" action="/admin/slides/save-slide" accept-charset="UTF-8" method="post">
+
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" id="authenticity_token">
+                    <input type="hidden" name="mode" value="<%= @mode %>">
+                    <input type="hidden" id="width_height" data-height="" data-width="">
+
+                    <% if @slide != nil %>
+                    <input type="hidden" name="slide[id]" id="id" value="<%=@slide.id%>">
+                    <% end %>
+                    
+                    <!-- image -->
+                    <div class="form-group">
+                        <label for="img_slide">
+                            <%= t('image') %> (995 x 360px)
+                            <span class="sign_required">*</span>
+                        </label>
+
+                        <div class="clearfix"></div>
+
+                        <img id    ="img_preview" 
+                             src   ="<%= (@slide != nil && @slide.img != nil) ? @slide.img : '' %>"/>
+
+                        <div class="input-group">
+                            <input class       ="form-control" 
+                                   id          ="img_slide" 
+                                   placeholder ="Image" 
+                                   readonly    ="readonly"
+                                   value       ="<%= (@slide != nil && @slide.img != nil && File.exist?("#{Rails.public_path}" + @slide.img)) ? @slide.img.split('/').last : '' %>" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary" data-target="img_slide_upload" tabindex ="1">
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </button>
+                                <input type     ="file" 
+                                       class    ="file" 
+                                       name     ="slide[img]" 
+                                       id       ="img_slide_upload"
+                                       accept   =".jpg,.png,.jpeg"/>
+                            </span>
+                        </div>
+
+                    </div>
+                    
+                    <!-- link -->
+                    <div class="form-group">
+                        <label for="link">
+                            <%= t('link') %>
+                            <span class="sign_required">*</span>
+                        </label>
+                        <input class       ="form-control ime-disabled" 
+                               name        ="slide[link]" 
+                               id          ="link" 
+                               placeholder ="link" 
+                               value       ="<%=@slide != nil ? @slide.link : ''%>"
+                               tabindex    ="2" />
+                    </div>
+                    
+                    <!-- show -->
+                    <div class="form-group">
+                        <label for="show"><%= t('show') %></label>
+
+                        <%if @slide == nil || @slide.show == true %>
+                            <input type="checkbox" class="js-switch" name="slide[show]" id="show" checked='checked' />
+                        <% else %>
+                            <input type="checkbox" class="js-switch" name="slide[show]" id="show" />
+                        <% end %>
+
+                    </div> 
+
+                    <!-- submit -->
+                    <div class="form-group">
+                        <button type     ="button" 
+                                class    ="btn btn-primary" 
+                                id       ="btn-save-slide"
+                                tabindex ="3"><%= t('save') %></button>
+                        <% if @mode == 'U' %>
+                            <button type     ="button" 
+                                    class    ="btn btn-danger" 
+                                    id       ="btn-delete-slide"
+                                    tabindex ="4"><%= t('delete') %></button>
+                        <% end %>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+    <% if @mode == 'U' %>    
+        <div class="col-md-6 col-xs-12">
+            <form class="form-horizontal input_mask" id="form-slide-trans" action="/admin/slides/update-slide-trans" accept-charset="UTF-8" method="post">
+                <div class="x_panel">
+
+                    <div class="x_title">
+                        <h2><%= t('translate') %></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <select id="language-trans" name="slide[lang]" class="form-control" tabindex="5">
+                                    <% @lang.each_with_index do |item, index| %>
+                                        <option value="<%=item.language_code%>"><%=item.language_name%></option>
+                                    <% end %>
+                                </select>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_content">
+                        <input name="utf8" type="hidden" value="✓">
+                        <input type="hidden" name="authenticity_token" id="authenticity_token">
+                        <input type="hidden" id="width_height_trans" data-height="" data-width="">
+                        <input type="hidden" name="slide[id]" value="<%= @slide_ja.id %>">
+
+                        <!-- image -->
+                        <div class="form-group">
+                            <label for="trans_img_slide">
+                                <%= t('image') %> (995 x 360px)
+                            </label>
+                            <%if @slide_ja != nil %>
+                            <br>
+                            <img id="img_preview_trans" src="<%= @slide_ja.img %>"/>
+                            <% end %>
+                            <div class="input-group">
+                                <input class       ="form-control" 
+                                       id          ="trans_img_slide" 
+                                       placeholder ="Image" 
+                                       readonly    ="readonly"
+                                       value       ="<%= (@slide_ja != nil && @slide_ja.img != nil && File.exist?("#{Rails.public_path}" + @slide_ja.img)) ? @slide_ja.img.split('/').last : '' %>"/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary" data-target="trans_img_slide_upload" tabindex ="6">
+                                        <i class="fa fa-upload" aria-hidden="true"></i>
+                                    </button>
+                                    <input type     ="file" 
+                                           class    ="file" 
+                                           name     ="slide[img]" 
+                                           id       ="trans_img_slide_upload" 
+                                           accept   =".jpg,.png,.jpeg"/>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <!-- link -->
+                        <div class="form-group">
+                            <label for="trans_link"><%= t('link') %></label>
+                            <input class       ="form-control" 
+                                   name        ="slide[link]" 
+                                   id          ="trans_link" 
+                                   placeholder ="link" 
+                                   value       ="<%= @slide_ja != nil ? @slide_ja.link : '' %>" 
+                                   disabled    ="disabled" />
+                        </div>
+                        
+                        <!-- show -->
+                        <div class="form-group">
+                            <label for=""><%= t('show') %></label>
+                            <%if @slide_ja == nil || @slide_ja.show == true %>
+                                <input type     ="checkbox" 
+                                       class    ="js-switch" 
+                                       name     ="slide[show]" 
+                                       checked  ='checked' 
+                                       disabled ="disabled" />
+                            <% else %>
+
+                                <input type     ="checkbox" 
+                                       class    ="js-switch" 
+                                       name     ="slide[show]" 
+                                       disabled ="disabled"/>
+                            <% end %>
+                        </div>
+
+                        <!-- submit -->
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" id="btn-save-trans-slide" tabindex ="7"><%= t('save_translate') %></button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    <% end %>
+
+</div>

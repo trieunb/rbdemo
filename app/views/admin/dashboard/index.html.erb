@@ -1,0 +1,78 @@
+<% content_for :title do %>
+    <%=t('dashboard')%>
+<% end %>
+
+<% content_for :styles do %>
+    <%= stylesheet_link_tag "vendor/datatable/datatable", media: "all" %>
+    <%= stylesheet_link_tag "admin/dashboard/dashboard", media: "all" %>
+<% end %>
+
+<% content_for :lib do %>
+    <%= javascript_include_tag('vendor/skycons/skycons') %>
+    <%= javascript_include_tag('vendor/datatable/datatable') %>
+<% end %>
+
+<% content_for :scripts do %>
+    <%= javascript_include_tag('admin/regist-course/list-regist-courses') %>
+    <%= javascript_include_tag('admin/dashboard/dashboard') %>
+<% end %>
+<div class="row">
+    <!-- start of weather widget -->
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><%=t('weather_today')%></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <select id="weather-city" class="form-control" tabindex="1">
+                            <% @location.each do |item| %>
+                            <option value="<%=item.note%>"><%=item.name%></option>
+                            <% end %>
+                        </select>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="div-weather">
+            </div>
+        </div>
+    </div>
+    <!-- end of weather widget -->
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel tile" style="height: 374px">
+            <div class="x_title">
+                <h2><%=t('quick_access')%></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="dashboard-widget-content" style="padding-top: 0px;">
+                    <div class="text-center clock col-sm-8">
+                        <canvas id="clock" width="300" height="300" style="background-color:transparent;">
+                        </canvas>
+                    </div>
+                    <ul class="quick-list custom">
+                        <li><i class="fa fa-graduation-cap"></i><a href="/admin/regist-courses" tabindex="2"><%=t('regist_courses')%></a></li>
+                        <li><i class="fa fa-calendar"></i><a href="/admin/events/create" tabindex="3"><%=t('add_event')%></a></li>
+                        <li><i class="fa fa-play-circle"></i><a href="/admin/slides/create" tabindex="4"><%=t('add_slide')%></a></li>
+                        <li><i class="fa fa-file-image-o"></i><a href="/admin/albums/add-photos" tabindex="5"><%=t('add_album')%></a></li>
+                        <li><i class="fa fa-video-camera"></i><a href="/admin/medias/create" tabindex="6"><%=t('add_media')%></a></li>
+                        <li><i class="fa fa-users"></i><a href="/admin/users/create" tabindex="7"><%=t('add_user')%></a> </li>
+                        <li><i class="fa fa-cogs"></i><a href="/admin/setting" tabindex="8"><%=t('settings')%></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><%=t('list_regist_course')%></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="div-table-regist-courses">
+                <%= render "admin/registCourses/list_regist"%>
+            </div>
+        </div>
+    </div>
+</div>

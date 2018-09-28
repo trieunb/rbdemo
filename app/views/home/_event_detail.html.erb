@@ -1,0 +1,95 @@
+<div class="class-info">
+    <div class="container">
+        <div class="wrap-event-detail">
+            <div class="col-md-12 padding-left-right-0">
+                <div class="col-md-10 col-md-push-1">
+                    <div id="event-detail-header">
+                        <div class="div-text">
+                            <% if @event != nil && @event[:event] != nil %>
+                                <p class="title">
+                                    <%= @event[:event][:title] %>
+                                </p>
+                                <p class="time">
+                                    <span class="date">
+                                        <%= @event[:event][:start_date] %>
+                                    </span>
+                                    <span class="separate"></span>
+                                    <span class="time">
+                                        <%= @event[:event][:start_time] %>
+                                    </span>
+                                </p>
+                            <% end %>
+                        </div>
+                        <div class="circle">
+                            <span class="<%= @lang %>"><%= t('event_image') %></span>
+                            <%= image_tag('/images/event/detail/img-label1.png', :class =>'img-circle-event', :alt =>'Bg event') %>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    
+                    <% if @event.present? %>
+                    <div id="event-detail-body">
+                        <div class="text">
+                            <%= @event[:event][:detail].html_safe if (@event[:event].present? && @event[:event][:detail].present?) %>
+                        </div>
+                        <div class="img-banner">
+                            <div class="event-detail-slide-for">
+                                <% if @event[:event_details].blank? && @event[:event].present? %>
+                                    <div class="div-img-event-detail">
+                                        <img class="img-event-detail" src="<%= @event[:event][:image] %>" alt="">
+                                    </div>
+                                <% elsif  @event[:event_details].present? && @event[:event_details][0].present? %>
+                                    <% @event[:event_details].each do |event_detail| %>
+                                        <div class="div-img-event-detail">
+                                            <img class="img-event-detail" src="<%= event_detail['img'] %>" alt="">
+                                        </div>
+                                    <% end %>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                    <% end %>
+
+                    <% if @event.present? && @event[:event_details].present? && @event[:event_details][0].present? %>
+                    <div id="event-detail-footer">
+                        <span><%= t('pictures_at_the_event') %></span>
+
+                        <div class="wrap-slide">
+                            <div id="e-dt-btn-left">
+                                <img src="/images/event/album/icon/arrow_left.png" alt="">
+                            </div>
+                            <div id="e-dt-btn-right">
+                                <img src="/images/event/album/icon/arrow_right.png" alt="">                                          
+                            </div>
+                            <div class="event-detail-slide-nav">
+                                <% @event[:event_details].each do |event_detail| %>
+                                    <div class="div-img-event-detail">
+                                        <img class="img-event-detail" src="<%= event_detail['thumb'] %>" alt="">
+                                    </div>
+                                <% end %>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <% end %>
+                    <div class="btn-group-event-detail">
+                        <% if !@event[:past] %>
+                            <button class="button-regist-attend" data-event-id="<%= @event[:event][:id] %>" data-event-link="<%= @event[:event][:link] %>">
+                                <div class="background"></div>
+                                <span class="text"><%= t('join_now') %></span>
+                            </button>
+                        <% end %>
+                            <button class="button-close-event-detail">
+                                <div class="background"></div>
+                                <span class="text"><%= t('close') %></span>
+                            </button>
+                        </div>
+
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div id="event-detail-line-footer"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,186 @@
+<footer id="footer">
+    <script>
+        var lat = parseFloat('<%=@setting.position_lat%>');
+        var lng = parseFloat('<%=@setting.position_lng%>')
+        var address = '<%=@setting.address%>';
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '187322111722003',
+                xfbml      : true,
+                version    : 'v2.8'
+            });
+        };
+        (function(d, s, id){
+            var locale = '<%=@lang%>';
+            var langCode = locale == 'ja' ? 'ja_JP' : (locale == 'en' ? 'en_US' : 'vi_VN');
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/" + langCode + "/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div class="container-footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="col-sm-5 footer-col col1 <%=@lang%>">
+                    <h1><%=t('welcome_to_brse_school')%></h1>
+                    <div class="welcome">
+                        <%=raw(@setting.welcome)%>
+                    </div>
+                    <div class="social">
+                        <ul>
+                            <li tabindex="10">
+                                <a href="<%=@setting.facebook%>" target="_blank" class="lazy-load" data-original="/images/common/social_bg.png">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li tabindex="10">
+                                <a href="<%=@setting.skype%>" class="lazy-load" data-original="/images/common/social_bg.png">
+                                    <i class="fa fa-skype" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li tabindex="10">
+                                <a href="<%=@setting.google_plus%>" target="_blank" class="lazy-load" data-original="/images/common/social_bg.png">
+                                    <i class="fa fa-google-plus" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li tabindex="10">
+                                <a href="<%=@setting.ameblo%>" target="_blank" class="lazy-load" data-original="/images/common/social_bg.png">
+                                    <img data-original="/images/common/ameblo.png" alt="ameblo" class="ameblo lazy-load"/>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4 footer-col col2 <%=@lang%>">
+                    <h1><%=t('contact_us')%></h1>
+                    <div id="col-contact-us">
+                        <div class="container-margin">
+                            <div class="frame-info">
+                                <div class="del-table">
+                                    <div class="icon">
+                                        <img data-original="/images/footer/address.png" alt="address" class="lazy-load"/>
+                                    </div>
+                                </div>
+                                <div class="frame-content <%=@lang%>">
+                                    <p><%=t('headquarter')%>: <%=@setting.address%></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-margin">
+                            <div class="frame-info">
+                                <div class="del-table">
+                                    <div class="icon">
+                                        <img data-original="/images/footer/phone.png" alt="phone" class="lazy-load"/>
+                                    </div>
+                                </div>
+                                <div class="frame-content <%=@lang%>">
+                                    <p><%=t('da_nang')%>: <%=@setting.phone_dn%></p>
+                                    <p><%=t('ha_noi')%>: <%=@setting.phone_hn%></p>
+                                    <p><%=t('tokyou')%>: <%=@setting.phone_tokyo%></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="frame-info">
+                                <div class="del-table">
+                                    <div class="icon">
+                                        <img data-original="/images/footer/mail.png" alt="mail" class="lazy-load"/>
+                                    </div>
+                                </div>
+                                <div class="frame-content <%=@lang%>">
+                                    <p><%=t('email')%>: <%=@setting.email%></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 footer-col col3 <%=@lang%>">
+                    <div class="div-mark">
+                        <div class="layer" id="layer-map"  tabindex="10">
+                            <img data-original="/images/footer/map.png" alt="<%=t('google_map')%>" class="lazy-load"/>
+                            <h2 class="<%=@lang%>"><%=t('google_map')%></h2>
+                        </div>
+                    </div>
+                    <div class="div-mark mb-0">
+                        <div class="layer" id="layer-fb"  tabindex="10">
+                            <img data-original="/images/footer/fb.png" alt="<%=t('facebook')%>" class="lazy-load"/>
+                            <h2 class="<%=@lang%>"><%=t('facebook')%></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 footer-col col3 hide-social <%=@lang%>">
+                    <h1><%=t('google_map')%></h1>
+                    <div class="div-mark mb-0">
+                        <button type="button" class="btn-close-social" tabindex="10">X</button>
+                        <div class="google-map">
+                            <div id="google-map" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 footer-col col3 hide-social <%=@lang%>">
+                    <h1><%=t('facebook')%></h1>
+                    <div class="div-mark mb-0">
+                        <button type="button" class="btn-close-social" tabindex="10">X</button>
+                        <div class="page-fb">
+                            <div id="page-fb" class="fb-page" 
+                                data-href="<%=@setting.facebook%>" 
+                                data-tabs=""
+                                data-width="600"
+                                data-height="500"
+                                data-small-header="false" 
+                                data-adapt-container-width="true" 
+                                data-hide-cover="false" 
+                                data-show-facepile="true"
+                                data-hide-cta="true"
+                                data-show-posts="false">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>
+                <span>Copyright <%= Time.current.year %> © </span>
+                <a href="http://www.ans-corp.jp/" class="logo-footer" target="_blank">
+                    <img data-original="/images/footer/ansfullcolor.png" alt="logo-ans" class="lazy-load">
+                </a> 
+                <a href="javascript:void(0)" class="logo-footer split">
+                    <img data-original="/images/footer/split.png" alt="split" class="lazy-load">
+                </a>
+                <a href="http://www.ans-asia.com" class="logo-footer" target="_blank">
+                    <img data-original="/images/footer/ansasiafullcolor.png" alt="logo-asia-ans" class="lazy-load">
+                </a>
+            </p>
+        </div>
+    </div>
+    <button class="btn-to-top" id="btn-to-top"  tabindex="16">
+        <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </button>
+    <div id="fb-root"></div>
+    <div class="chat-fb">
+        <h3 id="chat-fb"  tabindex="16">
+            <i><img data-original="/images/footer/hand.png" class="lazy-load"/></i> 
+            <div class="<%=@lang%>"><%=t('chat_live_facebook')%></div>
+        </h3>
+        <div class="online-support">
+            <div
+            class="fb-page"
+            data-href="<%=@setting.facebook%>"
+            data-small-header="true"
+            data-height="300"
+            data-width="250"
+            data-tabs="messages"
+            data-adapt-container-width="false"
+            data-hide-cover="false"
+            data-show-facepile="true"
+            data-show-posts="false">
+            </div>
+        </div>
+    </div>
+    <div id="fb-send" style="display: none;">
+        <div class="fb-send" data-href="<%=@setting.facebook%>"></div>
+    </div>
+</footer>

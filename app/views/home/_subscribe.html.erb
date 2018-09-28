@@ -1,0 +1,62 @@
+<section id="subscribe">
+    <div id="subs-wrap" class="lazy-load" data-original="/images/subscribe/subscribe-background.png">
+        <div class="container">
+            <div class="row row-sub">
+                <div class="col-md-12 padding-right-left-0">
+                    <div id="row-customize">
+                        <div class="col-md-5 col-sm-12 padding-right-left-0" id="set-width-side-left">
+                            <div id="subs-selection-process">
+                                <img data-original="<%=@setting.selection_process%>" class="img-process lazy-load"/>
+                                <img data-original="/images/subscribe/subscribe-mascot.png" id="subs-mascot" class="lazy-load" />
+                                <div id="subs-btn-regist">
+                                    <button type="button" class="btn btn-regist-receive-interview <%=@lang%> btn-default-width">
+                                        <span><%= t('register_to_receive_consultation') %></span>
+                                        <div class="btn btn-apply btn-shadow1"></div>
+                                        <div class="btn btn-apply btn-shadow2"></div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7 col-sm-12 text-center" id="set-width-side-right">
+                            <div id="subs-email">
+                                <div id="subs-e-header" class="<%=@lang%>">
+                                    <p><%= t('subscribe_email_header') %></p>
+                                </div>
+                        
+                                <div id="subs-e-body">
+                                    <p><%= t('subscribe_email_body') %></p>
+                                </div>
+                                
+                                <div id="subs-e-footer">
+                                    <div class="form-inline">
+                                        <div class="form-group had-err">
+                                            <div id="background-back-input"></div>
+                                            <div class="input-group" id="div-input-email">
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                                                </div>
+                                                <input type="text" class="form-control required email" id="subs-input-email" placeholder="<%= t('email') %>" maxlength="255">
+                                            </div>
+                                            <p class="msg err err-required <%= @lang %>"><%= t('please_input_email') %></p>
+                                            <p class="msg err err-email <%= @lang %>"><%= t('email_not_correct') %></p>
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn" id="btn-subscribe">
+                                                <span><%= t('subscribe') %></span>
+                                                <div id="background-back-btn"></div>
+                                            </button>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div id="img-decoration">
+                                    <img data-original="/images/subscribe/subscribe-img.png" class="lazy-load" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,258 @@
+<% content_for :title do %>
+    <%=@mode == 'I' ? 'Add different' : 'Edit different'%>
+<% end %>
+
+<% content_for :styles do %>
+    <%= stylesheet_link_tag "vendor/switchery/switchery.min", media: "all" %>
+    <%= stylesheet_link_tag "vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.min", media: "all" %>
+    <%= stylesheet_link_tag "admin/different/different-add", media: "all" %>
+<% end %>
+
+<% content_for :lib do %>
+    <script src="/ckeditor/ckeditor.js"></script>
+    <%= javascript_include_tag('vendor/switchery/switchery.min') %>
+    <%= javascript_include_tag('vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.min') %>
+<% end %>
+
+<% content_for :scripts do %>
+    <script>
+        var mode = '<%= @mode %>';
+    </script>
+    <%= javascript_include_tag('admin/different/add-edit-different') %>
+<% end %>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3><%=@mode == 'I' ? t('different_add') : t('different_edit') %></h3>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+<div class="row">
+
+    <div class=" <%=  @mode == 'U' ? 'col-md-6' : '' %> col-xs-12">
+        <div class="x_panel">
+
+            <div class="x_title">
+                <% if @mode == 'I' %>
+                <h2><%= t('different_title_edit') %></h2>
+                <% else %>
+                <h2><%= t('main_language') %> <small><%= t('vietnamese') %></small></h2>
+                <% end %>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+                <form class="form-horizontal input_mask" id="form-different-main" enctype="multipart/form-data" action="/admin/differents/save-different" accept-charset="UTF-8" method="post">
+
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" id="authenticity_token">
+                    <input type="hidden" name="mode" value="<%= @mode %>">
+                    <input type="hidden" id="width_height" data-height="" data-width="">
+
+                    <% if @different != nil %>
+                    <input type="hidden" name="different[id]" id="id" value="<%=@different.id%>">
+                    <% end %>
+                    
+                    <!-- title -->
+                    <div class="form-group">
+                        <label for="title">
+                            <%= t('title') %>
+                            <span class="sign_required">*</span>
+                        </label>
+                        <input class       ="form-control form_auto_tabindex" 
+                               name        ="different[title]" 
+                               id          ="title"
+                               placeholder ="Title" 
+                               value       ="<%= @different != nil ? @different.title : '' %>"/>
+                    </div>
+
+                    <!-- content -->
+                    <div class="form-group">
+                        <label for="content">
+                            <%=t('content_admin')%>
+                            <span class="sign_required">*</span>
+                        </label>
+                        <textarea class       ="form-control ckeditor-custom form_auto_tabindex" 
+                                  name        ="different[content]" 
+                                  id          ="content" 
+                                  placeholder ="<%=t('content_admin')%>" 
+                                  rows        ="5"><%=@different != nil ? @different.content : ''%></textarea>
+                    </div>
+                    
+                    <!-- icon -->
+                    <div class="form-group">
+                        <label for="icon_different">
+                            <%= t('icon') %>
+                            <% if @mode == 'I' %>
+                                <span class="sign_required">*</span>
+                            <% end %>
+                        </label>
+
+                        <div class="clearfix"></div>
+
+                        <img id  ="icon_preview"
+                             src ="<%= (@different != nil && @different.icon != nil) ? @different.icon : '' %>"/>
+
+                        <div class="input-group">
+                            <input class       ="form-control" 
+                                   id          ="icon_different"
+                                   placeholder ="Icon"
+                                   value       ="<%= (@different != nil && @different.icon != nil) ? @different.icon.split('/').last : '' %>" 
+                                   readonly    ="readonly" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary form_auto_tabindex" data-target="icon_different_upload">
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </button>
+                                <input type     ="file" 
+                                       class    ="file" 
+                                       name     ="different[icon]"
+                                       id       ="icon_different_upload"
+                                       accept   =".jpg,.png,.jpeg"/>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- show -->
+                    <div class="form-group">
+                        <label for="show"><%= t('show') %></label>
+
+                        <input type    ="checkbox" 
+                               class   ="js-switch" 
+                               name    ="different[show]" 
+                               id      ="show"
+                               <%= "checked = checked" if @different == nil || @different.show == true %> />
+
+                    </div>
+
+                    <!-- submit -->
+                    <div class="form-group">
+                        <button type     ="button" 
+                                class    ="btn btn-primary form_auto_tabindex" 
+                                id       ="btn-save-different"><%= t('save') %></button>
+                        <% if @mode == 'U' %>
+                            <button type     ="button" 
+                                    class    ="btn btn-danger form_auto_tabindex" 
+                                    id       ="btn-delete-different"><%= t('delete') %></button>
+                        <% end %>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+    <% if @mode == 'U' %>    
+    <div class="col-md-6 col-xs-12 col-trans">
+        <form class="form-horizontal input_mask" id="form-different-trans" action="/admin/differents/update-different-trans" accept-charset="UTF-8" method="post">
+            <div class="x_panel">
+
+                <div class="x_title">
+                    <h2><%= t('translate') %></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <select id="language-trans" name="different[lang]" class="form-control form_auto_tabindex">
+                                <% @lang.each_with_index do |item, index| %>
+                                    <option value="<%=item.language_code%>"><%=item.language_name%></option>
+                                <% end %>
+                            </select>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input type="hidden" name="authenticity_token" id="authenticity_token">
+                    <input type="hidden" id="width_height_trans" data-height="" data-width="">
+                    <input type="hidden" name="different[id]" value="<%= @different_ja.id %>">
+
+                    <!-- title -->
+                    <div class="form-group">
+                        <label for="title">
+                            <%= t('title') %>
+                            <span class="sign_required">*</span>
+                        </label>
+                        <input class       ="form-control form_auto_tabindex" 
+                               name        ="different[title]" 
+                               id          ="trans_title"
+                               placeholder ="title" 
+                               value       ="<%= @different_ja != nil ? @different_ja.title : '' %>"/>
+                    </div>
+
+                    <!-- content -->
+                    <div class="form-group">
+                        <label for="content">
+                            <%=t('content_admin')%>
+                            <span class="sign_required">*</span>
+                        </label>
+                        <textarea class       ="form-control ckeditor-custom form_auto_tabindex" 
+                                  name        ="different[content]" 
+                                  id          ="trans_content" 
+                                  placeholder ="<%=t('content_admin')%>" 
+                                  rows        ="5"><%=@different_ja != nil ? @different_ja.content : ''%></textarea>
+                    </div>
+                    
+                    <!-- icon -->
+                    <div class="form-group">
+                        <label for="">
+                            <%= t('icon') %>
+                            <% if @mode == 'I' %>
+                                <span class="sign_required">*</span>
+                            <% end %>
+                        </label>
+
+                        <div class="clearfix"></div>
+
+                        <img id  ="trans_icon_preview"
+                             src ="<%= (@different_ja != nil && @different_ja.icon != nil) ? @different_ja.icon : '' %>"/>
+
+                        <div class="form-group">
+                            <input class       ="form-control" 
+                                   id          ="trans_icon" 
+                                   placeholder ="Icon"
+                                   value       ="<%= (@different_ja != nil && @different_ja.icon != nil) ? @different_ja.icon.split('/').last : '' %>" 
+                                   readonly    ="readonly" />
+                            <!-- <span class="input-group-btn">
+                                <button type        ="button" 
+                                        class       ="btn btn-primary form_auto_tabindex" 
+                                        data-target ="trans_icon_upload">
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </button>
+                                <input type     ="file" 
+                                       class    ="file" 
+                                       name     ="different[icon]" 
+                                       id       ="trans_icon_upload"
+                                       accept   =".jpg,.png,.jpeg"
+                                       disabled ="disabled" />
+                            </span> -->
+                        </div>
+                    </div>
+                    
+                    <!-- show -->
+                    <div class="form-group">
+                        <label for=""><%= t('show') %></label>
+                        <input type     ="checkbox" 
+                               class    ="js-switch"
+                               name     ="different[show]"
+                               disabled ="disabled"
+                               <%= "checked=checked" if (@different_ja == nil || @different_ja.show == true) %> />
+                    </div>
+
+                    <!-- submit -->
+                    <div class="form-group">
+                        <button type  ="button" 
+                                class ="btn btn-primary" 
+                                id    ="trans-btn-save-different"><%= t('save_translate') %>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <% end %>
+
+</div>
